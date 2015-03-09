@@ -1,0 +1,6 @@
+CS162;Finish project4;02/23
+CS162;Finish lab5;02/23
+CS250;Do proofs ec1;02/24
+CS250;Read induction ch. 5 epp text;02/24
+CS162;Read ch.13 Malik;02/27
+CS250;Proofs e/c 2;03/01
