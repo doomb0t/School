@@ -7,7 +7,7 @@
  *
  *        Version:  1.0
  *        Created:  03/02/2015 01:13:33 AM
- *       Revision:  none
+ *       Revision:  1
  *       Compiler:  g++
  *
  *         Author:  Jonathon Sonesen 
@@ -18,103 +18,125 @@
 #include <stdlib.h>
 #include <gmpxx.h>
 #include <iostream>
-void thereom1(mpz_class m, mpz_class n);
-void thereom2(mpz_class m, mpz_class n);
-void thereom3(mpz_class n);
-mpz_class divideMPZ(mpz_class temp,mpz_class  b);
-mpz_class choose(mpz_class temp, mpz_class b);
+
 using namespace std;
+
+void theorem1_2(mpz_class m, mpz_class n);
+
+mpz_class theorem3Control(mpz_class n);
+mpz_class theorem3ToCheck(mpz_class n);
+mpz_class factorial(mpz_class n, mpz_class k);
+
 int main()
 {
-    mpz_class limit, m, n;
+    mpz_class limit, m, n, th3Known,th3Check;
     string inLimit, inN;
-
+    
+    //prompt and receive input
     cout << "Please enter limit\n";
     getline(cin, inLimit);
     cout << "Please enter n\n";
     getline(cin, inN);
     
+    //assign large ints
     limit = inLimit.c_str();
     n = inN.c_str();
-    thereom1(limit, n);
-    thereom2(limit, n);
-    thereom3(n);
+    theorem1_2(limit, n);
+
+    for(mpz_class i = 0; i < n; i++)
+    {   
+        //assign control variables
+        th3Known = theorem3Control(i);
+        th3Check = theorem3ToCheck(i);
+
+        //compare
+        if(th3Check != th3Known)
+        {    
+            cout << "Theorem 3 misses an element of the catalan i = " << th3Check << ".\n";
+            cout << "The correct value is " << th3Known << ".\n";
+        }   
+    }        
+    cout << "Theorem 3: Valid\n";
     return 0;
+
 }
 
-void thereom1(mpz_class limit, mpz_class n)
+void theorem1_2(mpz_class limit, mpz_class n)
 {
-    mpz_class m;
+    mpz_class k,m,sum,temp;
+    bool found = false;
+    bool hypothesis = false;
     for (mpz_class i = -10; i <= 10; i++)
     {
         m = limit + 2*i;
-
-        for (mpz_class k = 0; k < m; k++)
+        sum = 0; 
+        //Display hypothesis status
+        if (hypothesis == false && m % 2 == 0)
         {
-            if (m % 2 != 0 && (n + k)%m != 0)
-            {
-                cout << "Thereom 1: Counter example found at k = " << k << "and n = " << n << endl;
-                return;
-            }
+            cout << "** Since m is even the hypothesis for theorem 1 is not true**\n";
+            hypothesis = true;
+        }else if (hypothesis == false && m %2 != 0)
+        {
+            cout << "** Since m is odd the hypothesis for theorem 2 is not true**\n";
+            hypothesis = true;
+        }
+        //summation
+        for (k = 0; k < m; k++) 
+        {
+            sum = sum + (n + k);
+        }
+                 
+        temp = sum % m;
+        if (temp != 0 && found == false)
+        {   
+            cout << "Theorem 1: Counter example found at sum = " << sum;
+            cout << " and m = " << m << " with a remainder of" << temp << endl;
+            cout << "Theorem 2: Counter example found at sum = " << sum;
+            cout << " and m = " << m << " with a remainder of" << temp << endl;
+            found = true;
         }
     }
-    cout << "Thereom 1: No counter example foud\n";
+
+    if(found == false)
+    {
+        cout << "Theorem 1: No counter example found \n";
+        cout << "Theorem 2: No counter example found \n";
+    }
     return;
 }
 
 
-void thereom2(mpz_class limit, mpz_class n)
-{
-    mpz_class m;
-      for (mpz_class i = -10; i <= 10; i++)
-    {
-        m = limit + 2*i;
 
-        for (mpz_class k = 0; k < m; k++)
-        {
-            if (m % 2 == 0 && (n + k)%m != 0)
-            {
-                cout << "Thereom 2: Counter example found at k = " << k << "and n = " << n << endl;
-                return;
-            }
-        }
-    }
-    cout << "Thereom 2: No counter example foud\n";
-    return;
+//Evaluate known
+mpz_class theorem3Control(mpz_class n)
+{
+    mpz_class  c = factorial(2*n, n);   
+    c = c / (n + 1);
+    return  c;
 }
-void thereom3(mpz_class n)
+//Evaluate unknown 
+mpz_class theorem3ToCheck(mpz_class n)
 {
-    mpz_class biNomTop, biNomBottom, biNomResult,temp,cat;
-    biNomTop = 2*n+2;
-    biNomBottom = n+1;
-    biNomResult = 1;
-    if(biNomBottom > biNomTop - biNomBottom)
-        biNomBottom = biNomTop - biNomBottom;
-
-    for (mpz_class i = 0; i < biNomBottom; i++)
-    {
-        biNomResult = biNomResult * (n-i);
-        cout << biNomResult << "\n";
-        biNomResult = divideMPZ(i+1, biNomResult);
-        cout << biNomResult << "\n";
-    }
-
-    cout << biNomResult << "\n";
-    
-    
-     cat = biNomResult;
-     cat = divideMPZ(4*n+2,cat);
-     cout << "Thm3: " << cat << "\n";
-    
+    mpz_class  c = factorial(2*n+2, n+1);
+    c = c / (4*n + 2);
+    return c;
 }
 
-mpz_class divideMPZ(mpz_class temp,mpz_class  b)
+//function to evaluate binomial coefficient
+mpz_class factorial(mpz_class n, mpz_class k)
 {
-    mpz_class q = 0;
-    while (temp >= b)
+    mpz_class result = 1;                            
+    
+    if ( k > n)
+        return 0;
+    if (k * 2 > n)
+        k = n - k;
+    if(k == 0)
+        return 1;
+    for (mpz_class i = 0; i < k; ++i)     
     {
-        temp = temp - b;
-        q++;
-    }
-    return q;
+        result = result * (n - i);   
+        result = result / (i +1);
+    } 
+    return result;          
 }
