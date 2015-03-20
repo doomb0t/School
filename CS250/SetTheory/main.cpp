@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <stdio.h>
+#include <string>
 using namespace std;
 const int ARRAY_MAX = 8192;
 void checkFloat(float const float_Set_A[], float const float_Set_B[], int m, int n);
@@ -58,39 +59,53 @@ int main()
     for (int i = 0; i < m; i++)
     {
         if (data_Type == "char")
+        {   
             cin >> char_Set_A[i];
-
+            cin.ignore(100, '\n');
+        }
         if (data_Type == "string") 
         {   
             cin.ignore(100,'"');
-            getline(cin,string_Set_A[i],100,'"');
-            cin.ignore(100,'"');
+            getline(cin, string_Set_A[i],'"');
         }
 
         if (data_Type == "int") 
+        {
             cin >> int_Set_A[i];
+            cin.ignore(100,'\n');
+        }
      
         if (data_Type == "float") 
+        {  
             cin >> float_Set_A[i];
+            cin.ignore(100, '\n');
+        }
     }
     cout << "Please enter n elements of set B: ";
     for (int i = 0; i < n; i++)
     {
         if (data_Type == "char")
+        {   
             cin >> char_Set_B[i];
+            cin.ignore(100, '\n');
+        }
 
         if (data_Type == "string")
         {
             
             cin.ignore(100, '"');
-            getline(cin, string_Set_B[i], 100, '"');
-            cin.ignore(100, '"');
+            getline(cin, string_Set_B[i], '"');
         }
         if (data_Type == "int") 
+        {
             cin >> int_Set_B[i];
-     
+            cin.ignore(100, '\n');
+            
+        }
         if (data_Type == "float") 
-            cin >> float_Set_B[i];
+        {   cin >> float_Set_B[i];
+            cin.ignore(100, '\n');
+        }
     }
 
     if (data_Type == "char")
@@ -190,7 +205,7 @@ void checkString(string const string_Set_A[], string const string_Set_B[], int m
         found = false;
         for (int k = 0; k < n; k++)
         {  
-            if(string_Set_A[i].compare(string_Set_B[k].c_str()) != 0)
+            if(string_Set_A[i].compare(string_Set_B[k].c_str()) == 0)
             {
                 found = true;
             }
