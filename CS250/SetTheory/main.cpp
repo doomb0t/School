@@ -3,7 +3,7 @@
  *
  *       Filename:  main.cpp
  *
- *    Description:  Set Theory Application
+ *    Description:  Set Theory Application to identify subset of two data sets
  *
  *        Version:  1.0
  *        Created:  03/19/2015 10:27:04 PM
