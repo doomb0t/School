@@ -31,26 +31,23 @@ int main ()
     //read and check input
     printf("First number: ");
     nparsed = scanf("%lf\0", &firstNum);
-
     while(nparsed !=1)
     {
         eatline();
         printf("-- bad input --\n");
         printf("First number: ");
         nparsed = scanf("%lf\0", &firstNum);
-        eatline();
     }
     
     printf("Second number: \0");
     nparsed = scanf("%lf\0", &scndNum);
-
     while(nparsed !=1)
     {
         eatline();
         printf("--bad input--\n");
         nparsed = scanf("%lf\0", &firstNum);
-        printf("Second number: ");
-        eatline();
+        printf("First number: ");
+        
     }
 
     sum = firstNum + scndNum;
@@ -60,5 +57,7 @@ int main ()
     printf("%11.2f\n", sum);
 
     return 0;
+    
+
 }
 
