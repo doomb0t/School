@@ -8,11 +8,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static char *studentName = "I. Forgot";
+static char *studentName = "Jonathon Sonesen";
 
 // report whether machine is big or small endian
 void bigOrSmallEndian()
 {
+    unsigned int checkEnd = 1;
+    char *endChar=(char*)&checkEnd;
+   if(*endChar == 1)
+   {
+       printf("byte order: little endian\n\n");
+   }
+   else
+   {
+       printf("byte order: big endian\n\n");
+
+   }
 }
 
 // get next int (entered in hex) using scanf()
@@ -20,14 +31,29 @@ void bigOrSmallEndian()
 // if call succeeded, return int value via i pointer
 int getNextHexInt(unsigned int *i)
 {
-	// replace this code with the call to scanf()
-	*i = 0;
-	return 1;
+	int ret = 0;
+        if(scanf("%x", i) == 1)
+            ret = 1;
+        else
+            ret = 0;
+	return ret;
 }
 
 // print requested data for the given number
 void printNumberData(int i)
 {
+    int bitSign = 0;
+    if((i & 0x80000000) == 0x80000000)
+    {
+        printf("bitSign 1, "); //denotes a negative num
+        bitSign = 1;
+    }
+    else
+    {
+        printf("bitSign 0, "); //denotes a psitive num
+        bitSign = 0;
+    }
+
 }
 
 // do not change this function in any way
