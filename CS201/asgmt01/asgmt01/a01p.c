@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static char *studentName = "I. Forgot";
+static char *studentName = "Jonathon Sonesen";
 
 // report whether machine is big or small endian
 void bigOrSmallEndian()
@@ -41,6 +41,7 @@ void printNumberData(int i)
 {
     //check the sign bit
     int signBit = 0;
+    
     if((i & 0x80000000) == 0x80000000)
     {
         printf("signBit 1, "); //neg
@@ -55,7 +56,6 @@ void printNumberData(int i)
     //bit control flow var
     int expBits  = 0;
     int fracBits = 0;
-    int norm     = 1;
 
     //mask exp and frac bits
     expBits  = i & 0x7F800000; //mask sign and frac
@@ -71,12 +71,10 @@ void printNumberData(int i)
     {
         if(fracBits != 0)
         {
-            norm = 0;
             printf("denormalized: exp = %d", (expBits - 126));
         }
         else
         {
-            norm = 0;
             if(signBit == 0)
             {
                 printf("+zero");
@@ -104,8 +102,7 @@ void printNumberData(int i)
 
         if(expBits != 0 && expBits != 0xff)
         {
-            norm = 1;
-            printf("normalize: exp = %d", (expBits - 127));
+            printf("normalized: exp = %d", (expBits - 127));
         }
     }
     printf("\n\n");
