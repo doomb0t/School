@@ -17,7 +17,7 @@
  */
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <string.h>
 void eatline()
 {
     while(getchar() != '\n');
@@ -25,32 +25,30 @@ void eatline()
 
 int main ()
 {
+    char c;
     double firstNum, scndNum, sum;
-    int nparsed;
     
     //read and check input
     printf("First number: ");
-    nparsed = scanf("%lf\0", &firstNum);
+    scanf("%lf%c", &firstNum, &c); 
 
-    while(nparsed !=1)
+    while(c != '\n')
     {
         eatline();
         printf("-- bad input --\n");
         printf("First number: ");
-        nparsed = scanf("%lf\0", &firstNum);
-        eatline();
+        scanf("%lf%c", &firstNum, &c);
     }
-    
-    printf("Second number: \0");
-    nparsed = scanf("%lf\0", &scndNum);
+    c = '\0'; 
+    printf("Second number: ");
+    scanf("%lf%c", &scndNum, &c);
 
-    while(nparsed !=1)
+    while(c != '\n')
     {
         eatline();
         printf("--bad input--\n");
-        nparsed = scanf("%lf\0", &firstNum);
         printf("Second number: ");
-        eatline();
+        scanf("%lf%c", &scndNum, &c);
     }
 
     sum = firstNum + scndNum;
