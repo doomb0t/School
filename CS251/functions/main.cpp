@@ -27,7 +27,8 @@
 
 using namespace std;
 void splitLine(vector <string> &words, string currentLine, mpz_class limit);
-void injectiveCheck(vector <string> &oneToOne, string *set1, string *set2, int base, const mpz_class n1, const mpz_class n2);
+void getInjective(vector <string> &oneToOne, string *set1, string *set2, int base, const mpz_class n1, const mpz_class n2);
+void getFunctions(vectore <string> &allFunc, string *set1, string *set2, int base, const mpz_class n1, const mpz_class n2);
 void swap(string *a, string *b);
 void printVector(vector <string> inComing);
 mpz_class calcElem(mpz_class n1, mpz_class n2);
@@ -42,7 +43,7 @@ int main()
     mpz_class nTest2 = 0;
     //input
     string s_setA, s_setB;
-    vector <string> lineArray, v_setA, v_setB, V_Injective;
+    vector <string> lineArray, v_setA, v_setB, v_injective, v_allFunc;
 
     cout << "Enter number of elemets in sets (seperated by spaces : ";
     cin >> nSet1 >> nSet2;
@@ -56,11 +57,18 @@ int main()
 
     if (elementCount(s_setA) >= nSet1 && elementCount(s_setB) >= nSet2)
     {
+        //Parse sets and direct pointers to front of vector
         splitLine(v_setA, s_setA, nSet1);
         splitLine(v_setB, s_setB, nSet2);
         string* p_setA = &v_setA[0];
         string* p_setB = &v_setB[0];
 
+        //Print function data
+        cout << "There are " << pow(v_setA.size(), v_setB.size()) << " functions from A to B: " ;
+        getFunctions(v_allFunc, p_setA, p_setB, v_setA.size(), v_setB.size());
+        
+
     }
 }
+
 
