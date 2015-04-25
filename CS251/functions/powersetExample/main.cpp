@@ -71,30 +71,55 @@ int main ()
     //
     //we also use filters to identify properties of the elements, later I will add a filter for
     //surjective and bijective
-    cout << "\nPower set of Cross Products: { " << endl;
+    //This prints the number of functions and tests the power set
+    cout << "\nThere are " << pow(domain->size(), codomain->size())
+         << " functions from A to B: " <<  endl;
     int row = 0;
     for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
     {
     
         auto testF = isFunction(*ptrA, domain) ? 'F' : ' ';
-        auto testI = isInjective(*ptrA, domain, codomain) ? 'I' : ' ';
         auto testS = isSurjective(*ptrA, domain, codomain) ? 'S' : ' ';
         auto testB = isBijective(*ptrA, domain, codomain) ? 'B' : ' ';
         if(testF == 'F')
         {
-            cout << setw(3) << setfill (' ') << ++row << ". " << testF << " "
-                 << testI << " " << testS << " " << testB << " " << "{";
+            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
+            
             //Loop fo inner tuples
             for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
             {
                 cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
             }
             cout << "}" << endl;
-
         }
     }
     cout << "}" << endl;
     
+
+    cout << "\nThere are " << pow(domain->size(), codomain->size())
+         << " injective functions from A to B: " <<  endl;
+    row = 0;
+    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
+    {
+        auto testI = isInjective(*ptrA, domain, codomain) ? 'I' : ' ';
+    
+        if(testI == 'I')
+        {
+            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
+            
+            //Loop fo inner tuples
+            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
+            {
+                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
+            }
+            cout << "}" << endl;
+        }
+    }
+    cout << "}" << endl;
+
+    //Surjective
+
+        auto testI = isInjective(*ptrA, domain, codomain) ? 'I' : ' ';
     //clean up them leaks boy
     delete domain;
     delete codomain;
