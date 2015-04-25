@@ -1,6 +1,6 @@
 #Vim
 .*.sw[a-z]
-*.un~i
+*.un~
 tags
 
 #Executables
