@@ -43,7 +43,7 @@ int main(){
 		splitLine(v_setB, s_setB, nSet2);
 		string* p_setA = &v_setA[0];
 		string* p_setB = &v_setB[0];
-
+    
                 //print all functions
                 cout << "There are " << pow(v_setA.size(), v_setB.size()) << " functions from A to B: " << endl;
                 getFunctions(v_allFunctions, p_setA, p_setB, 0, v_setA.size(), v_setB.size());
@@ -142,27 +142,18 @@ mpz_class calcElem(mpz_class n1, mpz_class n2)
 	return temp;
 }
 
-void getFunctions(vector <string> &oneTone, string *set1, string *set2, int base, const mpz_class n1, const mpz_class n2)
+void getFunctions(vector <string> &functions, string *set1, string *set2, int base, const mpz_class n1, const mpz_class n2)
 {
-	if (base == n1)
+
+    do
+    {
+        for(int i = 0; i < n1; i++)
         {
-		string temp = "{";
-		for (size_t k = 0; k < n1; k++)
-		{
-			temp.append("(" + set1[k] + "," + set2[k] + ")");
-		}
-		temp.append("}");
-		oneTone.push_back(temp);
-	}
-	else
-	{
-		for (int j = base; j < n2; j++) 
-                {
-			swap((set2 + base), (set2 + j));
-			getFunctions(oneTone, set1, set2, base + 1, n1, n2);
-			swap((set2 + base), (set2 + j));
-		}
-	}
+            
+        }
+        cout << "\n";
+    }while(next_permutation(set1->begin(), set1->end()));
+    
 }
 
 
@@ -171,7 +162,7 @@ void getSurjective(vector <string> &oneTone, string *set1, string *set2, int bas
 	if (base == n1)
         {
 		string temp = "{";
-		for (size_t k = 0; k < n1; k++)
+	for (size_t k = 0; k < n1; k++)
 		{
 			temp.append("(" + set1[k] + "," + set2[k] + ")");
 		}

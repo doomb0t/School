@@ -25,7 +25,9 @@ void eatline()
 
 int main ()
 {
+    char c;
     double firstNum, scndNum, sum;
+<<<<<<< HEAD
     int nparsed;
     char c;   
     //read and check input
@@ -47,6 +49,30 @@ int main ()
         printf("--bad input--\nSecond Number: ");
         nparsed = scanf("%lf%c\0", &scndNum, &c);
         eatline();
+=======
+    
+    //read and check input
+    printf("First number: ");
+    scanf("%lf%c", &firstNum, &c); 
+
+    while(c != '\n')
+    {
+        eatline();
+        printf("-- bad input --\n");
+        printf("First number: ");
+        scanf("%lf%c", &firstNum, &c);
+    }
+    c = '\0'; 
+    printf("Second number: ");
+    scanf("%lf%c", &scndNum, &c);
+
+    while(c != '\n')
+    {
+        eatline();
+        printf("--bad input--\n");
+        printf("Second number: ");
+        scanf("%lf%c", &scndNum, &c);
+>>>>>>> 718081dfb8376b983492d863cbfb953fd0d835e8
     }
 
 
