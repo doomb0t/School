@@ -17,12 +17,22 @@
  * =====================================================================================
  */
 #include <stdlib.h>
-#include <iostream>
 #include <string.h>
+#include <stdio.h>
 
-
-int main()
+int main(int argc,char **argv)
 {
-    char test = '\0';
-
+    int arg1 = 0;
+    int arg2 = 0;
+    
+    if(argc == 0)
+    {
+        printf("Not enough arguments please try again.");
+        return -1;
+    }
+    for(int i = 0; i < argc; i++)
+    {
+        if(isdigit(argv[i]))
+            arg1 = (int)argv[i]
+    }
 }
