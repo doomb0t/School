@@ -27,29 +27,6 @@ int main ()
 {
     char c;
     double firstNum, scndNum, sum;
-<<<<<<< HEAD
-    int nparsed;
-    char c;   
-    //read and check input
-    printf("First number:\0 ");
-    nparsed = scanf("%lf%c\0", &firstNum, &c);
-    
-    while (nparsed != 1)
-    {
-        printf("--bad input--\nFirst Number: ");
-        nparsed = scanf("%lf%c\0", &firstNum, &c);
-        eatline();
-    }
-
-    printf("Second number: \0");
-    nparsed = scanf("%lf%c\0", &scndNum, &c);
-    
-    while (nparsed != 1)
-    {   
-        printf("--bad input--\nSecond Number: ");
-        nparsed = scanf("%lf%c\0", &scndNum, &c);
-        eatline();
-=======
     
     //read and check input
     printf("First number: ");
@@ -72,7 +49,6 @@ int main ()
         printf("--bad input--\n");
         printf("Second number: ");
         scanf("%lf%c", &scndNum, &c);
->>>>>>> 718081dfb8376b983492d863cbfb953fd0d835e8
     }
 
 
