@@ -3,19 +3,20 @@
  *
  *       Filename:  main.cpp
  *
- *    Description:  Evaluate relations between domain (set A) and codomain(set B)
+ *    Description:  Evaluate relations between domain (set A) and codomain(set B) 
+ *                  this porgram could use optimization, and will be improved later
  *
  *        Version:  1.0
  *        Created:  04/24/2015 12:38:31 AM
  *       Revision:  none
- *       Compiler:  g++ -lgmp -lgmpxx
+ *       Compiler:  g++ -std=c++11 main.cpp
  *
  *         Author:  Jonathon Sonesen
  *   Organization:  PCC CS251
  *
  * =====================================================================================
  */
-#include <iostream>                                             //I/O
+#include <iostream>                         
 #include <algorithm>                                            
 #include <string>
 #include <set>
@@ -35,7 +36,7 @@ typedef set<crosstype> powertype;                               //Power set is a
 //Functions to generate sets
 powertype * powerset(crosstype *);                             //power set generator 
 crosstype * crossproduct(settype *, settype *);                //cross product generator
-settype * loadSet(string);                                     //load domain or codomain from user
+settype   * loadSet(string);                                     //load domain or codomain from user
 
 //Functions to check properties of power set elements
 //elements are ordered pairs
@@ -45,15 +46,10 @@ bool isSurjective(crosstype relation, settype * domain, settype *codomain);
 bool isBijective(crosstype relation, settype * domain, settype *codomain);
 int main ()
 {
-    settype * domain   = loadSet("DOMAIN");                       //load domain
-    settype * codomain = loadSet("CODOMAIN");                     //load codomain
+    settype * domain   = loadSet("Enter set A: ");                       //load domain
+    settype * codomain = loadSet("Enter set B: ");                     //load codomain
     crosstype * cross  = crossproduct(domain, codomain);          //generate cross product
     powertype * power  = powerset(cross);                         //generate the power set
-
-    //Print info on sets
-    cout << "Domain has " << domain->size() << " elements" << endl;
-    cout << "CoDomain has " << codomain->size() << " elements" << endl;
-    cout << "Power set of cross product has " << power->size() << " elements";
 
     //Print coss product roster. The cross product is a set of ordered pairs. They
     //are represented with the <tuple> container. get is used to access the 0 or
@@ -69,8 +65,8 @@ int main ()
     //each element of the powerset is a set of tuple. So once you access a particular
     //element of that power set you need a second loop to acess the the tuples of the element
     //
-    //we also use filters to identify properties of the elements, later I will add a filter for
-    //surjective and bijective
+    //we also use filters to identify properties of the elements, such as surjectiveness
+    //injectiveness and bijectiveness
     //This prints the number of functions and tests the power set
     cout << "\nThere are " << pow(codomain->size(), domain->size())
          << " functions from A to B: " <<  endl;
@@ -80,7 +76,8 @@ int main ()
     int injective  = 0;
     int bijective  = 0;
     int surjective = 0;
-    
+ 
+    //Filter power set for function-ness and print results
     for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
     {
         if(isFunction(*ptrA, domain))
@@ -101,7 +98,7 @@ int main ()
     }
     cout << endl;
     
-
+    //Print injective functions
     cout << "\nThere are " << injective
          << " injective functions from A to B: " <<  endl;
     row = 0;
@@ -161,7 +158,7 @@ int main ()
     }
     cout << endl;
    
-    //clean up them leaks boy
+    //Leak stopper five thousand
     delete domain;
     delete codomain;
     delete cross;
@@ -172,9 +169,11 @@ int main ()
 /*
  * Filter: Surjective Function
  * Parm: crosstype powerset, settype domain,settype codomain
+ * Return: true if function is surjective
  */
 bool isSurjective( crosstype  relation, settype * domain, settype * codomain)
 {
+    //Prelims
     if(!isFunction(relation, domain))     return false;
     if(codomain->size() > domain->size()) return false;
     
@@ -182,10 +181,11 @@ bool isSurjective( crosstype  relation, settype * domain, settype * codomain)
     set<elementtype> relem;
     for(auto ptr = relation.begin(); ptr != relation.end(); ptr++)
     {  
-        //get codomain element
+        //Get codomain element
         auto buffer = std::get<1>(*ptr);
         relem.insert(buffer);
     }
+    //If each codomain element is found it is surjective
     if (relem.size() == codomain->size()) return true;
     return false;
 }

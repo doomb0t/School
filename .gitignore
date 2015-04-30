@@ -1,0 +1,9 @@
+#Vim
+.*.sw[a-z]
+*.un~
+tags
+
+#Executables
+*.out
+*.o
+
