@@ -1,8 +1,8 @@
 import math
 
-first     = {}
-second    = {}
-intersect = {}
+first      = {}
+second     = {}
+intersect  = {}
 
 firstSet   = set(( )) 
 secondSet  = set(( ))
