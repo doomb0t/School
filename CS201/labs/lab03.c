@@ -35,4 +35,5 @@ int main(int argc,char **argv)
         if(isdigit(argv[i]))
             arg1 = (int)argv[i]
     }
+    return 0;
 }
