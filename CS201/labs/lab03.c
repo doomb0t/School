@@ -20,6 +20,7 @@
 #include <string.h>
 #include <stdio.h>
 
+<<<<<<< HEAD
 int isnum (char *test);
 int opid(char *test);
 
@@ -62,5 +63,22 @@ int opid(char *test)
     if( *test == '/')
         return 4;
     
+=======
+int main(int argc,char **argv)
+{
+    int arg1 = 0;
+    int arg2 = 0;
+    
+    if(argc == 0)
+    {
+        printf("Not enough arguments please try again.");
+        return -1;
+    }
+    for(int i = 0; i < argc; i++)
+    {
+        if(isdigit(argv[i]))
+            arg1 = (int)argv[i]
+    }
+>>>>>>> f14afd253896133bccaae72d4d2277902f96281a
     return 0;
 }

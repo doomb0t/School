@@ -51,6 +51,7 @@ int main ()
         scanf("%lf%c", &scndNum, &c);
     }
 
+
     sum = firstNum + scndNum;
     printf("%11.2f\n", firstNum);
     printf("+%10.2f\n", scndNum);
