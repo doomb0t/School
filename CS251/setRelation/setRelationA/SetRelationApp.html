@@ -1,0 +1,43 @@
+<tbody><tr id="z_e"><td class="d_fgh" colspan="2" align="left"><div style="padding: 3px 0px 2px 0px;"><a title="" href="javascript://" onclick="UI.C(this,'UI.GC(\u0027z_e\u0027).Toggle();;return false;');return false;" class="di_ls"><img src="/d2l/img/0/Shared.Main.actHide.png?v=10.3.0.791-98" class="di_i di_16" alt="" id="z_f"><span class="di_ts">Hide Folder Information
+</span></a><div style="padding: 0.2em 0.2em 0.2em 24px;display: none;"><img src="/d2l/img/0/Shared.Main.infInfo.gif?v=10.3.0.791-98" class="di_i di_16" alt="" title=""></div></div></td></tr><tr><td style="width:15%;text-align:left;" class="fl_n fl_top"><label id="ctl_7"><span>Folder</span></label></td><td>&nbsp;</td></tr><tr id="z_g"><td class="fct_w" colspan="2"><div class="dco" style="margin-top:0.9em;"><div class="dco_c"></div></div><label>Set Relations Application Assignment</label></td></tr><tr><td style="width:15%;text-align:left;" class="fl_n fl_top"><label id="ctl_8"><span>Instructions</span></label></td><td>&nbsp;</td></tr><tr id="z_h"><td class="fct_w" colspan="2"><div class="drt">﷐<h1>Set Relations Application Assignment</h1>
+<h2>Introduction</h2>
+<p>This assignment builds on the Functions application.&nbsp; In the Functions program, the user entered two set rosters, and you counted all of the relations that were functions of various types.&nbsp; In this assignment you are counting relations that meet the other criteria identified in the course material.&nbsp; Recall, the 13 relation properties identified in CS 251 are</p>
+<ol>
+<li>Domain consumption</li>
+<li>Unique image</li>
+<li>Injection</li>
+<li>Surjection</li>
+<li>Reflexive</li>
+<li>Symmetric</li>
+<li>Transitive</li>
+<li>Not Reflexive</li>
+<li>Not Symmetric</li>
+<li>Not Transitive</li>
+<li>Anti Reflexive</li>
+<li>Anti Symmetric</li>
+<li>Anti Transitive</li>
+</ol>
+<p>Using these properties, you can identify the following categories of relations:</p>
+<ol>
+<li>Functions, which satisfy (1) &amp; (2)</li>
+<li>Bijective Functions, which satisfy (1), (2), (3), and (4)</li>
+<li>Equivalence relations, which satisfy (5), (6), and (7)</li>
+<li>Partial Order relations, which satisfy (5), (7), and (12)</li>
+</ol>
+<h2>Instructions</h2>
+<p>Write a C++ program that performs the following:</p>
+<ol>
+<li>Accept a list of<em></em> elements on a single line (separated by spaces). &nbsp;The elements are strings (with no embedded spaces), and there will be no more than 4 elements in this roster. This is set A.&nbsp; Note that you must count the number of elements entered by the user on the line in order to determine the set size.&nbsp; This set will never be empty.<br><br></li>
+<li>Accept a second list of&nbsp; elements on a single line (separated by spaces). The elements are strings (with no embedded spaces), and there will be no more than 4 elements in this roster.&nbsp; This is set B. Note that you must count the number of elements entered by the user on the line in order to determine the set size.&nbsp; This set will never be empty.<br><br></li>
+<li>Display each of the following:</li>
+<ol>
+<li>The number of injective functions from A to B.&nbsp; List all of the injective&nbsp; functions in set notation.</li>
+<li>The number of equivalence relations on A.&nbsp; List all of the equivalence relations in set notation.</li>
+<li>The number of partial order relations on B.&nbsp; List all of the partial order relations in set notation.</li>
+</ol></ol>
+<h2>Design Notes</h2>
+<p>Note the possible cardinalities: if A and B both have 4 elements, then the cross products will have 16 elements, which is a reasonable number.&nbsp; The power set of the cross-product will have 2<sup>16</sup> = 65,536 elements, which is a larger number.&nbsp; Note that of those 65,536 set relations, you will have at most&nbsp; 256 functions, 24 injective functions, and 15 equivalence relations (the counting details will become clear in the next module).</p>
+<p>Try to avoid extensive testing of all relations - that can cause excessive runtimes for your program.&nbsp; Before testing any of the 13 relation criteria, check set cardinality: any relation whose cardinality is less than the cardinality of the domain can not be a function, equivalence relation, or partial order relation since all elements of the domain must participate in these relations (due to domain consumption and reflexivity).</p>
+<h2>Submission</h2>
+<p>Submit your main.cpp file only to the dropbox. &nbsp;Do not include any project files or executable files - just the source code. &nbsp;Your program must compile and execute in PCC's linux environment.</p>
+<p></p></div></td></tr><tr><td style="width:15%;text-align:left;" class="fl_n fl_top"><label id="ctl_10"><span>Due Date</span></label></td><td>&nbsp;</td></tr><tr id="z_i"><td class="fct_w" colspan="2"><label>May 6, 2015 11:30 PM</label>﷯</td></tr></tbody>

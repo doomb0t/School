@@ -20,26 +20,9 @@
 #include <string.h>
 #include <stdio.h>
 
-<<<<<<< HEAD
 int isnum (char *test);
 int opid(char *test);
 
-int main(int argc, char **argv)
-{
-    char first[100] = {};
-    int first  = 0;
-    int secend = 0;
-    int op     = 0
-    for ( int i = 0; i < argc; i++ )
-    {
-        if (isnum(argv[i]) == 1)
-            first[i] = *argv[i];
-        else
-        {
-        }
-    }
-    return 0;
-}
 
 int isnum(char *test)
 {
@@ -48,10 +31,9 @@ int isnum(char *test)
     else
     return 1;
 }
-
-int opid(char *test)
+int opid(char *test) { if ( *test == '+')
 {
-    if ( *test == '+')
+    if (*test == '+')
         return  1;
     
     if ( *test == '-')
@@ -62,8 +44,7 @@ int opid(char *test)
     
     if( *test == '/')
         return 4;
-    
-=======
+}    
 int main(int argc,char **argv)
 {
     int arg1 = 0;
@@ -74,11 +55,27 @@ int main(int argc,char **argv)
         printf("Not enough arguments please try again.");
         return -1;
     }
-    for(int i = 0; i < argc; i++)
+
+    if(isnum(argv[0]))
+        sscanf(argv[0],"%d", &arg1);
+    
+    if(isnum(argv[2]))
+        sscanf(argv[0],"%d", &arg2);
+    return 0;
+    switch opid(argv[1])
     {
-        if(isdigit(argv[i]))
-            arg1 = (int)argv[i]
-    }
->>>>>>> f14afd253896133bccaae72d4d2277902f96281a
+        case 1:
+            printf("%d\n",arg1 + arg2);
+            break;
+        case 2:
+            printf("%d\n",arg1 - arg2);
+            break;
+        case 3:
+            printf("%d\n",arg1 * arg2);
+            break;
+        case 2:
+            printf("%d\n",arg1 / arg2);
+            break;
+   }
     return 0;
 }
