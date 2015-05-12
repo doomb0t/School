@@ -247,7 +247,7 @@ bool isInjective( crosstype  relation, settype * domain, settype * codomain)
 }
 bool isTransitive( crosstype relation, settype * domain, settype * codomain)
 {
-    if(codomain->size() < domain->size()) return false;
+    //if(relation.size() < domain->size()) return false;
     for ( auto ptrx = relation.begin(); ptrx != relation.end(); ptrx++)
     {
         auto bufferx = std::get<0>(*ptrx);
@@ -255,14 +255,17 @@ bool isTransitive( crosstype relation, settype * domain, settype * codomain)
         {
             auto buffery = std::get<1>(*ptry);
             auto xy = std::make_tuple(bufferx,buffery); 
-            
-            for (auto ptrz = relation.begin(); ptrz != relation.end(); ptrz++)
+            if(relation.find(xy) != relation.end())
             {
-                auto bufferz = std::get<1>(*ptrz);
-                auto xz = std::make_tuple(bufferx,bufferz);
-                auto yz = std::make_tuple(buffery,bufferz);
-                if(relation.find(yz) != relation.end() && relation.find(xz) == relation.end())
-                        return false;
+                for (auto ptrz = relation.begin(); ptrz != relation.end(); ptrz++)
+                {
+                    auto bufery = std::get<1>(*ptry);
+                    auto bufferz = std::get<1>(*ptrz);
+                    auto xz = std::make_tuple(bufferx,bufferz);
+                    auto yz = std::make_tuple(buffery,bufferz);
+                    if (relation.find(yz) != relation.end() && relation.find(xz) == relation.end())
+                            return false;
+                }
             }
         }
     }
