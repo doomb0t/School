@@ -98,26 +98,6 @@ int main ()
     }
     cout << endl;
     
-    //Print injective functions
-    cout << "\nThere are " << injective
-         << " injective functions from A to B: " <<  endl;
-    row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isInjective(*ptrA, domain, codomain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
-            
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-    cout << endl;
-
     //Surjective
     cout << "\nThere are " << surjective
          << " surjective functions from A to B: " <<  endl;
@@ -158,6 +138,24 @@ int main ()
     }
     cout << endl;
    
+    //Print equivalence relations
+    cout  << " Equivalence relations: " <<  endl;
+    row = 0;
+    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
+    {    
+        if(isInjective(*ptrA, domain, codomain))
+        {
+            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
+            
+            //Loop fo inner tuples
+            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
+            {
+                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
+            }
+            cout << "}" << endl;
+        }
+    }
+    cout << endl;
     //Leak stopper five thousand
     delete domain;
     delete codomain;
@@ -197,11 +195,12 @@ bool isSurjective( crosstype  relation, settype * domain, settype * codomain)
  * */
 bool isFunction( crosstype relation, settype * domain)
 {
-   set<elementtype> relem;                                              //Set of elements from the tuples
+   set<elementtype> relem;           //Set of elements from the tuples
+
    for (auto ptr = relation.begin();ptr != relation.end(); ptr++)
    {
-        auto buffer = std::get<0>(*ptr);               //Get first element of ordered pair (the domain contribution)
-        relem.insert(buffer);                                           //Add to tuples
+        auto buffer = std::get<0>(*ptr);        //Get first element of ordered pair
+        relem.insert(buffer);                   //Add to tuples
    }
    if (relem.size() != domain->size())    return false;
    if (relation.size() != domain->size()) return false;
