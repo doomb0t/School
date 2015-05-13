@@ -31,7 +31,8 @@ int isnum(char *test)
     else
     return 1;
 }
-int opid(char *test) { if ( *test == '+')
+
+int opid(char *test)
 {
     if (*test == '+')
         return  1;
@@ -44,12 +45,15 @@ int opid(char *test) { if ( *test == '+')
     
     if( *test == '/')
         return 4;
-}    
+    return 0;
+    
+}  
+
 int main(int argc,char **argv)
 {
     int arg1 = 0;
     int arg2 = 0;
-    
+    int out = 0;
     if(argc == 0)
     {
         printf("Not enough arguments please try again.");
@@ -61,21 +65,9 @@ int main(int argc,char **argv)
     
     if(isnum(argv[2]))
         sscanf(argv[0],"%d", &arg2);
-    return 0;
-    switch opid(argv[1])
-    {
-        case 1:
-            printf("%d\n",arg1 + arg2);
-            break;
-        case 2:
-            printf("%d\n",arg1 - arg2);
-            break;
-        case 3:
-            printf("%d\n",arg1 * arg2);
-            break;
-        case 2:
-            printf("%d\n",arg1 / arg2);
-            break;
-   }
+
+            if(opid(argv[1]) == 1)
+                out = arg1 + arg2;
+    printf("%d\n\n", out);
     return 0;
 }

@@ -38,13 +38,18 @@ powertype * powerset(crosstype *);                             //power set gener
 crosstype * crossproduct(settype *, settype *);                //cross product generator
 settype   * loadSet(string);                                     //load domain or codomain from user
 
+
 //Functions to check properties of power set elements
 //elements are ordered pairs
-bool isFunction(crosstype relation, settype * domain);
-bool isInjective(crosstype relation, settype *domain, settype *codomain);
-bool isSurjective(crosstype relation, settype * domain, settype *codomain);
-bool isBijective(crosstype relation, settype * domain, settype *codomain);
-bool isTransitive(crosstype relation, settype * domain, settype * codomain);
+bool isFunction   (crosstype relation, settype * domain);
+bool isInjective  (crosstype relation, settype *domain, settype *codomain);
+bool isSurjective (crosstype relation, settype * domain, settype *codomain);
+bool isBijective  (crosstype relation, settype * domain, settype *codomain);
+bool isTransitive (crosstype relation, settype * domain);
+bool isReflexive  (crosstype relation, settype * codomain);
+bool isSymmetric  (crosstype relation, settype * domain);
+bool isAntiSym    (crosstype relation, settype * domain);
+
 int main ()
 {
     settype * domain   = loadSet("Enter set A: ");                       //load domain
@@ -74,17 +79,13 @@ int main ()
     
     //Trackers for functions and rows
     int row        = 0;
-    int injective  = 0;
     int bijective  = 0;
-    int surjective = 0;
  
     //Filter power set for function-ness and print results
     for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
     {
         if(isFunction(*ptrA, domain))
         {       
-            if(isInjective(*ptrA, domain, codomain))   injective++;
-            if(isSurjective(*ptrA, domain, codomain))  surjective++;
             if(isBijective(*ptrA, domain, codomain))   bijective++;
 
             cout << setw(3) << setfill (' ') << ++row << ". " << "{";
@@ -98,74 +99,41 @@ int main ()
         }
     }
     cout << endl;
-    
-    //Print injective functions
-    cout << "\nThere are " << injective
-         << " injective functions from A to B: " <<  endl;
-    row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isInjective(*ptrA, domain, codomain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
-            
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-    cout << endl;
-
-    //Surjective
-    cout << "\nThere are " << surjective
-         << " surjective functions from A to B: " <<  endl;
-    row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isSurjective(*ptrA, domain, codomain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
-            
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-    cout << endl;
- 
-    //Bijective
-    cout << "\nThere are " << bijective
-         << " bijective functions from A to B: " <<  endl;
-    row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isBijective(*ptrA, domain, codomain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
-            
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-    cout << endl;
    
+    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
+    {
+        if(isFunction(*ptrA, domain))
+        {
+            if(isTransitive(*ptrA, domain)) 
+            {
+
+                cout << setw(3) << setfill (' ') << ++row << ". " << "{";
+            
+                //Loop fo inner tuples
+                for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
+                {
+                    cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
+                }
+            } 
+        }
+    }
+    cout << endl;
     //Transitive
     cout << "\nThere are " << bijective
-         << " bijective functions from A to B: " <<  endl;
+         << " equivalence relations from A to B: " <<  endl;
     row = 0;
+
     for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
     {    
-        if(isTransitive(*ptrA, domain, codomain))
+        bool status = true;
+        if(!(isTransitive(*ptrA, domain)))
+            status = false;
+        if(!isReflexive(*ptrA, domain)) 
+            status = false;
+        if (!isSymmetric(*ptrA, domain))
+            status = false;
+        
+        if (status)
         {
             cout << setw(3) << setfill (' ') << ++row << ". " << "{";
             
@@ -177,13 +145,58 @@ int main ()
             cout << "}" << endl;
         }
     }
+    
     cout << endl;
+
     //Leak stopper five thousand
     delete domain;
     delete codomain;
     delete cross;
     delete power;
     return 0;
+}
+
+bool isReflexive  (crosstype relation, settype * domain)
+{
+    if (relation.size() < domain->size()) return false;
+    
+    for (auto ptr = domain->begin(); ptr != domain->end();ptr++)
+    {
+        auto bufferx = *ptr; //get x
+        auto xx = std::make_tuple(bufferx,bufferx);
+        if(relation.find(xx) == relation.end()) return false;
+    }
+    return true;
+}
+bool isSymmetric  (crosstype relation, settype * domain)
+{
+
+    if (relation.size() < domain->size()) return false;
+
+    for ( auto ptrx = relation.begin(); ptrx != relation.end();ptrx++)
+    {
+        auto bufferx = std::get<0>(*ptrx);
+        auto buffery = std::get<1>(*ptrx);
+        auto xy = std::make_tuple(bufferx,buffery);
+        
+        if(relation.find(xy) == relation.end()) return false;
+    }
+    return true;
+
+}
+bool isAntiSym    (crosstype relation, settype * domain)
+{
+    if (relation.size() < domain->size()) return false;
+    
+    for (auto ptrx = relation.begin(); ptrx != relation.end();ptrx++)
+    {
+        auto bufferx = std::get<0>(*ptrx);
+        auto buffery = std::get<1>(*ptrx);
+        auto yx = std::make_tuple(buffery,bufferx);
+        
+        if((relation.find(yx) != relation.end()) && (bufferx != buffery)) return false;
+    }
+    return true;
 }
 
 /*
@@ -220,7 +233,7 @@ bool isFunction( crosstype relation, settype * domain)
    set<elementtype> relem;                                              //Set of elements from the tuples
    for (auto ptr = relation.begin();ptr != relation.end(); ptr++)
    {
-        auto buffer = std::get<0>(*ptr);               //Get first element of ordered pair (the domain contribution)
+        auto buffer = std::get<0>(*ptr);                                //Get first element of ordered pair (the domain contribution)
         relem.insert(buffer);                                           //Add to tuples
    }
    if (relem.size() != domain->size())    return false;
@@ -239,37 +252,40 @@ bool isInjective( crosstype  relation, settype * domain, settype * codomain)
     for(auto ptr = relation.begin(); ptr != relation.end(); ptr++)
     {
         //Get codomain cotributed to ordered pair
+        
         auto buffer = std::get<1>(*ptr);
         if (relem.find(buffer) != relem.end()) return false;
         relem.insert(buffer);
     }
     return true;
 }
-bool isTransitive( crosstype relation, settype * domain, settype * codomain)
+bool isTransitive( crosstype relation, settype * domain)
 {
-    //if(relation.size() < domain->size()) return false;
-    for ( auto ptrx = relation.begin(); ptrx != relation.end(); ptrx++)
+    if(relation.size() < domain->size()) return false;
+
+    for(auto ptrx = relation.begin(); ptrx != relation.end(); ptrx++)
     {
-        auto bufferx = std::get<0>(*ptrx);
-        for ( auto ptry = relation.begin(); ptry != relation.end();ptry++)
+        for(auto ptry = relation.begin(); ptry != relation.end(); ptry++)
         {
+            auto bufferx = std::get<0>(*ptrx);
             auto buffery = std::get<1>(*ptry);
-            auto xy = std::make_tuple(bufferx,buffery); 
+            auto xy = std::make_tuple(bufferx,buffery);
             if(relation.find(xy) != relation.end())
             {
                 for (auto ptrz = relation.begin(); ptrz != relation.end(); ptrz++)
                 {
-                    auto bufery = std::get<1>(*ptry);
                     auto bufferz = std::get<1>(*ptrz);
+                    buffery = std::get<1>(*ptrx);
+                    auto yz = std::make_tuple(buffery, bufferz);
                     auto xz = std::make_tuple(bufferx,bufferz);
-                    auto yz = std::make_tuple(buffery,bufferz);
-                    if (relation.find(yz) != relation.end() && relation.find(xz) == relation.end())
-                            return false;
+                    if(relation.find(yz) == relation.end() && relation.find(xz) == relation.end()) 
+                        return false;
                 }
             }
         }
+
     }
-    return true;
+            return true;
 }
 
 /*Filter: Bijective function
@@ -278,11 +294,9 @@ bool isTransitive( crosstype relation, settype * domain, settype * codomain)
  */
 bool isBijective( crosstype relation, settype *domain, settype * codomain)
 {
-    if( !isFunction(relation, domain)) return false;
+    if(!isFunction(relation, domain)) return false;
     if(!isSurjective(relation, domain, codomain)) return false;
     if(!isInjective(relation, domain, codomain)) return false;
-
-    
     return true;
 }
 
