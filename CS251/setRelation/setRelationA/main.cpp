@@ -162,6 +162,58 @@ int main ()
             cout << "}" << endl;
         }
     }
+    //Print reflexive
+    cout  << " Reflexive: " <<  endl;
+    row = 0;
+    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
+    {    
+        if(isReflexive(*ptrA, domain))
+        {
+            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
+            
+            //Loop fo inner tuples
+            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
+            {
+                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
+            }
+            cout << "}" << endl;
+        }
+    }
+    //Print symmetric
+    cout  << " Symmetric: " <<  endl;
+    row = 0;
+    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
+    {    
+        if(isSym(*ptrA, domain))
+        {
+            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
+            
+            //Loop fo inner tuples
+            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
+            {
+                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
+            }
+            cout << "}" << endl;
+        }
+    }
+
+    //Print Antisymmetric
+    cout  << " AntiSymmetric: " <<  endl;
+    row = 0;
+    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
+    {    
+        if(isSym(*ptrA, domain))
+        {
+            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
+            
+            //Loop fo inner tuples
+            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
+            {
+                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
+            }
+            cout << "}" << endl;
+        }
+    }
     //Leak stopper five thousand
     delete domain;
     delete codomain;
@@ -214,6 +266,10 @@ bool isFunction( crosstype relation, settype * domain)
    return true;
 }
 
+/* Filter: Injective Functions
+ * Parm: powerset, domain codomain
+ * Return: true is isInjective
+ */
 bool isInjective( crosstype  relation, settype * domain, settype * codomain)
 {
     if(isFunction(relation, domain) == false) return false;
@@ -246,12 +302,13 @@ bool isBijective( crosstype relation, settype *domain, settype * codomain)
     return true;
 }
 
-/* Filter: Trasnsitivity
+/* Filter: Transitivity
  * Parm: Power set and domain
  * Return: True is transitivity holds
  */
 bool isTransitive (crosstype relation, settype * domain)
 {
+    //domain check for relation
     if(relation.size() < domain->size()) return false;
     for (auto ptrx = relation.begin(); ptrx != relation.end();ptrx++)
     {
@@ -272,6 +329,55 @@ bool isTransitive (crosstype relation, settype * domain)
                 }
             }
         }
+    }
+    return true;
+}
+/* Filter: Symmetry
+ * Parm: Power set, domain
+ * Return:True if symmetry holds
+ */
+bool isSym(crosstype relation, settype * domain)
+{
+    if(relation.size() < domain->size()) return false;
+    for( auto ptr = relation.begin(); ptr != relation.end(); ptr++)
+    {
+        auto bufferx = std::get<0>(*ptr);
+        auto buffery = std::get<1>(*ptr);
+        auto yx = std::make_tuple(buffery, bufferx);
+        if (relation.find(yx) == relation.end()) return false;
+    }
+    return true;
+}
+/* Filter: Reflexivity
+ * Parm: powerset domain
+ * Return: true is relation is reflexive
+ */
+bool isReflexive(crosstype relation, settype * domain)
+{
+    //domain size for relation
+    if( relation.size() < domain->size()) return false;
+    for(auto ptr = domain->begin(); ptr != domain->end(); ptr++)
+    {
+        auto bufferx = *ptr;
+        auto xx = std::make_tuple(bufferx,bufferx);
+        if(relation.find(xx) == relation.end()) return false;
+    }
+    return true;
+}
+/* Filter: Anti Symmetry
+ * Parm: powerset, domain
+ * ReturnL true is anti sym holds
+ */
+bool isAntiSym(crosstype relation, settype *domain)
+{
+    if(relation.size() < domain->size()) return false;
+    for(auto ptr = relation.begin(); ptr != relation.end(); ptr++)
+    {
+        auto bufferx = std::get<0>(*ptr);
+        auto buffery = std::get<1>(*ptr);
+        auto yx = std::make_tuple(buffery,bufferx);
+        if(relation.find(yx) != relation.end() && bufferx != buffery)
+            return false;
     }
     return true;
 }
