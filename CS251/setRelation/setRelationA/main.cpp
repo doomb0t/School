@@ -12,7 +12,8 @@
  *       Compiler:  g++ -std=c++11 main.cpp
  *
  *         Author:  Jonathon Sonesen
- *   Organization:  PCC CS251
+ *  Collaborators:  Jeff Patterson
+ *   Organization:  PCC CS251 Dicrete StructuresII
  *
  * =====================================================================================
  */
@@ -49,10 +50,6 @@ bool isReflexive(crosstype relation, settype * domain);
 bool isAntiSym(crosstype relation, settype * domain);
 bool isSym(crosstype relation, settype * domain);
 
-//tests
-
-//print functions
-void printRelations(crosstype relation, settype domain);
 
 int main ()
 {
@@ -79,38 +76,12 @@ int main ()
     //we also use filters to identify properties of the elements, such as surjectiveness
     //injectiveness and bijectiveness
     //This prints the number of functions and tests the power set
-    cout << "\nThere are " << pow(codomain->size(), domain->size())
-         << " functions from A to B: " <<  endl;
-    
-    //Trackers for functions and rows
-    int row        = 0;
-    int bijective  = 0;
- 
-    //Filter power set for function-ness and print results
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {
-        if(isFunction(*ptrA, domain))
-        {       
-            if(isBijective(*ptrA, domain, codomain)) bijective++;
-
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
-            
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-    cout << endl;
     
     cout << endl;
  
     //Bijective
-    cout << "\nThere are " << bijective
-         << " bijective functions from A to B: " <<  endl;
-    row = 0;
+    cout << " bijective functions from A to B: " <<  endl;
+    auto row = 0;
     for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
     {    
         if(isBijective(*ptrA, domain, codomain))
@@ -128,13 +99,14 @@ int main ()
     cout << endl;
    
     //Print equivalence relations
-    cout  << " Equivalence relations: " <<  endl;
+    cout  << " Injective Functions: " <<  endl;
     row = 0;
     for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
     {    
         if(isInjective(*ptrA, domain, codomain))
         {
             cout << setw(3) << setfill (' ') << ++row << ". " << "{";   
+            
             //Loop fo inner tuples
             for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
             {
@@ -145,12 +117,12 @@ int main ()
     }
     cout << endl;
    
-    //Print transitive
-    cout  << " Transitive: " <<  endl;
+    //Equivalence Relations:
+    cout << " Equivalence relations: " <<  endl;
     row = 0;
     for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
     {    
-        if(isTransitive(*ptrA, domain))
+        if(isTransitive(*ptrA, domain)&&isReflexive(*ptrA, domain) && isSym(*ptrA,domain))
         {
             cout << setw(3) << setfill (' ') << ++row << ". " << "{";
             
@@ -162,12 +134,14 @@ int main ()
             cout << "}" << endl;
         }
     }
-    //Print reflexive
-    cout  << " Reflexive: " <<  endl;
+    cout << endl;
+    
+    //Partial Order Relations:
+    cout << " Partial Order relations: " <<  endl;
     row = 0;
     for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
     {    
-        if(isReflexive(*ptrA, domain))
+        if(isTransitive(*ptrA, domain)&&isReflexive(*ptrA, domain) && isAntiSym(*ptrA,domain))
         {
             cout << setw(3) << setfill (' ') << ++row << ". " << "{";
             
@@ -179,41 +153,7 @@ int main ()
             cout << "}" << endl;
         }
     }
-    //Print symmetric
-    cout  << " Symmetric: " <<  endl;
-    row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isSym(*ptrA, domain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
-            
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-
-    //Print Antisymmetric
-    cout  << " AntiSymmetric: " <<  endl;
-    row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isSym(*ptrA, domain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";
-            
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
+    cout << endl;
     //Leak stopper five thousand
     delete domain;
     delete codomain;
@@ -221,6 +161,7 @@ int main ()
     delete power;
     return 0;
 }
+
 
 
 
