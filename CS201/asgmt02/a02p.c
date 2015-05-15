@@ -13,35 +13,41 @@ double quadraticRootC(double a, double b, double c)
 double quadraticRoot(double a, double b, double c)
 {
     double root = 0;
+    double root2 = 0;
 	// writeoassembly code below to calculate the quadratic root
-	asm(
+	asm
+        (
 		/* Delete the line below. It's only there to allow the starter code
 		 * to compile. You will be replacing it with your own code.				*/
-		"fld    %[a]              \n"
-                "fadd   %%ST              \n"
-                "fld    %[a]              \n"
-                "fld    %[c]              \n"
-                "fmulp  &&ST(!)           \n"
-                "fadd   %%ST              \n"
-                "fchs                     \n"
-                "fld    %[b]              \n"
-                "fmulp  %%ST(1)           \n"
-                "faddp  %%ST(1)           \n"
-                "ftst                     \n"
-                "fstsw  %%AX              \n"
-                "sahf                     \n"
-                "fsqrt                    \n"
-                "fld    %b                \n"
-                "fchs                     \n"
-                "fdivp  %%ST(1)           \n"
-                "mov    %[root], %%eax    \n"
-                "fstp   %%qword, %%eax    \n"
+		"fld    %[a]              \n"  //a
+                "fadd   %%ST              \n"  //2a
+                "fld    %[a]              \n"  //a , 2a
+                "fld    %[c]              \n"  //c, a, 2a
+                "fmulp  %%ST(1)           \n"  //ac, 2a
+                "fadd   %%ST              \n"  //2ac 3a
+                "fadd   %%ST              \n"  //4ac, 2a
+                "fchs                     \n"  //-4ac, 2a
+                "fld    %[b]              \n"  //b, -4ac, 2a
+                "fld    %[b]              \n"  //b,b -4ac, 2a
+                "fmulp  %%ST(1)           \n"  //b*b, -4ac, 2a
+                "faddp  %%ST(1)           \n"  //b^2 - 4ac, 2a
+                "ftst                     \n"  //compare with 0
+                "fstsw  %%AX              \n"  //store the status word in AX
+                "sahf                     \n"  //check
+                "jb no_real_roots         \n"  //return no reals
+                "fsqrt                    \n"  //sqrt(b^2-4ac)
+                "fld    %[b]              \n"  //b
+                "fchs                     \n"  //change sign -b
+                "fadd   %%ST(1)           \n"  //-sqrt(b*b-4ac)
+                "fdivp  %%ST(2)           \n"  //-b - sqrt(b^2-4ac/2
+                "mov    %[root], %%eax    \n"  
+                "fstp   qword(%%eax)      \n"
                 "mov    $1, %%eax         \n"
                 "jmp    short done        \n"
                 "done:                    \n"
-                :[root] "=g"(root)
-                :[a] "g"(a), [b] "g"(b), [c] "g"(c)
-                    :"eax"
+                :[root] "=g"(root), [root2] "=g"(root2) //in
+                :[a] "g"(a), [b] "g"(b), [c] "g"(c)     //out
+                :"eax"                                  //clobber
 	);
 
 	return 0;
