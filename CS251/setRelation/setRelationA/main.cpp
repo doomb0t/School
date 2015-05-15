@@ -50,10 +50,6 @@ bool isAntiSym(crosstype relation, settype * domain);
 bool isSym(crosstype relation, settype * domain);
 
 //tests
-void testTrans(powertype * power, settype domain);
-void testSym(powertype * power, settype domain);
-void testReflexive(powertype * power, settype * domain);
-void testAntiSym(powertype * power, settype * domain);
 
 //print functions
 void printRelations(crosstype relation, settype domain);
@@ -65,7 +61,6 @@ int main ()
     crosstype * cross  = crossproduct(domain, codomain);          //generate cross product
     powertype * power  = powerset(cross);                         //generate the power set
 
-    testReflexive(power, domain);
 
     //Print coss product roster. The cross product is a set of ordered pairs. They
     //are represented with the <tuple> container. get is used to access the 0 or
@@ -149,7 +144,8 @@ int main ()
         }
     }
     cout << endl;
-    //Print partial order relations
+   
+    //Print transitive
     cout  << " Transitive: " <<  endl;
     row = 0;
     for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
@@ -174,8 +170,9 @@ int main ()
     return 0;
 }
 
-/*
- * Filter: Surjective Function
+
+
+/* Filter: Surjective Function
  * Parm: crosstype powerset, settype domain,settype codomain
  * Return: true if function is surjective
  */
@@ -246,6 +243,36 @@ bool isBijective( crosstype relation, settype *domain, settype * codomain)
     if(!isInjective(relation, domain, codomain)) return false;
 
     
+    return true;
+}
+
+/* Filter: Trasnsitivity
+ * Parm: Power set and domain
+ * Return: True is transitivity holds
+ */
+bool isTransitive (crosstype relation, settype * domain)
+{
+    if(relation.size() < domain->size()) return false;
+    for (auto ptrx = relation.begin(); ptrx != relation.end();ptrx++)
+    {
+        auto bufferx = std::get<0>(*ptrx);
+        for (auto ptry = relation.begin();ptry != relation.end(); ptry++)
+        {
+            auto buffery = std::get<1>(*ptry);
+            auto xy = std::make_tuple(bufferx,buffery);
+            if(relation.find(xy) != relation.end())
+            {
+                for(auto ptrz = relation.begin(); ptrz != relation.end(); ptrz++)
+                {
+                    auto bufferz = std::get<1>(*ptrz);
+                    auto yz = std::make_tuple(buffery, bufferz);
+                    auto xz = std::make_tuple(bufferx, bufferz);
+                    if (relation.find(yz) != relation.end() && relation.find(xz) == relation.end())
+                        return false;
+                }
+            }
+        }
+    }
     return true;
 }
 
@@ -337,98 +364,3 @@ crosstype * crossproduct(settype * domain, settype * codomain)
     }
     return result;
 }
-/*Test Function for transitive
- * Parm: relation domain(A)
- * Return: none, prints to screen the found relations
- */
-void testTrans(powertype * power, settype domain)
-{
-    cout  << " Equivalence relations: " <<  endl;
-    auto row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isTransitive(*ptrA, domain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";   
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-    cout << endl;
-}
-/*Test function for symmettric
- * Parm: Power set
- * Return: None, prints filtered relations
-*/
-void testSym(powertype * power, settype domain)
-{
-    
-    cout  << " Symmetric: " <<  endl;
-    auto row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isSym(*ptrA, domain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";   
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-    cout << endl;
-}
-
-/*Test function for reflexive
- *Parm: PowerSet, domain
- *Return: Prints relations that satisfy filter 
- */
-void testReflexive(powertype * power, settype * domain)
-{
-    cout  << " Equivalence relations: " <<  endl;
-    auto row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isReflexive(*ptrA, domain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";   
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-    cout << endl;
-}
-/* Test function for anti symmetric
- * Parm: Powerset, domain
- * Return: Prints anti symmetric relations
- */
-void testAntiSym(powertype * power, settype * domain)
-{
-    cout  << " Equivalence relations: " <<  endl;
-    auto row = 0;
-    for (auto ptrA = power->begin(); ptrA != power->end(); ptrA++)
-    {    
-        if(isAntiSym(*ptrA, domain))
-        {
-            cout << setw(3) << setfill (' ') << ++row << ". " << "{";   
-            //Loop fo inner tuples
-            for(auto ptr = ptrA->begin(); ptr != ptrA->end();ptr++)
-            {
-                cout << " (" << std::get<0>(*ptr) << "," << std::get<1>(*ptr) << ") ";
-            }
-            cout << "}" << endl;
-        }
-    }
-    cout << endl;
-}
-
