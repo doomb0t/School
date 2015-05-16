@@ -28,6 +28,10 @@ quadraticRootC:
 	addsd	%xmm0, %xmm0
 	divsd	%xmm0, %xmm1
 	movapd	%xmm1, %xmm0
+	movsd	%xmm0, -32(%rbp)
+	movq	-32(%rbp), %rax
+	movq	%rax, -32(%rbp)
+	movsd	-32(%rbp), %xmm0
 	leave
 	.cfi_def_cfa 7, 8
 	ret
@@ -47,44 +51,34 @@ quadraticRoot:
 	movsd	%xmm0, -24(%rbp)
 	movsd	%xmm1, -32(%rbp)
 	movsd	%xmm2, -40(%rbp)
-	movl	.LC1(%rip), %eax
-	movl	%eax, -4(%rbp)
-	movl	.LC1(%rip), %eax
-	movl	%eax, -8(%rbp)
+	movl	$0, %eax
+	movq	%rax, -8(%rbp)
 #APP
-# 18 "a02p.c" 1
-	fld    -24(%rbp)              
-fadd   %ST              
-fld    -24(%rbp)              
-fld    -40(%rbp)              
+# 17 "a02p.c" 1
+	fldl   -24(%rbp)              
+fadd   %ST(0)           
+fldl   -24(%rbp)              
+fldl   -40(%rbp)              
 fmulp  %ST(1)           
-fadd   %ST              
-fadd   %ST              
+fadd   %ST(0)           
+fadd   %ST(0)           
 fchs                     
-fld    -32(%rbp)              
-fld    -32(%rbp)              
+fldl   -32(%rbp)              
+fldl   -32(%rbp)              
 fmulp  %ST(1)           
 faddp  %ST(1)           
-ftst                     
-fstsw  %AX              
-sahf                     
-jb no_real_roots         
 fsqrt                    
-fld    -32(%rbp)              
+fldl   -32(%rbp)              
 fchs                     
 fadd   %ST(1)           
 fdivp  %ST(2)           
-mov    %ecx, %eax    
-fstp   qword(%eax)      
-mov    $1, %eax         
-jmp    short done        
-done:                    
 
 # 0 "" 2
 #NO_APP
-	movl	%ecx, -4(%rbp)
-	movl	%edx, -8(%rbp)
-	movl	$0, %eax
+	fstpl	-48(%rbp)
+	movsd	-48(%rbp), %xmm3
+	movsd	%xmm3, -8(%rbp)
+	movq	-8(%rbp), %rax
 	movq	%rax, -48(%rbp)
 	movsd	-48(%rbp), %xmm0
 	popq	%rbp
@@ -96,7 +90,7 @@ done:
 	.section	.rodata
 	.align 8
 .LC3:
-	.string	"CS201 - Assignment 2p - I. Forgot"
+	.string	"CS201 - Assignment 2p - Jonathon Sonesen"
 .LC4:
 	.string	"need 3 arguments: a, b, c"
 	.align 8
@@ -130,21 +124,24 @@ main:
 	movq	(%rax), %rax
 	movq	%rax, %rdi
 	call	atof
-	movq	%xmm0, %rax
+	movsd	%xmm0, -72(%rbp)
+	movq	-72(%rbp), %rax
 	movq	%rax, -8(%rbp)
 	movq	-64(%rbp), %rax
 	addq	$16, %rax
 	movq	(%rax), %rax
 	movq	%rax, %rdi
 	call	atof
-	movq	%xmm0, %rax
+	movsd	%xmm0, -72(%rbp)
+	movq	-72(%rbp), %rax
 	movq	%rax, -16(%rbp)
 	movq	-64(%rbp), %rax
 	addq	$24, %rax
 	movq	(%rax), %rax
 	movq	%rax, %rdi
 	call	atof
-	movq	%xmm0, %rax
+	movsd	%xmm0, -72(%rbp)
+	movq	-72(%rbp), %rax
 	movq	%rax, -24(%rbp)
 	movq	-24(%rbp), %rcx
 	movq	-16(%rbp), %rdx
@@ -156,7 +153,8 @@ main:
 	movq	%rax, -72(%rbp)
 	movsd	-72(%rbp), %xmm0
 	call	quadraticRoot
-	movq	%xmm0, %rax
+	movsd	%xmm0, -72(%rbp)
+	movq	-72(%rbp), %rax
 	movq	%rax, -32(%rbp)
 	movq	-24(%rbp), %rcx
 	movq	-16(%rbp), %rdx
@@ -168,7 +166,8 @@ main:
 	movq	%rax, -72(%rbp)
 	movsd	-72(%rbp), %xmm0
 	call	quadraticRootC
-	movq	%xmm0, %rax
+	movsd	%xmm0, -72(%rbp)
+	movq	-72(%rbp), %rax
 	movq	%rax, -40(%rbp)
 	movq	-40(%rbp), %rdi
 	movq	-32(%rbp), %rsi
@@ -201,8 +200,5 @@ main:
 .LC0:
 	.long	0
 	.long	1074790400
-	.align 4
-.LC1:
-	.long	0
-	.ident	"GCC: (GNU) 4.9.2 20150304 (prerelease)"
+	.ident	"GCC: (SUSE Linux) 4.8.1 20130909 [gcc-4_8-branch revision 202388]"
 	.section	.note.GNU-stack,"",@progbits
