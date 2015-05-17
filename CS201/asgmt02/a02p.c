@@ -16,30 +16,28 @@ double quadraticRoot(double a, double b, double c)
 	// write assembly code below to calculate the quadratic root
 	asm
         (
-		/* Delete the line below. It's only there to allow the starter code
-		 * to compile. You will be replacing it with your own code.	*/
-		"fldl   %1                \n"  //a
-                "fadd   %%ST(0)           \n"  //2a
-                "fldl   %1                \n"  //a , 2a
-                "fldl   %3                \n"  //c, a, 2a
-                "fmulp  %%ST(1)           \n"  //ac, 2a
-                "fadd   %%ST(0)           \n"  //2ac 3a
-                "fadd   %%ST(0)           \n"  //4ac, 2a
-                "fchs                     \n"  //-4ac, 2a
-                "fldl   %2                \n"  //b, -4ac, 2a
-                "fldl   %2                \n"  //b,b -4ac, 2a
-                "fmulp  %%ST(1)           \n"  //b*b, -4ac, 2a
-                "faddp  %%ST(1)           \n"  //b^2 - 4ac, 2a
-                "fsqrt                    \n"  //sqrt(b^2-4ac)
-                "fldl   %2                \n"  //b
-                "fchs                     \n"  //change sign-b
-                "faddp  %%ST(1)           \n"  //+sqrt(b*b-4ac)
-                "fdivp  %%ST(1)           \n"  //-b - sqrt(b^2-4ac/2
-                :"=t"(root)                    //out used '=t' to return top of 80387
-                                               //floating point stack
-                                               // Source: gcc machine constraint docs
-                :"m"(a),"m"(b),"m"(c)          //in
-                :"eax"                         //clobber
+		"fldl   %[a]              \n"  /* a                      */
+                "fadd   %%ST(0)           \n"  /* 2a                     */
+                "fldl   %[a]              \n"  /* a , 2a                 */
+                "fldl   %[c]              \n"  /* c, a, 2a               */
+                "fmulp  %%ST(1)           \n"  /* ac, 2a                 */
+                "fadd   %%ST(0)           \n"  /* 2ac 3a                 */
+                "fadd   %%ST(0)           \n"  /* 4ac, 2a                */
+                "fchs                     \n"  /* -4ac, 2a               */
+                "fldl   %[b]              \n"  /* b, -4ac, 2a            */
+                "fldl   %[b]              \n"  /* b,b -4ac, 2a           */
+                "fmulp  %%ST(1)           \n"  /* b*b, -4ac, 2a          */
+                "faddp  %%ST(1)           \n"  /* b^2 - 4ac, 2a          */
+                "fsqrt                    \n"  /* sqrt(b^2-4ac)          */
+                "fldl   %[b]              \n"  /* b                      */
+                "fchs                     \n"  /* change sign-b          */
+                "faddp  %%ST(1)           \n"  /* +sqrt(b*b-4ac)         */
+                "fdivp  %%ST(1)           \n"  /* -b + sqrt(b^2-4ac/2    */
+                :"=t"(root)                    /* out,I  used '=t' to return top of 80387             */
+                                                 /* floating point stack which is where the result is */
+                                                 /* Source: gcc online machine constraint docs        */ 
+                :[a]"m"(a), [b]"m"(b), [c]"m"(c) /* in                   */
+                :"eax"                           /* clobber              */
 	);
 
 	return root;
