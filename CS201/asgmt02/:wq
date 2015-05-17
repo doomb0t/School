@@ -18,26 +18,26 @@ double quadraticRoot(double a, double b, double c)
         (
 		/* Delete the line below. It's only there to allow the starter code
 		 * to compile. You will be replacing it with your own code.	*/
-		"fldl   %1                \n"  //a
+		"fldl   %A                \n"  //a
                 "fadd   %%ST(0)           \n"  //2a
-                "fldl   %1                \n"  //a , 2a
-                "fldl   %3                \n"  //c, a, 2a
+                "fldl   %A                \n"  //a , 2a
+                "fldl   %C                \n"  //c, a, 2a
                 "fmulp  %%ST(1)           \n"  //ac, 2a
                 "fadd   %%ST(0)           \n"  //2ac 3a
                 "fadd   %%ST(0)           \n"  //4ac, 2a
                 "fchs                     \n"  //-4ac, 2a
-                "fldl   %2                \n"  //b, -4ac, 2a
-                "fldl   %2                \n"  //b,b -4ac, 2a
+                "fldl   %B                \n"  //b, -4ac, 2a
+                "fldl   %B                \n"  //b,b -4ac, 2a
                 "fmulp  %%ST(1)           \n"  //b*b, -4ac, 2a
                 "faddp  %%ST(1)           \n"  //b^2 - 4ac, 2a
                 "fsqrt                    \n"  //sqrt(b^2-4ac)
-                "fldl   %2                \n"  //b
+                "fldl   %B                \n"  //b
                 "fchs                     \n"  //change sign-b
                 "faddp  %%ST(1)           \n"  //+sqrt(b*b-4ac)
-                "fdivp  %%ST(1)           \n"  //-b - sqrt(b^2-4ac/2
-                :"=t"(root)               //out uses '=t' to return top of floating point stack *gcc constraint docs*
-                :"m"(a),"m"(b),"m"(c)     //in
-                :"eax"                    //clobber
+                "fdivp  %%ST(1)           \n"  //-b + sqrt(b^2-4ac/2
+                :"=t"(root)                            //out, uses t machine constraint to 
+                :"m"(a),"m"(b),"m"(c)                   //in
+                :"eax"                                  //clobber
 	);
 
 	return root;
