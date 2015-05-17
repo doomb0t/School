@@ -35,14 +35,6 @@ void exception()
     );
 }
 
-int isnum(char *test)
-{
-    if(test[1] != '\0') return 0;
-    
-    if (*test < 46 && *test > 58) return 0;
-    else
-    return 1;
-}
 
 int op(char *test, int arg1, int arg2)
 {
@@ -81,18 +73,13 @@ int main(int argc,char **argv)
 {
     int arg1 = 0;
     int arg2 = 0;
-    int test = 1;
-    if (isnum(argv[1]) == 1)
-        sscanf(argv[1],"%d", &arg1);
-    else
-        test = 0;
+    char trail[32] = {};
+
+    sscanf(argv[1],"%d%s", &arg1, &trail[0]);
     
-    if (isnum(argv[3]) == 1)
-        sscanf(argv[3],"%d", &arg2);
-    else
-        test = 0;
+    sscanf(argv[3],"%d%s", &arg2, &trail[0]);
     
-    if (test != 1 )
+    if (trail[0] != '\0' )
     {
         exception();
         return -1;
