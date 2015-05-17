@@ -74,7 +74,11 @@ int main(int argc,char **argv)
     int arg1 = 0;
     int arg2 = 0;
     char trail[32] = {};
-
+    if(argc < 4) 
+    {
+        exception();
+        return -1;
+    }
     sscanf(argv[1],"%d%s", &arg1, &trail[0]);
     
     sscanf(argv[3],"%d%s", &arg2, &trail[0]);
