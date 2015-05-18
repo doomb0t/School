@@ -1,0 +1,92 @@
+CS201 ASSIGNMENT 3 INSTRUCTIONS
+-------------------------------
+
+There is no Premium version of this assignment.
+
+Write code that forks into two processes, a parent process, and a child process.
+
+The parent process will take the arguments to main() and send the characters in
+them one at a time to the child process through a pipe (one call to write for
+each character).
+
+Do not send characters from argv[0] through the pipe. Start with argv[1] and
+continue through the rest of the arguments.
+
+The child process will read the characters sent by the parent process one at a
+time, and count the number of characters it received from the parent. The child
+process should not use the arguments to main() in any way whatsoever. The child
+process will communicate the number of characters counted to the parent as the
+return value from main().
+
+The parent process will need to reap the child process to find out how many
+characters were counted by the child process.
+
+It may be of use to know that read() will return immediately with a zero once
+the other end of the pipe is closed by the parent.
+
+If I call your code this way:
+
+    a03 abcd efg hi
+
+The parent process should print out:
+
+    CS201 - Assignment 3 - I. Forgot
+    child counted 9 characters
+
+Important: printing should be done only by the parent process. The child process
+should not print anything.
+
+Your output should be formatted as shown (small differences in whitespace are
+OK). Remember to replace "I. Forgot" with your own name.
+
+Start with the provided code file a03.c. Upload your code as a03.c.
+
+--------------------------------------------------------------------------------
+
+REQUIRED PLATFORM
+
+I grade your code on syccuxfas01.pcc.edu. Your code is required to compile and
+run correctly on that machine.
+
+COMPILING YOUR CODE
+
+You are required to compile your code with the same flags that are used by
+the 'gc' bash script in ~michael.trigoboff/bin.
+
+GRADING YOUR CODE
+
+Your code needs to compile without errors or warnings and run correctly. Code
+that does not compile will receive zero points. Code that crashes will receive
+zero points.
+
+I use bash scripts to grade your code. Because of this, it is very important
+that you submit your code with the file name that was requested. If you change
+the file name, my scripts will crash, your work will not be graded, you will
+have to resubmit a corrected version of your work, and you will lose points.
+
+My scripts produce a log file containing your code, compiler warnings and errors
+(if any), your code's output, and some statistics that are useful to me. I then
+personally go through that log file to produce your grade. In other words, the
+scripts don't generate your grade, they just make it more convenient for me to
+generate your grade.
+
+TO SUBMIT THIS ASSIGNMENT
+
+Submit the requested file to Desire2Learn.   Make sure that your code prints
+your name, assignment description, and number, as requested.
+
+    * Be certain to check that you completed the upload successfully. After you
+        click the Upload File button, you must also click the SUBMIT ASSIGNMENT
+        button. This is very easy to forget. If you do not do this, I will not
+        see your work and you will get a grade of zero for the assignment. I
+        would recommend entering an email address so you can be notified that
+        the upload was completed successfully.
+    * You may upload as many versions as you wish prior to the due date. I will
+        only see and grade the final one. You will not be able to upload
+        assignments after the due date.
+
+Points will be deducted for uploading a file with a name that is not as
+specified. Every term I get a few students whose approach to following
+directions is, shall we say, "creative." I encourage creativity in general, but
+there are places where it is not appropriate.
+
