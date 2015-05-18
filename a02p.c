@@ -33,7 +33,8 @@ double quadraticRoot(double a, double b, double c)
                 "fchs                     \n"  /* change sign-b          */
                 "faddp  %%ST(1)           \n"  /* -b + sqrt(b*b-4ac)     */
                 "fdivp  %%ST(1)           \n"  /* -b + sqrt(b^2-4ac/2    */
-                :"=t"(root)                    /* out,I  used '=t' to return top of floating */
+                "fstp   %[root] \n"
+                :[root] "=m"(root)                    /* out,I  used '=t' to return top of floating */ 
                                                /* point stack which is where the result is   */
                                                /* Source: gcc online machine constraint docs */ 
                 :[a]"m"(a),[b]"m"(b),[c]"m"(c) /* in                     */
