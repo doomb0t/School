@@ -30,7 +30,7 @@ int main (int argc, char **argv)
     sscanf(argv[1], "%x, %s\n", &hex1, &trailing);
     printf("You entered: %d, %d \n", hex1, hex2);
 
-    hex2 = hex1 & 0x18;
-    hex2 = hex2 >> 16;
+    hex2 = hex1 & 0x18 << 3;
+    printf("%d\n", hex2);
     return 0;
 }
