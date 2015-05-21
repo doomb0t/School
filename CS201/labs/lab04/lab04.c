@@ -23,18 +23,17 @@
 
 int main (int argc, char **argv)
 {
-    int   hex1 = 0;
-    int   hex2 = 0;
-    int test = 0;
+    int   hex = 0;
+    int   sum = 0;
     char  trailing = '\0';
     
-    sscanf(argv[1], "%x, %s\n", &hex1, &trailing);
-    printf("You entered: %d, %d \n", hex1, hex2);
+    sscanf(argv[1], "%x, %s\n", &hex, &trailing);
+    printf("You entered: %d, %d \n", hex, sum);
     for(int i = 0; i < 4; i++)
     {
-        hex1 = (hex1 & 0x18) >> 3;
-        hex2 += test;
+        sum += hex & 0x18 >> 3 + i;
     }
-    printf("%d\n", hex2);
+
+    printf("Final: %d, %d \n", hex, sum);
     return 0;
 }
