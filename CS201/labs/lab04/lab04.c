@@ -25,12 +25,16 @@ int main (int argc, char **argv)
 {
     int   hex1 = 0;
     int   hex2 = 0;
+    int test = 0;
     char  trailing = '\0';
     
     sscanf(argv[1], "%x, %s\n", &hex1, &trailing);
     printf("You entered: %d, %d \n", hex1, hex2);
-
-    hex2 = hex1 & 0x18 << 3;
+    for(int i = 0; i < 4; i++)
+    {
+        hex1 = (hex1 & 0x18) >> 3;
+        hex2 += test;
+    }
     printf("%d\n", hex2);
     return 0;
 }
