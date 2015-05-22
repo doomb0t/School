@@ -26,14 +26,16 @@ int main (int argc, char **argv)
     int   hex = 0;
     int   sum = 0;
     char  trailing = '\0';
-    
     sscanf(argv[1], "%x, %s\n", &hex, &trailing);
-    printf("You entered: %d, %d \n", hex, sum);
+    int * p =(int *) hex;
+    printf("You entered: %d, %d \n", hex,p);
+    
     for(int i = 0; i < 4; i++)
     {
-        sum += hex & 0x18 >> 3 + i;
+        sum +=( p & 0x18) >> 3;
+        *++p;
     }
-
-    printf("Final: %d, %d \n", hex, sum);
+    
+    printf("Final: %d, %d \n", p, sum);
     return 0;
 }
