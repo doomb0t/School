@@ -34,22 +34,20 @@ char readPipe ()
     
     if(read(in, &ch, 1) == 1)
         return ch;
-    else 
-    {
+    else {
         printd("readPipe: read err\n");
         exit(READ_ERR);
-    }
+        }
 }
 
 void writePipe (char ch)
 {
     if(write(out, &ch, 1) != 1)
         writePipe(out, &ch, 1)
-    else
-    {
+    else {
         printf("writePipe: err\n");
         exit(WRITE_ERR);
-    }
+        }
 }
 
 void getCmd (char cmd)
@@ -58,11 +56,10 @@ void getCmd (char cmd)
 
     if(ch == cmd)
         writePipe(ACK_CMD);
-    else
-    {
+    else {
         printf ("getCmd: protocol err\n");
         exit(PROTOCOL_ERR);
-    }
+        }
 }
 
 void sendCmd (char cmd)
@@ -70,11 +67,10 @@ void sendCmd (char cmd)
     char ch;
 
     writePipe(cmd);
-    if((ch = readPipe()) != ACK_CMD) 
-    {
+    if((ch = readPipe()) != ACK_CMD) {
         printf("sendCmd: protocol err, read '%d' 0x%X\n", ch, ch & 0xFF);
         exit(PROTOCL_ERR);
-    }
+        }
 }
 
 char getData ()
@@ -84,3 +80,30 @@ char getData ()
     return ch;
 }
 
+void sendData (char ch)
+{
+    char c;
+    
+    writePipe(ch);
+    if ((c = readPipe()) != ACK_CMD) {
+        printf("sendCmd: protocol err, read '%d' 0x%X\n", ch, ch & 0xFF);
+        exit(PROTOCOL_ERR);
+        }
+    printf("parents: '%c' acknowledged\n", ch);
+}
+
+int main (int argc. char **argv)
+{
+    int         status;
+    pid_t       pid;
+    char        ch;
+    int         nChars;
+    int         i;
+
+    /*set up child*/
+    if (pipe(toChild)) {
+        printf("pipe to child: error\n");
+        return -1;
+        }
+    
+}
