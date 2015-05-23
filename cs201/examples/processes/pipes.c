@@ -15,15 +15,15 @@
  *
  * =====================================================================================
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/wait.h>
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <unistd.h>
+ #include <sys/wait.h>
 
-/*ERROR HANDLING*/
-#define READ_ERR        -12
-#define WRITE_ERR       -13
-#define ACK_CMD         -10 
+ /*ERROR HANDLING*/
+ #define READ_ERR        -12
+ #define WRITE_ERR       -13
+ #define ACK_CMD         -10 
 
 static int toChild[2];    
 static int fromChild[2];  
@@ -63,5 +63,24 @@ void getCmd (char cmd)
         printf ("getCmd: protocol err\n");
         exit(PROTOCOL_ERR);
     }
+}
+
+void sendCmd (char cmd)
+{
+    char ch;
+
+    writePipe(cmd);
+    if((ch = readPipe()) != ACK_CMD) 
+    {
+        printf("sendCmd: protocol err, read '%d' 0x%X\n", ch, ch & 0xFF);
+        exit(PROTOCL_ERR);
+    }
+}
+
+char getData ()
+{
+    char ch = readPipe();
+    writePipe(ACK_CMD);
+    return ch;
 }
 
