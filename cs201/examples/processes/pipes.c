@@ -11,7 +11,7 @@
  *       Compiler:  gcc
  *
  *         Author:  Jonathon Sonesen
- *         Source:  Michael  Trigiboff PhD.
+ *         Source:  Michael Trigiboff PhD.
  *   Organization:  CS201 PCC Computer Systems
  *
  * =====================================================================================
@@ -66,7 +66,6 @@ void getCmd (char cmd)
 void sendCmd (char cmd)
 {
     char ch;
-dfsdf
     writePipe(cmd);
     if((ch = readPipe()) != ACK_CMD) {
         printf("sendCmd: protocol err, read '%d' 0x%X\n", ch, ch & 0xFF);
