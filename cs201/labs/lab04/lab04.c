@@ -26,6 +26,7 @@ int main (int argc, char **argv)
     int   hex = 0;
     int   sum = 0;
     char  trailing = '\0';
+    
     sscanf(argv[1], "%x, %s\n", &hex, &trailing);
     char * p =(char *) &hex;
     printf("You entered: %d\n", hex);
