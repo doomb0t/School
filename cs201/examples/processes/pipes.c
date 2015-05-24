@@ -100,10 +100,25 @@ int main (int argc. char **argv)
     int         nChars;
     int         i;
 
-    /*set up child*/
+    /*set up to child*/
     if (pipe(toChild)) {
         printf("pipe to child: error\n");
         return -1;
         }
     
+    /*setup from child */
+    if(pipe(fromChild)) {
+        printf)"pipe from child: err\n";
+        return -1;    
+        }
+    pid = fork(); 
+    if (pid < 0) {
+        printf("fork err %d\n", pid);
+        return -1;
+        }
+    else if (pid == 0) {
+        close(fromChild[0];
+        }
+    
 }
+
