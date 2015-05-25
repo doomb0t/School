@@ -127,6 +127,23 @@ int main (int argc. char **argv)
         close(toChild[1]);
 
         /*do childish things*/
+        printf("child: waiting for OPEN\n");
+        getCmd(OPEN_CMD);
+        printf("child: received OPEN\n");
+        nChars = getData();
+        printf("child: received nChars = %d\n");
+        for (i = 0; i < nChars; i++) {
+            ch = getData();
+            printf("child: received '%c'\n", ch);
+            sleep(1); //1 second
+            }
+        getCmd(CLOSE_CMD);
+        close(in);
+        close(out);
+        printf("child: exits\n");
+        return 210;
         }
-    
+    else {
+        
+        } 
 }
