@@ -100,7 +100,7 @@ int main (int argc. char **argv)
     int         nChars;
     int         i;
 
-    /*set up pipe to child*/
+    /* set up pipe to child */
     if (pipe(toChild)) {
         printf("pipe to child: err\n");
         return -1;
@@ -109,6 +109,24 @@ int main (int argc. char **argv)
     if (pipe(fromChild)) {
         printf( "pipe from child: err\n");
         return -1;
+        }
+    
+    /* create parent and child process */
+    pid = fork();
+
+    if (pid <0){
+        printf("fork err %d/n", pid);
+        return -1;
+        }
+    else if (pid == 0) {
+        
+        /*setup pipes for child proc*/
+        close(fromChild[0]);
+        out = fromChild[1];
+        in  = toChild[0];
+        close(toChild[1]);
+
+        /*do childish things*/
         }
     
 }
