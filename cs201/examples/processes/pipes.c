@@ -16,19 +16,24 @@
  *
  * =====================================================================================
  */
- #include <stdlib.h>
- #include <stdio.h>
- #include <unistd.h>
- #include <sys/wait.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
- /*ERROR HANDLING*/
- #define READ_ERR        -12
- #define WRITE_ERR       -13
- #define ACK_CMD         -10 
+/*ERROR HANDLING*/
+#define READ_ERR        -2
+#define WRITE_ERR       -3
+#define PROTOCOL_ERR    -1
 
+/*PROTOCOL CMD DEF*/
+#define OPEN_CMD        -12
+#define ACK_CMD         -13
+#define CLOSE_CMD       -10
 static int toChild[2];    
 static int fromChild[2];  
 
+static int in, out;
 char readPipe ()
 {
     char ch;
@@ -36,16 +41,14 @@ char readPipe ()
     if(read(in, &ch, 1) == 1)
         return ch;
     else {
-        printd("readPipe: read err\n");
+        printf("readPipe: read err\n");
         exit(READ_ERR);
         }
 }
 
 void writePipe (char ch)
 {
-    if(write(out, &ch, 1) != 1)
-        writePipe(out, &ch, 1)
-    else {
+    if(write(out, &ch, 1) != 1) {
         printf("writePipe: err\n");
         exit(WRITE_ERR);
         }
@@ -55,7 +58,7 @@ void getCmd (char cmd)
 {
     char ch = readPipe();
 
-    if(ch == cmd)
+    if(ch == cmd) 
         writePipe(ACK_CMD);
     else {
         printf ("getCmd: protocol err\n");
@@ -69,7 +72,7 @@ void sendCmd (char cmd)
     writePipe(cmd);
     if((ch = readPipe()) != ACK_CMD) {
         printf("sendCmd: protocol err, read '%d' 0x%X\n", ch, ch & 0xFF);
-        exit(PROTOCL_ERR);
+        exit(PROTOCOL_ERR);
         }
 }
 
@@ -92,7 +95,7 @@ void sendData (char ch)
     printf("parents: '%c' acknowledged\n", ch);
 }
 
-int main (int argc. char **argv)
+int main (int argc, char **argv)
 {
     int         status;
     pid_t       pid;
