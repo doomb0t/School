@@ -4,7 +4,7 @@
  *       Filename:  lab03.c
  *
  *    Description:  Takes integer values and an operator, parses input performs operation
- *                  also check for bad or none existent input
+ *                  also check for bad or none existent input, and prompts for input
  *
  *        Version:  1.0
  *        Created:  04/25/2015 09:30:35M
