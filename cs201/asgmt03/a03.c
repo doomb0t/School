@@ -6,12 +6,16 @@
 // Child process returns number of characters counted to parent process.
 //
 // Parent process prints number of characters counted by child process.
+void read_from_pipe (char** in)
+{
 
+}
 #include <stdio.h>
 
 int main(int argc, char **argv)
 {
 	// set up pipe
+
 
 	// call fork()
 
