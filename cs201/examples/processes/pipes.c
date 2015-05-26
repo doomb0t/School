@@ -71,7 +71,8 @@ void sendCmd (char cmd)
     char ch;
     writePipe(cmd);
     if((ch = readPipe()) != ACK_CMD) {
-        printf("sendCmd: protocol err, read '%d' 0x%X\n", ch, ch & 0xFF);
+        printf("sendCmd: protocol err, read '%d' 0x%X\n",
+                 ch, ch & 0xFF);
         exit(PROTOCOL_ERR);
         }
 }
@@ -116,7 +117,7 @@ int main (int argc, char **argv)
     
     /* create parent and child process */
     pid = fork();
-
+    /* fork() fails */
     if (pid <0){
         printf("fork err %d/n", pid);
         return -1;
@@ -146,7 +147,16 @@ int main (int argc, char **argv)
         printf("child: exits\n");
         return 210;
         }
+    /* this runs the parent process */
     else {
+       
+        /* if prog runs with arg initialize proc with char */
+        ch      = argc > 1 ? atoi(argv[1][0]) : 'a';
+        nChars  = argc > 2 ? atoi(argv[2]) : 3;
+        close(toChild[0]);
+        out = toChild[1];
+        in = fromChild[0];
+        close(fromChild[1]);
+        }
         
-        } 
 }
