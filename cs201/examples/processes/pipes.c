@@ -8,7 +8,7 @@
  *        Version:  1.0
  *        Created:  05/22/2015 09:35:12 PM
  *       Revision:  none
- *       Compiler:  gcc
+ *       Compiler:  gcc -std=gnu99
  *
  *         Author:  Jonathon Sonesen
  *         Source:  Michael Trigiboff PhD.
