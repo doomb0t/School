@@ -156,11 +156,20 @@ int main (int argc, char **argv)
         /* if argv[2] is present set number of characters to send */
         nChars  = argc > 2 ? atoi(argv[2]) : 3;
         
-        /* setup the pipes */
+        /* setup  pipes for parent proc */
         close(toChild[0]);
         out = toChild[1];
         in = fromChild[0];
         close(fromChild[1]);
+
+        /* do parental things */
+        printf( "parent: send OPEN\n");
+        sendCmd(OPEN_CMD);
+        printf("parent: send nChars = %d\n", ch);
+        for (int i = 0; i < nChars; i++) {
+            printf("parent: send '%c'\n", ch);
+
+            }
         }
         
 }
