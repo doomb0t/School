@@ -168,8 +168,18 @@ int main (int argc, char **argv)
         printf("parent: send nChars = %d\n", ch);
         for (int i = 0; i < nChars; i++) {
             printf("parent: send '%c'\n", ch);
-
+            sendData(ch++);
             }
+        printf("parent: send CLOSE\n");
+        sendCmd(CLOSE_CMD);
+        waitpid(pid, &status, 0);
+        printf("parent: reaps child status 0x%08X/n", status);
+        if (WIFEXITED(status))
+            printf("parent: child exited normally with %d\n", WEXITSTATUS(status));
+        close(in);
+        close(out);
+        printf("parent: exits\n");
+        return 0;
         }
         
 }
