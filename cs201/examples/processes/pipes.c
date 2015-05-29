@@ -167,7 +167,8 @@ int main (int argc, char **argv)
         /* do parental things */
         printf( "parent: send OPEN\n");
         sendCmd(OPEN_CMD);
-        printf("parent: send nChars = %d\n", ch);
+        printf("parent: send nChars = %d\n", nChars);
+        sendData(nChars);
         for ( i = 0; i < nChars; i++) {
             printf("parent: send '%c'\n", ch);
             sendData(ch++);
