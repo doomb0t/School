@@ -152,7 +152,11 @@ int main (int argc, char **argv)
        
         /* if prog runs with arg initialize proc with char */
         ch      = argc > 1 ? atoi(argv[1][0]) : 'a';
+
+        /* if argv[2] is present set number of characters to send */
         nChars  = argc > 2 ? atoi(argv[2]) : 3;
+        
+        /* setup the pipes */
         close(toChild[0]);
         out = toChild[1];
         in = fromChild[0];
