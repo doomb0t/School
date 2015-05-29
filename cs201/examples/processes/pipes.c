@@ -28,12 +28,14 @@
 
 /*PROTOCOL CMD DEF*/
 #define OPEN_CMD        -12
-#define ACK_CMD         -13
-#define CLOSE_CMD       -10
+#define ACK_CMD         -10
+#define CLOSE_CMD       -13
+
 static int toChild[2];    
 static int fromChild[2];  
 
 static int in, out;
+
 char readPipe ()
 {
     char ch;
@@ -71,8 +73,7 @@ void sendCmd (char cmd)
     char ch;
     writePipe(cmd);
     if((ch = readPipe()) != ACK_CMD) {
-        printf("sendCmd: protocol err, read '%d' 0x%X\n",
-                 ch, ch & 0xFF);
+        printf("sendCmd: protocol err, read '%d' 0x%X\n", ch, ch & 0xFF);
         exit(PROTOCOL_ERR);
         }
 }
@@ -117,6 +118,7 @@ int main (int argc, char **argv)
     
     /* create parent and child process */
     pid = fork();
+
     /* fork() fails */
     if (pid <0){
         printf("fork err %d/n", pid);
@@ -135,7 +137,7 @@ int main (int argc, char **argv)
         getCmd(OPEN_CMD);
         printf("child: received OPEN\n");
         nChars = getData();
-        printf("child: received nChars = %d\n", ch);
+        printf("child: received nChars = %d\n", nChars);
         for (i = 0; i < nChars; i++) {
             ch = getData();
             printf("child: received '%c'\n", ch);
@@ -166,7 +168,7 @@ int main (int argc, char **argv)
         printf( "parent: send OPEN\n");
         sendCmd(OPEN_CMD);
         printf("parent: send nChars = %d\n", ch);
-        for (int i = 0; i < nChars; i++) {
+        for ( i = 0; i < nChars; i++) {
             printf("parent: send '%c'\n", ch);
             sendData(ch++);
             }
