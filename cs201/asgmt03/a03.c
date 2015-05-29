@@ -11,6 +11,10 @@ void read_from_pipe (char** in)
 
 }
 #include <stdio.h>
+#include <sys/wait.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 int main(int argc, char **argv)
 {
