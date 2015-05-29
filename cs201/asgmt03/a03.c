@@ -43,20 +43,37 @@
 #define ACK_CMD         -10
 #define CLOSE_CMD       -13
 
-static int fd;
+static int fdIn, fdOut;
+static int nChars;
+static int toChild[2];
+static int fromChild[2];
 
 void read_from_pipe (char** in)
 {
-    char ch;
-    if(read(fd, &in, 1) == 1)
-        return;
+    char c;
+
+    if(read(fdIn, &c, 1) == 1) 
+        in = (char**)&c;
     else {
-        printf("readFromPipe: read err\n");
+        printf("read_from_pipe: read err\n");
+        exit(WRITE_ERR);
         }
 }
 
+void write_pipe (char  in)
+{
+    if(write(fdOut, &in, 1) != 1) {
+        printf("write_pipe: err\n");
+        exit(WRITE_ERR);
+        }
+}
 
-
+void get_cmd(char** in, char** cmd)
+{
+    read_from_pipe(in);
+    if(in ==  cmd)
+        write_pipe(ACK_CMD);
+}
 int main(int argc, char **argv)
 {
 	// set up pipe
