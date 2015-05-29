@@ -135,7 +135,7 @@ int main (int argc, char **argv)
         getCmd(OPEN_CMD);
         printf("child: received OPEN\n");
         nChars = getData();
-        printf("child: received nChars = %d\n");
+        printf("child: received nChars = %d\n", ch);
         for (i = 0; i < nChars; i++) {
             ch = getData();
             printf("child: received '%c'\n", ch);
@@ -151,7 +151,7 @@ int main (int argc, char **argv)
     else {
        
         /* if prog runs with arg initialize proc with char */
-        ch      = argc > 1 ? atoi(argv[1][0]) : 'a';
+        ch      = argc > 1 ? argv[1][0] : 'a';
 
         /* if argv[2] is present set number of characters to send */
         nChars  = argc > 2 ? atoi(argv[2]) : 3;
