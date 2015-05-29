@@ -44,67 +44,79 @@
 #define CLOSE_CMD       -13
 
 static int fdIn, fdOut;
-static int nChars;
-static int toChild[2];
-static int fromChild[2];
+static int to_child[2];
+static int from_child[2];
 
 void read_from_pipe (char** in)
 {
     char c;
 
-    if(read(fdIn, &c, 1) == 1) 
+    if(read(fdIn, &c, 1) == 1) {
         in = (char**)&c;
+        }
     else {
         printf("read_from_pipe: read err\n");
         exit(WRITE_ERR);
         }
 }
 
-void write_pipe (char  in)
-{
-    if(write(fdOut, &in, 1) != 1) {
-        printf("write_pipe: err\n");
-        exit(WRITE_ERR);
-        }
-}
 
-void get_cmd(char** in, char** cmd)
-{
-    read_from_pipe(in);
-    if(in ==  cmd)
-        write_pipe(ACK_CMD);
-}
 int main(int argc, char **argv)
 {
-	// set up pipe
+        pid_t pid;
+        char c;
+        int i;
+	
+        // set up pipe to child
+        if(pipe(to_child)) {
+            printf("pipe: to child: err\n");
+            return -1;
+            }  
 
+        //pipe from child
+        if(pipe(from_child)) {
+            printf("pipe from child err\n");
+            return -1;
+            }
+        
+	// create parent and child 
+        pid = fork();
+        
+        //error handling
+        if(pid < 0) {
+            printf("fork err%d\n", pid);
+            }
+	// -- running in child process --
+        else if (pid == 0) {
+	    int     nChars = 0;
+            close(from_child[0]);
+            fdOut = from_child[1];
+            fdIn = to_child[0];
+            close(to_child[1]);
+            
+            
+	    // Receive characters from parent process via pipe
+	    // one at a time, and count them.
 
-	// call fork()
-
-	if (0 /* replace 0 with test for parent vs child, delete this comment */) {
-		// -- running in child process --
-		int     nChars = 0;
-
-		// Receive characters from parent process via pipe
-		// one at a time, and count them.
-
-		// Return number of characters counted to parent process.
-		return nChars;
-		}
+	    // Return number of characters counted to parent process.
+	    return nChars;
+	    }
 	else {
-		// -- running in parent process --
-		int     nChars = 0;
+	    // -- running in parent process --
+	    int     nChars = 0;
 
-		printf("CS201 - Assignment 3 - I. Forgot\n");
+	    printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
 
-		// Send characters from command line arguments starting with
-		// argv[1] one at a time through pipe to child process.
+	    // Send characters from command line arguments starting with
+	    // argv[1] one at a time through pipe to child process.
 
-		// Wait for child process to return. Reap child process.
-		// Receive number of characters counted via the value
-		// returned when the child process is reaped.
+	    // Wait for child process to return. Reap child process.
+	    // Receive number of characters counted via the value
+	    // returned when the child process is reaped.
 
-		printf("child counted %d characters\n", nChars);
-		return 0;
-		}
+	    printf("child counted %d characters\n", nChars);
+	    return 0;
+	    }
+
+        
 }
