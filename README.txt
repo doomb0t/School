@@ -6,5 +6,7 @@
 |___/\___|_| |_|\___/ \___/|_| | .__/|_|  \___// |\___|\___|\__|___/
                                |_|           |__/                  
 This repository includes applications that I am writing while attending
-Portland Community College's computer science courses. I am just beginning
-to get my feet wet with source control and this is my first repository. 
+Portland Community College's computer science courses. Some of the programs 
+are written entirely by me and others are built from starter code my instructors
+provided, where applicable I will try to note such things in the header of those
+files.
