@@ -3,7 +3,7 @@
  *
  *       Filename:  a03.c
  *
- *    Description:  reads argv char one at a time from child to parent
+ *    Description:  reads argv[1] chars one at a time from child to parent
  *                  outputs how many char's  the proc counts through pipe
  *
  *        Version:  1.0
@@ -18,14 +18,6 @@
  * =====================================================================================
  */
 
-// Characters from command line arguments are sent to child process
-// from parent process one at a time through pipe.
-//
-// Child process counts number of characters sent through pipe.
-//
-// Child process returns number of characters counted to parent process.
-//
-// Parent process prints number of characters counted by child process.
 
 #include <stdio.h>
 #include <sys/wait.h>
@@ -42,10 +34,9 @@
 #define OPEN_CMD        -12
 #define ACK_CMD         -10
 #define CLOSE_CMD       -13
+#define EOA_CMD         -14 //end of args flag
 
 static int fd_in, fd_out;
-static int to_child[2];
-static int from_child[2];
 
 char read_pipe ()
 {
@@ -113,8 +104,9 @@ void send_data (char ch)
 int main(int argc, char **argv)
 {
     pid_t pid;
-    int i;
-    int size;	
+    int to_child[2];
+    int from_child[2];
+    int i,j;
         
     // set up pipe to child
     if(pipe(to_child)) {
@@ -151,7 +143,7 @@ int main(int argc, char **argv)
         // Receive characters from parent process via pipe
 	// one at a time, and count them.
         c = get_data();
-        while(c != '\0') {
+        while(c != EOA_CMD) {
             nChars++;
             c = get_data();
             }
@@ -175,11 +167,12 @@ int main(int argc, char **argv)
         
         //sends each char of argv[1] plus terminating char
         send_cmd(OPEN_CMD);
-        size = strlen(argv[1]) + 1; //send terminating character for exit flag
-
-        for (i = 0; i < size; i++) {
-            send_data (argv[1][i]);
-            }
+        
+        //cycle through args and char stating at argv[1]
+        for(i = 1; i < argc; i++)
+            for (j = 0; j < strlen(argv[i]); j++)
+                send_data (argv[i][j]);
+        send_cmd(EOA_CMD); 
         send_cmd(CLOSE_CMD);
         waitpid(pid, &nChars, 0); 
 	printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
