@@ -6,7 +6,6 @@
 // The code you submit must have these two values.
 #define N_TIMES		600000
 #define ARRAY_SIZE	 10000
-
 int main(void)
 {
  
@@ -19,24 +18,22 @@ int main(void)
     // Please change 'your name' to your actual name.
     printf("CS201 - Asgmt 4 - Jonathon Sonesen \n"); 
     for (i = 0; i < N_TIMES; i++) {
-            
-        // You can change anything between this comment ...
-        int j = 0;    
-        while(ARRAY_SIZE > j + 1) {
-                
-            // ... and this one. But your inner loop must do the same
-            // number of additions as this one does.
-            sum += array[j] + array[j + 1];
-            j += 2; 
+        
+        double* j = array + (ARRAY_SIZE - 1);     
+        while(array < j - 1) {      
+            double* x = j;
+            double* y = (j-1);
+            sum += *x + *y;
+            j-=2;
             }
         
-        if (j < ARRAY_SIZE)
-            sum += array[j];
-            
-        // You can add some final code between this comment ...
+    if (j > array)
+        sum += *j;
+         
+    // You can add some final code between this comment ...
      
-        // ... and this one.
-        return 0;
-        }
+    // ... and this one.
     }
+    return 0;
 }
+
