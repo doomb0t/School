@@ -147,7 +147,7 @@ int main(int argc, char **argv)
         printf("child: received OPEN\n");	
         // Receive characters from parent process via pipe
 	// one at a time, and count them.
-        while(read_pipe() != '\0' && read_pipe() != '\n') {
+        while(read_pipe() != '\0') {
             printf("child: received char\n");
             nChars++;
             }
@@ -170,13 +170,16 @@ int main(int argc, char **argv)
         fd_in = from_child[0];
         close(from_child[1]);
         
+        send_cmd(OPEN_CMD);
         for (i = 0; i < sizeof(argv[1]); i++) {
             send_data(argv[1][i]);
             }
-
-	printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
+        send_cmd(CLOSE_CMD);
         waitpid(pid, &status, 0); 
+	printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
 	printf("child counted %d characters\n", nChars);
-	return 0;
+	close(fd_in);
+        close(fd_out);
+        return 0;
 	} 
 }
