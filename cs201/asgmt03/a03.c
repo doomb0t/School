@@ -90,7 +90,7 @@ void send_cmd (char cmd)
         }
 }
 
-char get_data (char cmd)
+char get_data ()
 {
     char c = read_pipe();
     write_pipe(ACK_CMD);
@@ -112,7 +112,7 @@ int main(int argc, char **argv)
     pid_t pid;
     char c;
     int i;
-	
+    int status;	
     // set up pipe to child
     if(pipe(to_child)) {
         printf("pipe: to child: err\n");
@@ -133,28 +133,49 @@ int main(int argc, char **argv)
         printf("fork err%d\n", pid);
         }
     // -- running in child process --
-    else if (pid == 0) {
+    if (pid == 0) {
 	int     nChars = 0;
+        
+        //pipes for child
         close(from_child[0]);
         fd_out = from_child[1];
         fd_in = to_child[0];
         close(to_child[1]);
-                        
-        while(read_pipe() != '\0' && read_pipe() != '\n')
-            nChars++;
-        return nChars;
-	// Receive characters from parent process via pipe
+        
+        printf("child: waiting for OPEN\n");
+        get_cmd(OPEN_CMD);
+        printf("child: received OPEN\n");	
+        // Receive characters from parent process via pipe
 	// one at a time, and count them.
-            
+        while(read_pipe() != '\0' && read_pipe() != '\n') {
+            printf("child: received char\n");
+            nChars++;
+            }
+
+        get_cmd(CLOSE_CMD);
+        close(fd_in);
+        close(fd_out);
+        printf("child: exits\n");
+ 
 	// Return number of characters counted to parent process.
 	return nChars;
 	}
     else {
 	// -- running in parent process --
 	int     nChars = 0;
+        
+        //parent pipes
+        close(to_child[0]);
+        fd_out = to_child[1];
+        fd_in = from_child[0];
+        close(from_child[1]);
+        
+        for (i = 0; i < sizeof(argv[1]); i++) {
+            send_data(argv[1][i]);
+            }
 
 	printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
-
+        waitpid(pid, &status, 0); 
 	printf("child counted %d characters\n", nChars);
 	return 0;
 	} 
