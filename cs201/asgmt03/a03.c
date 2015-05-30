@@ -132,6 +132,8 @@ int main(int argc, char **argv)
 	int     nChars = 0;
         char    c;
        
+        printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
+        
         //pipes for child
         fd_in = to_child[0];
         close(from_child[0]);
@@ -176,7 +178,6 @@ int main(int argc, char **argv)
         send_cmd(CLOSE_CMD);
         waitpid(pid, &nChars, 0); 
 	
-        printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
         printf("child counted %d characters\n", nChars/256);
 	close(fd_in);
         close(fd_out);
