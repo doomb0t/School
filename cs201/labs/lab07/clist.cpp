@@ -57,7 +57,7 @@ int sum(node* head)
 //recursive summation
 int sumR(node * head)
 {
-     if(head == NULL ) return 0;
+    if(head == NULL) return 0;
     return sumhelp(head, head);
 }
 
@@ -69,20 +69,16 @@ int getdata(node * link)
 
 int counthelp (node* head, node * current)
 {
-    int size;
     if (current->next != head) {
-        return size + count (current->next);
-        }
+        return 1 + counthelp (head, current->next);
+    }
     return 1;
 }
 
 int sumhelp(node* head, node* current)
 {
-    int sum;
-    if (current->next != NULL) {
-        sum + getdata(current);
-        return sum + sumR(current->next);
-        }
-    sum += getdata(current);
-    return sum;
+    if (current->next != head) {
+        return getdata(current) + sumhelp (head, current->next);
+    }
+    return getdata(current);
 }
