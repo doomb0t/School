@@ -9,34 +9,34 @@
 
 int main(void)
 {
-	double	*array = calloc(ARRAY_SIZE, sizeof(double));
-	double	sum = 0;
-	int     i;
-	// You can add variables between this comment ...
-
-	// ... and this one.
-
-	// Please change 'your name' to your actual name.
-	printf("CS201 - Asgmt 4 - Jonathon Sonesen \n"); 
+ 
+    double  *array = calloc(ARRAY_SIZE, sizeof(double));
+    double  sum = 0;
+    int     i;
+    // You can add variables between this comment ...
     
-	for (i = 0; i < N_TIMES; i++) {
-
-		// You can change anything between this comment ...
-
-    	        int j = 0;
-                while(ARRAY_SIZE > j + 1) {
-		// ... and this one. But your inner loop must do the same
-		// number of additions as this one does.
-                    sum += array[j] + array[j + 1];
-                    j += 2; 
-                    }
+    // ... and this one.
+    // Please change 'your name' to your actual name.
+    printf("CS201 - Asgmt 4 - Jonathon Sonesen \n"); 
+    for (i = 0; i < N_TIMES; i++) {
+            
+        // You can change anything between this comment ...
+        int j = 0;    
+        while(ARRAY_SIZE > j + 1) {
                 
-                if (j < ARRAY_SIZE)
-                    sum += array[j];
+            // ... and this one. But your inner loop must do the same
+            // number of additions as this one does.
+            sum += array[j] + array[j + 1];
+            j += 2; 
+            }
+        
+        if (j < ARRAY_SIZE)
+            sum += array[j];
+            
+        // You can add some final code between this comment ...
+     
+        // ... and this one.
+        return 0;
         }
-	// You can add some final code between this comment ...
-
-	// ... and this one.
-
-	return 0;
+    }
 }
