@@ -39,4 +39,5 @@ int countR(node* head);
 int sum(node* head);
 int sumR(node * head);
 int getdata(node * link);
-
+int counthelp(node* head, node* start);
+int sumhelp(node* head, node* current);

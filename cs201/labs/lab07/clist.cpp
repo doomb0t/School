@@ -20,36 +20,35 @@
 //iterative counting action
 int count(node* head)
 {
-    int count = 0;
-    node* current = head;
-    while (current->next != head) {
+    if(head == NULL) return 0;
+
+    int count = 1;
+    node* current = head->next;
+
+    while (current != head) {
         count++;
-        if(current->next == NULL)
-            current = head;
-        else
-            current = current->next;
+        current = current->next;
         }
     return count;
 }
 
 //recursive counting action
 int countR(node* head)
-{
-    int count = 0;
-    if(head == NULL)
-        return 0;
-    return count + countR(head->next);
+{   
+    if(head == NULL) return 0;
+    return counthelp(head, head);
 }
 
 //iterative summation
 int sum(node* head)
 {
-    int sum = 0;
-    node* current = head;
+    if(head == NULL) return 0;
+
+    int sum = getdata(head);
+    node* current = head->next;
+
     while (current != head) {
         sum += getdata(current);
-        if(current->next == NULL)
-            current = head;
         current = current->next;
         }
     return sum;
@@ -58,14 +57,32 @@ int sum(node* head)
 //recursive summation
 int sumR(node * head)
 {
-    int count = 0;
-    if(head == NULL)
-        return 0;
-    return count + countR(head->next);
+     if(head == NULL ) return 0;
+    return sumhelp(head, head);
 }
 
 //get integer from list
 int getdata(node * link)
 {
     return link->data;
+}
+
+int counthelp (node* head, node * current)
+{
+    int size;
+    if (current->next != head) {
+        return size + count (current->next);
+        }
+    return 1;
+}
+
+int sumhelp(node* head, node* current)
+{
+    int sum;
+    if (current->next != NULL) {
+        sum + getdata(current);
+        return sum + sumR(current->next);
+        }
+    sum += getdata(current);
+    return sum;
 }
