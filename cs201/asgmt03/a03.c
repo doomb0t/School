@@ -63,9 +63,9 @@ char read_pipe ()
 void write_pipe (char c)
 {
     if(write(fd_out, &c, 1) != 1) {
-            printf("write_pipe: err\n");
-            exit(WRITE_ERR);
-            }   
+        printf("write_pipe: err\n");
+        exit(WRITE_ERR);
+        }   
 }
 
 void get_cmd (char cmd)
@@ -83,8 +83,9 @@ void get_cmd (char cmd)
 void send_cmd (char cmd)
 {
     char c;
+
     write_pipe(cmd);
-    if((c =  read_pipe()) != ACK_CMD) {
+    if ((c =  read_pipe()) != ACK_CMD) {
         printf("send_cmd: protocol err, read '%d' 0x%X\n", c, c & 0xFF);
         exit(PROTOCOL_ERR);
         }
@@ -97,22 +98,24 @@ char get_data ()
     return c;
 }
 
-void send_data (char cmd)
+void send_data (char ch)
 {
     char c;
-    write_pipe(cmd);
+
+    write_pipe(ch);
     if((c = read_pipe()) != ACK_CMD) {
-        printf("send_data: err\n");
+        printf("send_cmd: protocol  err\n");
         exit(PROTOCOL_ERR);
         }
-    printf("parents: '%c' acknowledged\n", c);
+//    printf("parent: '%c' acknowledged\n", ch);
 }
+
 int main(int argc, char **argv)
 {
     pid_t pid;
-    char c;
     int i;
-    int status;	
+    int size;	
+        
     // set up pipe to child
     if(pipe(to_child)) {
         printf("pipe: to child: err\n");
@@ -124,7 +127,7 @@ int main(int argc, char **argv)
         printf("pipe from child err\n");
         return -1;
         }
-        
+    
     // create parent and child 
     pid = fork();
         
@@ -133,35 +136,36 @@ int main(int argc, char **argv)
         printf("fork err%d\n", pid);
         }
     // -- running in child process --
-    if (pid == 0) {
+    else if (pid == 0) {
 	int     nChars = 0;
-        
+        char    c;
+       
         //pipes for child
         close(from_child[0]);
         fd_out = from_child[1];
         fd_in = to_child[0];
         close(to_child[1]);
         
-        printf("child: waiting for OPEN\n");
         get_cmd(OPEN_CMD);
-        printf("child: received OPEN\n");	
+
         // Receive characters from parent process via pipe
 	// one at a time, and count them.
-        while(read_pipe() != '\0') {
-            printf("child: received char\n");
+        c = get_data();
+        while(c != '\0') {
             nChars++;
+            c = get_data();
+            sleep(1);
             }
-
         get_cmd(CLOSE_CMD);
         close(fd_in);
         close(fd_out);
-        printf("child: exits\n");
  
 	// Return number of characters counted to parent process.
 	return nChars;
 	}
-    else {
-	// -- running in parent process --
+
+    else {	
+        // -- running in parent process --
 	int     nChars = 0;
         
         //parent pipes
@@ -170,14 +174,18 @@ int main(int argc, char **argv)
         fd_in = from_child[0];
         close(from_child[1]);
         
+        //sends each char of argv[1] plus terminating char
         send_cmd(OPEN_CMD);
-        for (i = 0; i < sizeof(argv[1]); i++) {
-            send_data(argv[1][i]);
+        size = strlen(argv[1]) + 1; //send terminating character for exit flag
+
+        for (i = 0; i < size; i++) {
+            send_data (argv[1][i]);
+            sleep(1);
             }
         send_cmd(CLOSE_CMD);
-        waitpid(pid, &status, 0); 
+        waitpid(pid, &nChars, 0); 
 	printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
-	printf("child counted %d characters\n", nChars);
+	printf("child counted %d characters\n", nChars/256);
 	close(fd_in);
         close(fd_out);
         return 0;

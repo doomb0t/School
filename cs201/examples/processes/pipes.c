@@ -120,7 +120,7 @@ int main (int argc, char **argv)
     pid = fork();
 
     /* fork() fails */
-    if (pid <0){
+    if (pid < 0){
         printf("fork err %d/n", pid);
         return -1;
         }
@@ -153,10 +153,8 @@ int main (int argc, char **argv)
     else {
        
         /* if prog runs with arg initialize proc with char */
-        ch      = argc > 1 ? argv[1][0] : 'a';
+        ch      = argv[1][0];
 
-        /* if argv[2] is present set number of characters to send */
-        nChars  = argc > 2 ? atoi(argv[2]) : 3;
         
         /* setup  pipes for parent proc */
         close(toChild[0]);
