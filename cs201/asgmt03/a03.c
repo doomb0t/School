@@ -17,8 +17,6 @@
  *
  * =====================================================================================
  */
-
-
 #include <stdio.h>
 #include <sys/wait.h>
 #include <string.h>
@@ -165,9 +163,7 @@ int main(int argc, char **argv)
         close(to_child[0]);
         fd_out = to_child[1];
         fd_in = from_child[0];
-        close(from_child[1]);
-        
-        //sends each char of argv[1] plus terminating char
+        close(from_child[1]); 
         send_cmd(OPEN_CMD);
         
         //cycle through args and char stating at argv[1]
@@ -176,8 +172,7 @@ int main(int argc, char **argv)
                 send_data (argv[i][j]);
         send_cmd(EOA_CMD);      //signal end of agruments
         send_cmd(CLOSE_CMD);
-        waitpid(pid, &nChars, 0); 
-	
+        waitpid(pid, &nChars, 0); //da reaping  
         printf("child counted %d characters\n", nChars/256);
 	close(fd_in);
         close(fd_out);
