@@ -18,23 +18,23 @@ int main(void)
 	// ... and this one.
 
 	// Please change 'your name' to your actual name.
-	printf("CS201 - Asgmt 4 - I. Forgot\n");
-
+	printf("CS201 - Asgmt 4 - Jonathon Sonesen \n"); 
+    
 	for (i = 0; i < N_TIMES; i++) {
 
 		// You can change anything between this comment ...
 
-		int     j;
+    	        int i = 0;
 
-		for (j = 0; j < ARRAY_SIZE; j++) {
-			sum += array[j];
-			}
-
+                while(ARRAY_SIZE > i + 1) {
 		// ... and this one. But your inner loop must do the same
 		// number of additions as this one does.
-
-		}
-
+                    sum += array[i]; + array[i+1];
+                    i+=2;
+		    }
+                if( i < ARRAY_SIZE)
+                    sum += array[i];
+            }
 	// You can add some final code between this comment ...
 
 	// ... and this one.
