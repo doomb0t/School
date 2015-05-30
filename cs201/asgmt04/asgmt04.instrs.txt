@@ -1,0 +1,119 @@
+CS201 ASSIGNMENT 4 INSTRUCTIONS
+-------------------------------
+
+In this assignment you will optimize code and get it to run faster using
+techniques you have learned in this course.
+
+You will measure code execution time using the Linux time(1) command. This
+command prints out three numbers:
+
+    real: total elapsed time
+    user: total cpu usage of the application code
+    sys:  total cpu usage of the application's operating system calls
+
+For the purposes of this assignment, you will use the user statistic returned by
+time(1).
+
+You should do this work on syccuxfas01.pcc.edu. This is where I will be testing
+your code, and execution times on this machine are the standard that your code
+will be judged by. The fact that your code may have met the timing standard on
+some other machine does not count, and will not help you.
+
+The code for this assignment has an outer loop and an inner loop. The inner loop
+computes the sum of the numbers in an array (note that the array is initialized
+by calloc() to all zeroes). The outer loop repeats the inner loop's computation
+the specified number of times. You should maintain this loop structure as you
+optimize this code. In particular:
+
+    * you should not alter the outer loop
+    * you should not change the size of the array or its data type
+    * the array should remain initialized to all zeroes -
+        do not change any element of the array
+    * your inner loop should still compute the sum of all the elements
+        of the array
+    * your code should be no longer than 50 lines
+
+The basic idea is to change the contents of the inner loop to make the
+computation run faster while having it still repeatedly compute the sum of the
+array elements.
+
+Do not write any assembly language for this assignment. You can achieve the
+speedup you need at the C code level.
+
+Do not use the optimization features of gcc. I will be compiling your code with
+all gcc optimizations turned off. Compile your code with same flags that are
+used by the 'gc' bash script in ~michael.trigoboff/bin.
+
+The "Loop Optimization" section of the "Optimizing Code" page of the
+"Optimization" lesson demonstrates techniques that may be of use to you for this
+assignment. There are code examples of the techniques in
+
+    ~michael.trigoboff/cs201/code/optimize/loopOptimization
+
+Remember that you need to do only one of the versions below.
+
+--------------------------------------------------------------------------------
+
+REGULAR VERSION
+
+Optimize the code in a04.c so that it runs in less than 7.0 seconds.
+
+Upload your work as file a04.c.
+
+--------------------------------------------------------------------------------
+
+PREMIUM VERSION
+
+Optimize the code in a04.c so that it runs in less than 5.0 seconds.
+
+Upload your work as file a04.c.
+
+--------------------------------------------------------------------------------
+
+REQUIRED PLATFORM
+
+I grade your code on syccuxfas01.pcc.edu. Your code is required to compile and
+run correctly on that machine.
+
+COMPILING YOUR CODE
+
+You are required to compile your code with the same flags that are used by
+the 'gc' bash script in ~michael.trigoboff/bin.
+
+GRADING YOUR CODE
+
+Your code needs to compile without errors or warnings and run correctly. Code
+that does not compile will receive zero points. Code that crashes will receive
+zero points.
+
+I use bash scripts to grade your code. Because of this, it is very important
+that you submit your code with the file name that was requested. If you change
+the file name, my scripts will crash, your work will not be graded, you will
+have to resubmit a corrected version of your work, and you will lose points.
+
+My scripts produce a log file containing your code, compiler warnings and errors
+(if any), your code's output, and some statistics that are useful to me. I then
+personally go through that log file to produce your grade. In other words, the
+scripts don't generate your grade, they just make it more convenient for me to
+generate your grade.
+
+TO SUBMIT THIS ASSIGNMENT
+
+Submit the requested file to Desire2Learn.   Make sure that your code prints
+your name, assignment description, and number, as requested.
+
+    * Be certain to check that you completed the upload successfully. After you
+        click the Upload File button, you must also click the SUBMIT ASSIGNMENT
+        button. This is very easy to forget. If you do not do this, I will not
+        see your work and you will get a grade of zero for the assignment. I
+        would recommend entering an email address so you can be notified that
+        the upload was completed successfully.
+    * You may upload as many versions as you wish prior to the due date. I will
+        only see and grade the final one. You will not be able to upload
+        assignments after the due date.
+
+Points will be deducted for uploading a file with a name that is not as
+specified. Every term I get a few students whose approach to following
+directions is, shall we say, "creative." I encourage creativity in general, but
+there are places where it is not appropriate.
+
