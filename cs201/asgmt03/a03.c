@@ -154,7 +154,6 @@ int main(int argc, char **argv)
         while(c != '\0') {
             nChars++;
             c = get_data();
-            sleep(1);
             }
         get_cmd(CLOSE_CMD);
         close(fd_in);
@@ -180,7 +179,6 @@ int main(int argc, char **argv)
 
         for (i = 0; i < size; i++) {
             send_data (argv[1][i]);
-            sleep(1);
             }
         send_cmd(CLOSE_CMD);
         waitpid(pid, &nChars, 0); 
