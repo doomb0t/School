@@ -133,9 +133,9 @@ int main(int argc, char **argv)
         char    c;
        
         //pipes for child
+        fd_in = to_child[0];
         close(from_child[0]);
         fd_out = from_child[1];
-        fd_in = to_child[0];
         close(to_child[1]);
         
         get_cmd(OPEN_CMD);
@@ -172,11 +172,12 @@ int main(int argc, char **argv)
         for(i = 1; i < argc; i++)
             for (j = 0; j < strlen(argv[i]); j++)
                 send_data (argv[i][j]);
-        send_cmd(EOA_CMD); 
+        send_cmd(EOA_CMD);      //signal end of agruments
         send_cmd(CLOSE_CMD);
         waitpid(pid, &nChars, 0); 
-	printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
-	printf("child counted %d characters\n", nChars/256);
+	
+        printf("CS201 - Assignment 3 - Jonathon Sonesen\n");
+        printf("child counted %d characters\n", nChars/256);
 	close(fd_in);
         close(fd_out);
         return 0;
