@@ -15,14 +15,14 @@
  *
  * =====================================================================================
  */
-#include <clist.h>
+#include "clist.h"
 
 //iterative counting action
 int count(node* head)
 {
     int count = 0;
     node* current = head;
-    while (current != head) {
+    while (current->next != head) {
         count++;
         if(current->next == NULL)
             current = head;
@@ -56,10 +56,16 @@ int sum(node* head)
 }
 
 //recursive summation
-int sumR(node * head);
+int sumR(node * head)
+{
+    int count = 0;
+    if(head == NULL)
+        return 0;
+    return count + countR(head->next);
+}
 
 //get integer from list
-int get(node * link)
+int getdata(node * link)
 {
     return link->data;
 }
