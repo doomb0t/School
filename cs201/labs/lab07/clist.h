@@ -1,3 +1,21 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  clist.h
+ *
+ *    Description:  function protoypes for lab07 circularly linked list 
+ *
+ *        Version:  1.0
+ *        Created:  05/29/2015 10:32:04 PM
+ *       Revision:  none
+ *       Compiler:  g++
+ *
+ *         Author:  Jonathon Sonesen
+ *   Organization:  PCC CS201
+ *
+ * =====================================================================================
+ */
+
 #include <iostream>
 #include <cstring>
 #include <cctype>
@@ -19,4 +37,6 @@ void duplicate(node*& new_copy); //provides a duplicate copy of the list
 int count(node* head);
 int countR(node* head);
 int sum(node* head);
-int sumR(node* head);
+int sumR(node * head);
+int getdata(node * link);
+
