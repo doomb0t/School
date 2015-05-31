@@ -15,7 +15,7 @@ int main(void)
     int     i;
     // You can add variables between this comment ...
     register double* j = array + (ARRAY_SIZE - 1);     
-    register double sum = 0;
+    register double sumR = 0;
     // ... and this one.
     // Please change 'your name' to your actual name.
     printf("CS201 - Asgmt 4 - Jonathon Sonesen \n"); 
@@ -23,15 +23,18 @@ int main(void)
         
         j = array + (ARRAY_SIZE - 1);     
         while(array < j - 1) {      
-            sum += *j + *(j -1);
+            sumR += *j + *(j -1);
             j-=2;
             }
        
         if (j > array) {
-            sum += *j;
+            sumR += *j;
             }
     }
     // You can add some final code between this comment ...
+    
+    //sum = sumR; <----this code causes bottleneck regardless of where executed
+    
     // ... and this one.
     return 0;
 }
