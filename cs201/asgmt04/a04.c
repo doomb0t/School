@@ -32,9 +32,6 @@ int main(void)
             }
     }
     // You can add some final code between this comment ...
-    
-
-
     // ... and this one.
     return 0;
 }
