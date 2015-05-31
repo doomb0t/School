@@ -13,25 +13,28 @@ int main(void)
     double  sum = 0;
     int     i;
     // You can add variables between this comment ...
+    register double  sum2 = 0;
     
     // ... and this one.
     // Please change 'your name' to your actual name.
     printf("CS201 - Asgmt 4 - Jonathon Sonesen \n"); 
     for (i = 0; i < N_TIMES; i++) {
         
-        double* j = array + (ARRAY_SIZE - 1);     
+        register double* j = array + (ARRAY_SIZE - 1);     
         while(array < j - 1) {      
-            double* x = j;
-            double* y = (j-1);
-            sum += *x + *y;
+            register double* x = j;
+            register double* y = j-1;
+            sum2 = *x + *y;
             j-=2;
             }
+
         
-    if (j > array)
-        sum += *j;
-         
+    if (j > array) {
+        register double* x = j;
+        sum2 += *x;
+        }
     // You can add some final code between this comment ...
-     
+    sum = sum2; 
     // ... and this one.
     }
     return 0;
