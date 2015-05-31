@@ -10,11 +10,12 @@ int main(void)
 {
  
     double  *array = calloc(ARRAY_SIZE, sizeof(double));
-    double  sum = 0;
+    //double  sum = 0;          //using register double GREATLY decreases execution time
+                                //not sure if I am allowed to do this though
     int     i;
     // You can add variables between this comment ...
-    register double  sum2 = 0;
     register double* j = array + (ARRAY_SIZE - 1);     
+    register double sum = 0;
     // ... and this one.
     // Please change 'your name' to your actual name.
     printf("CS201 - Asgmt 4 - Jonathon Sonesen \n"); 
@@ -22,18 +23,18 @@ int main(void)
         
         j = array + (ARRAY_SIZE - 1);     
         while(array < j - 1) {      
-            sum2 += *j + *(j -1);
+            sum += *j + *(j -1);
             j-=2;
             }
        
         if (j > array) {
-            sum2 += *j;
+            sum += *j;
             }
     }
     // You can add some final code between this comment ...
     
-    /* BOTTLE NECK */
-    sum = sum2;      //this operation is what destroys time performance.
+
+
     // ... and this one.
     return 0;
 }
