@@ -21,9 +21,9 @@ int main(void)
 
     for (i = 0; i < N_TIMES; i++) {
         
-        j = array + (ARRAY_SIZE - 1);     
+        j = array + (ARRAY_SIZE);     
         while(array < j - 1) {      
-            sum += *j + *(j -1);
+            sum += *j + *(j - 1);
             j-=2;
             }
        
