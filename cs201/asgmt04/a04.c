@@ -11,7 +11,7 @@ int main(void)
  
     double  *array = calloc(ARRAY_SIZE, sizeof(double));
     register double  sum = 0;          //using register double GREATLY decreases execution time
-                                //not sure if I am allowed to do this though
+                                       //not sure if I am allowed to do this though
     int     i;
     // You can add variables between this comment ...
     register double* j; 
