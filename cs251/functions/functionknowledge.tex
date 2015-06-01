@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+
+\title{CS251 Functions Knowledge}
+\author{jonathon.sonesen }
+\date{April 2015}
+
+\begin{document}
+
+\maketitle
+
+\section*{1.)Proof:\\\mid f:~\mathbb{R}  \rightarrow \mathbb{R} \mid f(x) = \frac{(x^2)!}{x^2 + 10}~is~not~an~injective~function}
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 &\exists x_1, x_2 \in \mathbb{R} \mid f(x_1) = f(x_2) \land x_1 \neq x_2 & \text{}\\
+2 &  x_1 = 1 & \text{counter-example}&\\
+ 3& f(1) = \frac{(1^2)!}{(1)^2 + 10} = \frac{1}{11} & \text{subs.~to~premise}\\
+4 & x_2 = -1 &\\
+5 & f(-1) = \frac{(-1^2)!}{(-1)^2 + 10} = \frac{1}{11} & \text{subs.~to~premise}\\
+7 & f(1) = f(-1) & \\
+8 & x_1 \neq x_2 &\\
+9 & \therefore \exists x_1, x_2 \in \mathbb{R} \mid f(x_1) = f(x_2) \land x_1 \neq x_2  &\\
+\end{array}
+
+
+\section*{2.)Proof:\\  \mid f:~ \mathbb{Z} \rightarrow  \mathbb{R}\mid f(n) = \sum \limits_{i = 1}^{n} i^2}
+\begin{array}{l,l,l}
+Row&Statement&Comment \\
+1& \exists x_1, x_2 \in \mathbb{Z} \mid f(x_1) = f(x_2) \land ~x_1 \neq x_2 &\\
+2 &Let~x_1= -1&\\
+3 &f(x_1) = \sum \limits_{i = 1}^{-1} i^2} = 0&\\
+4 & Let~x_2=0&\\
+5 & f(x_2) = \sum \limits_{i = 1}^{0} i^2} = 0&\\
+6 & \therefore \exists x_1, x_2 \in \mathbb{R} \mid f(x_1) = f(x_2) \land x_1 \neq x_2 
+\end{array}
+
+\section*{3.)}
+~Let \\ ~~A = \left\{ n \in \mathbb{Z} \mid 5n^4 + 3n^2 -10 < 2^{45} - 1 \right\} \\ and \\~~ B = \left\{ n \in \mathbb{Z} \mid 0 < n < 2^{45} -1 \right\} \\ How~many~functions~from~A \rightarrow B?\\
+There~are~\mid A \mid ^{\mid B \mid}~functions~from~A\rightarrow B\\
+\mid A \mid ^{\mid B \mid} = 3257^{2^{45}-1}
+
+\section*{4.)}
+~~Let \\ ~~A = \left\{ n \in \mathbb{Z} \mid 5n^4 + 3n^2 -10 < 2^{45} - 1 \right\} \\ and \\~~ B = \left\{ n \in \mathbb{Z} \mid 0 < n < 2^{45} -1 \right\} \\ How~many~functions~from~B \rightarrow A?\\
+There~are~\mid B \mid ^{\mid A\mid}~functions from B \rightarrow A\\
+\mid B \mid ^{\mid A\mid}= 2^{45}-1^{3257} 
+
+\section*{5.}
+Let \\ ~~A = \left\{ n \in \mathbb{Z} \mid 6n^8 + 5n^6 + 7& < 2^{45} - 1 \right\} \\ and \\~~ B = \left\{ n \in \mathbb{Z} \mid 0 < n < 2^{45} -1 \right\} \\ How~many~~injective~functions~from~A \rightarrow B?\\
+There~are~\frac{\mid B \mid!}{\mid B \mid- \mid A \mid)!}~injective~functions~from A \rightarrow B
+\begin{array}{l}
+
+& = \frac{35284372088830!}{35284372088749!}\\
+\end{arrary}
+
+
+\section*{6.)}
+~Let \\ ~~A = \left\{ n \in \mathbb{Z} \mid 6n^8 + 5n^6 + 7& < 2^{45} - 1 \right\} \\ and \\~~ B = \left\{ n \in \mathbb{Z} \mid 0 < n < 2^{45} -1 \right\} \\ How~many~injective~functions~from~B \rightarrow A?\\
+Since \mid B \mid > \mid A \mid~there~are~no~injective~functions~from~A\rightarrow B
+
+\section*{7.) Proof\\ \phi(n)~is~injective}
+\begin{array}{l,l,l}
+Row&Statement&Comment\\
+1 & \exists x_1, x_2 \in \mathbb{X} \mid \phi(x_1) = \phix_2 &\\ 
+2 & x_1 := 5&\\
+3 & \phi(5) = 4 &\\
+4 & Let~x_2 := 8&\\
+5 & \phi(8) = 4 &\\
+6 & x_1 \neq x_2 \land \phi(x_1) = \phi(x_2)& \\
+7 & \therefore \exists x_1, x_2 \in \mathbb{X} \mid \phi(x_1) = \phix_2& \text{QED}
+\end{array}
+
+\section*{8.)}
+Let\\ A = \left\{ n \in \mathbb{Z} \mid log_5(\phi(n) < 25 \right\} \\ and \\ B = \left\{ n \in \mathbb{Z} \mid log_5(n) < \phi(n) \right\} \\ How~many~functions~from~A \rightarrow B?\\
+\mid A \mid = 53\\
+\mid B \mid = \inf\\
+There~are~infinity~functions~from~A \rightarrow B.
+
+\section*{9.)}
+Give~the~formal~definition~of~a~function \\\mid f: \mathbb{Q}\rightarrow \mathbb{Q}~\text{that~is~injective~but~not~surjective~and~prove~why\\~no~such~function~exists.~}
+ \begin{displaymath}
+f:\mathbb{Q} \rightarrow \mathbb{Q} \mid   f(x) = \left\{
+     \begin{array}{lr}
+        x & : \in \mathbb{N}\\
+       x + 1 & :  \notin \mathbb{N}
+     \end{array}
+   \right.
+\end{displaymath} 
+
+\section*{10.)}
+Give~the~formal~definition~of~a~function\\ \mid f: \mathbb{Q}\rightarrow \mathbb{Q}~\text{that~is~surjective~but~not~injective~and~prove~why\\~no~such~function~exists.~}}\\
+g: \mathbb{Q} \rightarrow \mathbb{Q} \mid g(x) = \left\{ x^3 + x^2\right\}
+
+
+\end{document}
