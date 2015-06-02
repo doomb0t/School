@@ -14,7 +14,7 @@ int main(void)
                                        //not sure if I am allowed to do this though
     int     i;
     // You can add variables between this comment ...
-    register double* j;
+    double* j;
     double sum0 = 0;
     double sum1 = 0;
     double sum2 = 0;
@@ -30,10 +30,10 @@ int main(void)
         j = array + (ARRAY_SIZE);     
         while(array < j - 15) {      
             sum0 += *j + *(j - 1) + *(j -2)+ *(j -3);
-            sum1 += *j + *(j - 4) + *(j -5)+ *(j -6);
-            sum2 += *j + *(j - 7) + *(j -8)+ *(j -9);
-            sum3 += *j + *(j - 10) + *(j -11)+ *(j - 12);
-            sum4 += *j + *(j - 13) + *(j -14)+ *(j -15);
+            sum1 += *(j - 4) + *(j -5)+ *(j -6);
+            sum2 += *(j - 7) + *(j -8)+ *(j -9);
+            sum3 += *(j - 10) + *(j -11)+ *(j - 12);
+            sum4 += *(j - 13) + *(j -14)+ *(j -15);
             j-=15;
             }
        
