@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[fleqn]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \title{Counting and Probability Knowledge}
@@ -7,36 +7,25 @@
 \begin{document}
 
 \maketitle
-\section*{1.}
-$$
-
+\section*{}
+1.)\\
 In a competition between players A and B, the first player to win 5 games
 in a row, or a total of 6 games, wins. How may ways can the competition be
 played if A wins the first game and B withs the second and third games?
 
 121 ways.
-$$
-
-\end{section}
-
-\section*{2.}
-
-$$
-
+\section*{}
+2.)\\
 If p, q, and r are distinct prime numbers, and a, b, and c are positive integers,
 how many distinct positive divisors does 
 \begin{equation*}p^a \cdot q^b \cdot r^c \end{equation*} have?
-
-
-
 \begin{equation*}
   By~multiplication~the~number~of~divisors~are~ (a+1)(b+1)(c+1)
 \end{equation*}
-$$
-\end{section}
 
-\section*{3.}
-$$
+ 
+\section*{}
+3.)\\
 At a certain university, passwords must be from 15 to 20 symbols long, and
 composed of the 26 letters of the alphabet, the ten digits 0 - 9, and 14 special
 symbols (for a total of 50 possible symbols). How many passwords contain
@@ -46,12 +35,10 @@ no repeated symbols?
   \sum\limits_{i=15}^{30}p(50,y)
   = 118478683136335320962903900160000~passwords\\
 \end{equation*}
-$$
-\end{section}
 
-\section*{4.}
-$$
-
+ 
+\section*{}
+4.)\\
 What is the probability that a randomly chosen string of 7 hexadecimal digits 
 has at least one repeated digit? Assume equal likelhood.\\
 
@@ -60,12 +47,9 @@ has at least one repeated digit? Assume equal likelhood.\\
   \frac{16!}{16^7 \cdot (16-7)!} \approx 79\%\\
 \end{equation*}
 
-\end{section}
-$$
 
-\section*{5.}
-$$
-
+\section*{}
+5.)\\
 Let S be the set of all strings of length 12 over the set {w, x, y, z}. 
 In other words, S consists of all strings of
 length 12 composed of these characters. What is the probability that 
@@ -84,19 +68,69 @@ Repetition:\\
 \begin{equation*}
   100\%-46\%=54\%
 \end{equation*}
-$$
-\end{section}
 
- \section*{6.}
+
+ \section*{}
+ 6.) \\
 Consider the infinite decimal 12.112211122211112222..., where each group 
 of 1s and 2s becomes longer in each repetition. Is this number rational
 or irrational? Explain your reasoning (no formal proof is needed).
 \\
 The number is irrational, the pattern is non repeating.
-\end{section}
-\section*{7.}
+
+\section*{}
+7.)\\
 Suppose that 5 computers in a production run of 65 are defective. A sample of
-s even
-\end{section}
+seven computers is checked for defects.\\
+(a)How many samples contain a defective computer?
+\begin{equation*} 
+  \frac{65!}{7!(65-7)!} - \frac{60!}{7!(60-7}=309983640~with~at~least~1 
+\end{equation*}
+
+(b)What is the probability that a randomly chosen sample contains at least 1 
+defective  computer?
+\begin{equation*}  
+  1-\frac{60^p7}{65^p7} \approx 44.5\%
+\end{equation*}
+ 
+\section*{}
+8.)\\
+A large pile of coins consists of pennies, nickel, dimes, and quarters. If the pile
+contains onle 23 dimes, but at least 37 of each other kind of coin how man collections
+of 37 dimes can be chose?
+\begin{equation*}
+  C_{37} \geq \left\{ \sum_{i=14}^{36}3^i \right\} + 3^{36} \geq 675425858834104560
+\end{equation*}
+
+\section*{}
+9.)\\
+How many integers from$ 1 \cdot 10^0$ through $ 1 \cdot 10^9$ have the sum of their digits
+equal 10?\\
+There are 43749.
+
+\section*{}
+10.)\\
+A fair coin is tosed until either 2 head or 7 tails are obtained what is the expected 
+number of tosses?
+\\
+3.91 expected tosses
+
+\section*{}
+11.\\
+An urn contains 10 balls numbered 1,2,3,3,5,5,7,7,7,8. If a person selects a a set of
+4 balls at random (equal probability), what is the expected value of the
+sum of the numbers on the balls?\\
+Let b = ball number, and p = probability \\
+
+\begin{equation*}
+  \begin{aligned}
+    f\left(x  \right)&=  4 \left( \sum_{i=1}^{6}b_k \cdot p_k \right)\\ 
+    &= 4\left(  1 \cdot \frac{1}{10}+2\cdot\frac{1}{10} + 3  
+    \cdot \frac{2}{10} + 5 \cdot \frac{2}{10}+7\cdot\frac{3}{10}+8\cdot\frac{1}{10}\right)\\ 
+    &= 4 \left( \frac{48}{10} \right)\\
+    & =19.2
+  \end{aligned}
+\end{equation*}
+
 
 \end{document}
