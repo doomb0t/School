@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2015.6.1)  1 JUN 2015 21:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2015.6.1)  2 JUN 2015 14:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -318,10 +318,6 @@ LaTeX Font Info:    ... okay on input line 7.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--44
-
- []
-
 [1
 
 ]
@@ -344,4 +340,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  27i,10n,24p,242b,189s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (4 pages, 6140 bytes).
+Output written on main.dvi (4 pages, 6164 bytes).

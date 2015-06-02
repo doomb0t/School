@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2015.6.1)  2 JUN 2015 11:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2015.6.1)  2 JUN 2015 15:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -252,7 +252,7 @@ Enter file name:
 <read *> 
          
 l.4 \usepackage
-               {tkz-graph}^^M
+               {tikz, fullpage}^^M
 *** (cannot \read from terminal in nonstop modes)
 
  
