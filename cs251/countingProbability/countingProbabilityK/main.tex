@@ -1,43 +1,71 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-
+\usepackage{amsmath}
 \title{Counting and Probability Knowledge}
 \author{jonathon.sonesen }
 \date{May 2015}
-
 \begin{document}
 
 \maketitle
-
 \section*{1.}
+$$
+
 In a competition between players A and B, the first player to win 5 games
 in a row, or a total of 6 games, wins. How may ways can the competition be
 played if A wins the first game and B withs the second and third games?
 
 121 ways.
+$$
+
 \end{section}
 
 \section*{2.}
-If p, q, and r are distinct prime numbers, and a, b, and c are positive integers,
-how many distinct positive divisors does p^a \cdot q^b \cdot r^c have?\\
-\text{By~multiplication~the~number~of~divisors~are~ (a+1)(b+1)(c+1)}
 
-\section*{3}
+$$
+
+If p, q, and r are distinct prime numbers, and a, b, and c are positive integers,
+how many distinct positive divisors does 
+\begin{equation*}p^a \cdot q^b \cdot r^c \end{equation*} have?
+
+
+
+\begin{equation*}
+  By~multiplication~the~number~of~divisors~are~ (a+1)(b+1)(c+1)
+\end{equation*}
+$$
+\end{section}
+
+\section*{3.}
+$$
 At a certain university, passwords must be from 15 to 20 symbols long, and
 composed of the 26 letters of the alphabet, the ten digits 0 - 9, and 14 special
 symbols (for a total of 50 possible symbols). How many passwords contain
 no repeated symbols?
 
-\sum_{i=15}^{30}p(50,y)
-= 118478683136335320962903900160000~passwords\\
+\begin{equation*}
+  \sum\limits_{i=15}^{30}p(50,y)
+  = 118478683136335320962903900160000~passwords\\
+\end{equation*}
+$$
+\end{section}
 
 \section*{4.}
+$$
+
 What is the probability that a randomly chosen string of 7 hexadecimal digits 
 has at least one repeated digit? Assume equal likelhood.\\
-\frac{16!}{16^7 \cdot (16-7)!} \approx 79%\\
 
+
+\begin{equation*}
+  \frac{16!}{16^7 \cdot (16-7)!} \approx 79\%\\
+\end{equation*}
+
+\end{section}
+$$
 
 \section*{5.}
+$$
+
 Let S be the set of all strings of length 12 over the set {w, x, y, z}. 
 In other words, S consists of all strings of
 length 12 composed of these characters. What is the probability that 
@@ -45,19 +73,30 @@ a randomly chosen element of S contains at least 1 pair of adjacent
 characters that are the same? In other words, what is the probability a
 string will contain a ”ww” sequence, or ”xx” sequence, or
 ”yy” sequence or ”zz” sequence?
-No repetition:\\
-\frac{11^4 - \frac{11^4}{11-4)!}}{11^4} \approx 45.9% \\
+
+No repetition:
+\begin{equation*}
+  \frac{11^4 - \frac{11^4}{11-4)!}}{11^4} \approx 45.9\% \\
+\end{equation*}
+
 Repetition:\\
 
-100%=46%=54%
+\begin{equation*}
+  100\%-46\%=54\%
+\end{equation*}
+$$
+\end{section}
 
-\section*{6.}
-onsider the infinite decimal 12.112211122211112222..., where each group 
+ \section*{6.}
+Consider the infinite decimal 12.112211122211112222..., where each group 
 of 1s and 2s becomes longer in each repetition. Is this number rational
 or irrational? Explain your reasoning (no formal proof is needed).
+\\
 The number is irrational, the pattern is non repeating.
-
+\end{section}
 \section*{7.}
 Suppose that 5 computers in a production run of 65 are defective. A sample of
-seven
+s even
+\end{section}
+
 \end{document}
