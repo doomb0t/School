@@ -27,7 +27,7 @@
 
 using namespace std;
 
-            
+sdfkjgjkwb            
 typedef string elementtype;                                     //Datatpe for domain and codomain elements
 typedef set<elementtype> settype;                               //Sets of strings 
 typedef set<tuple<elementtype, elementtype>> crosstype;         //Cross product is a tuple
