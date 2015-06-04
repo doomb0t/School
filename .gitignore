@@ -3,6 +3,8 @@
 *.un~
 tags
 
+#python3
+*.pyc
 #Executables
 *.out
 
@@ -10,3 +12,5 @@ tags
 *.log
 *.aux
 *.dvi
+*.xml
+*.bcf
