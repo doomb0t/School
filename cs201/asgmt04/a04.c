@@ -15,6 +15,7 @@ int main(void)
     int     i;
     // You can add variables between this comment ...
     register double* j; 
+    
     // ... and this one.
     // Please change 'your name' to your actual name.
     printf("CS201 - Asgmt 4 - Jonathon Sonesen \n"); 
