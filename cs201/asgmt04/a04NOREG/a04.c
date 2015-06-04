@@ -38,7 +38,7 @@ int main(void)
             }
        
         if (j > array) {
-            sum += *j;
+            sum0 += *j;
             }
     }
     // You can add some final code between this comment ...
