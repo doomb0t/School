@@ -1,42 +1,32 @@
+%Tikz-Graph Examples 
+%Author: JonathonSonesen
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[upright]{fourier} 
 \usepackage{tikz, fullpage}
-\usetikslibraray{ arrows, %
-                  petri,  %
-                topaths}
+\usetikzlibrary{arrows,petri,topaths}
 \usepackage{tkz-graph}
+\title{Tikz Graphing Practice}
+\author{Jonathon Sonesen}
 \begin{document}
+\maketitle
+\section*{}
 \begin{tikzpicture}[>=stealth']
-    \SetGraphUnit{3}
-    \tikzset{VertexStyle/.style = {shape        = circle,
-                                   fill         = black,
-                                   minimum size = 20pt,
-                                   text         = white,
-                                   draw}}
-    \tikzset{TempStyle/.style = {double           = orange,
-                                  double distance  = 1pt}}
-    \Vertex[L = {\textbf{E}}]{E}
-    \NOEA[  L = {\textbf{A}}](E){A}
-    \SOEA[  L = {\textbf{D}}](E){D}
-    \EA[    L = {\textbf{C}}](D){C}
-    \NOEA[  L = {\textbf{B}}](C){B}
-    \tikzset{EdgeStyle/.style = {TempStyle, 
-                           ->,
-                           bend right      = 20}}
-    \Edges(A,E,D,C,B)
-    \tikzset{EdgeStyle/.style = {TempStyle,
-                                 ->,
-                                 bend right      = 30}}
-    \Edges(B,D)
-    \tikzset{EdgeStyle/.style = {TempStyle, 
-                                 <-,
-                                 bend right      = 20}}
-    \Edges(B,A) 
-    \tikzset{EdgeStyle/.style = {TempStyle, 
-                                 <-,
-                                 bend left       = 20}}
-    \Edges(A,E,D,C,B)
+\node(pseudo) at (-1,0){};
+\node(0) at (0,0)[shape=circle,draw]            {$q_0$};
+\node(1) at (2,0)[shape=circle,draw, double]            {$q_1$};
+\node(2) at (4,0)[shape=circle,draw, double]            {$q_2$};
+\node(3) at (6,0)[shape=circle,draw,double]     {$q_f$};
+\path [->]
+(0)        edge                      node[above] {b}   (1)
+(1)        edge                      node[above] {a}   (2)
+(2)        edge                      node[above] {b}   (3)
+(2)        edge   [bend left=40]     node[below] {a}   (0)
+(0)        edge   [loop below]       node[above] {a}   (2)
+(1)        edge   [loop above]       node[above] {a}   (2)
+(3)        edge   [loop above]       node[above] {a}   (2)
+(pseudo)   edge   [loop above]       node[above] {a}   (2)
 \end{tikzpicture}
+
 \end{document}
 
