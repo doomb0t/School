@@ -1,0 +1,12 @@
+#Vim
+.*.sw[a-z]
+*.un~
+tags
+
+#Executables
+*.out
+
+#Latex cimpilation deps
+*.log
+*.aux
+*.dvi

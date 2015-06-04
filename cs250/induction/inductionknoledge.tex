@@ -1,0 +1,364 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{CS250 Induction Knowledge Test}
+\author{jonathon.sonesen }
+\date{March 2015}
+
+\begin{document}
+
+\maketitle
+1
+\section{\exists n \in \mathbb{Z},~ n \geq 12 ~\rightarrow~ \exists a,b \in \mathbb{Z} ~\mid~ a \geq 0 \land b \geq 0 \land n ~\neq~ 7a ~+~ 3b}
+
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 & let n:=12 & \text{counter example} \\
+2 & a:= 1 & \text{} \\
+3 & b:= 1 & \text{} \\
+4 & 12 = 7 \cdot 1 + 3 \cdot 1 & \text{by~substitution} \\
+5 & 7 + 3 = 10& \text{by~addition} \\
+6 & 12 \neq 10& \text{by~definition} \\
+7 & \therefore \exists n \in \mathbb{Z},~ n \geq 12 ~\rightarrow~ \exists a,b \in \mathbb{Z} ~\mid~ a \geq 0 \land b \geq 0 \land n ~\neq~ 7a ~+~ 3b& \text{by~definition} \\
+
+\end{array}
+
+2
+\section{\forall n \in \mathbb{Z}, ~n \geq 1~\rightarrow~\sum \limits_{i=1}^{n} \left ( 5i ~-~ 4	\right )~=~\frac{n(5n ~-~ 3)}{2}}
+
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 & let~n:=1 & \text{Base~case} \\
+2 & 5 \cdot 1 ~-~ 4 ~=~ 1& \text{Left~side} \\
+3 &  \frac{1(5 \cdot 1 ~-~ 3)}{2} & \text{Right side} \\
+4 & \frac{2}{2} ~=~ 1 & \text{math} \\
+5 &	\sum \limits_{i=1}^{n~+~1} \left (5i ~-~ 4\right)= \sum \limits_{i=1}^{n} (5i ~-~ 4)+ (5(n~+~1)~-~4)& \text{Decomposition} \\
+6 & \sum \limits_{i=1}^{n} \left (5i ~-~ 4\right)= \frac{(n~+~1)(5(n~+~1)- 3)}{2}& \text{Substitution step} \\
+7 & \sum \limits_{i=1}^{n~+~1} \left (5i ~-~ 4\right)= \sum \limits_{i=1}^{n} (5i ~-~ 4)+ (5(n~+~1)~-~4)~=~\frac{n(5n-3)}{2}+ (5(n~+~1)~-~4)& \text{by~hypothesis} \\
+8 & \frac{n(5n~-~3)}{2} + 5n+1& \text{}\\\\
+9 & \frac{n(5n~-~3)~+~2(5k+1)}{2}& \text{LCM}\\\\
+10 & \frac{5n^2~-~3n~+~10n~+~2}{2} & \\\\
+11 &\frac{5n^2~+~7n~+~2}{2} &\\\\
+12 & \frac{5n^2~+~5n~+~2n~+~2}{2}&\\\\
+13 & \frac{5n(n+1)~+~2(n+1)}{2}&\\\\
+14 & \frac{(n~+~1)5(n~+~2)}{2}& \text{algebra}\\\\
+15 & \frac{(n~+~1)(5(n~+~1)-3)}{2} ~=~\frac{n(5n ~-~ 3)}{2} & \\\\
+16 &\therefore \forall n \in \mathbb{Z}, ~n \geq 1	~\rightarrow~\sum \limits_{i=1}^{n} \left (5i ~-~ 4\right )~=~\frac{n(5n ~-~ 3)}{2}&
+\end{array}
+
+3
+\section{\exists n \in \mathbb{Z}, ~n \geq 2 ~\land~\prod \limits_{i=1}^{n} \left (1 - \frac{1}{i^2}\right )\neq \frac{n+1}{2n}}
+
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 & let~n:=2 & \text{base case} \\
+2 & 1 - \frac{1}{2^2}= \frac{3}{4}& \text{left~side} \\
+3 & \frac{2~+1}{2\cdot2}=\frac{3}{4} & \text{right~side} \\
+
+4
+
+&   
+	\prod \limits_{i=1}^{n} \left (1 - \frac{1}{i^2}\right )~=~\frac{n+1}{2n} ~\rightarrow~\prod \limits_{i=1}^{n+1} \left (1 - \frac{1}{i^2}\right ) = \frac{(n+1) + 1}{2(n+1)}
+&	\text{} \\
+
+5 
+
+&
+	\prod \limits_{i=1}^{n+1} \left (	1 - \frac{1}{i^2}\right )~=~\prod \limits_{i=1}^{n} \left (1 - \frac{1}{i^2}}\right )(1-\frac{1}{(n+1)^2})& \text{decompose}\\
+6
+
+&
+    \prod \limits_{i=1}^{n} \left (1 - \frac{1}{i^2}\right )~=~	(\frac{n+1}{2n})(1-\frac{1}{(n+1)^2})
+&
+\text{substitution} \\
+
+7   
+& 
+    (\frac{n+1}{2n})(\frac{(n+1)^2 - 1}{(n+1)^2})
+& 
+\text{} \\
+
+8
+&
+    \frac{(n+1)(n^2 + 2n + 1 - 1)}{(2n)(n+1)^2}
+&\\
+
+9
+&
+    \frac{n^2 + 2n}{(2n)(n+1)}
+&\\
+10
+&
+    \frac{n(n + 2)}{n(2n+2)}
+&\\
+11
+&
+    \frac{n + 2}{2n + 2}  
+&\\
+
+12
+&
+    \frac{(n + 1) + 1}{2(n + 1)}  
+&\\
+13
+&
+    \therefore   \forall n \in \mathbb{Z}, ~
+    n \geq 2
+	~\rightarrow~
+	\prod \limits_{i=1}^{n} \left (
+		1 - \frac{1}{i^2}
+	\right )
+	~=~
+	\frac{n+1}{2n}
+    
+&\\
+\end{array}
+
+
+\section{\exists n \in \mathbb{Z}, ~n > 0~\land~\prod \limits_{i=1}^{n} \left (\frac{1}{2i~+~1} \cdot \frac{1}{2i~+~2}\right )~\neq~\frac{1}{(2n~+~2)!}}
+
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 &Let:n:=~1 ~\mid~ \frac{1}{2\cdot1+1}\cdot\frac{1}{2\cdot1+2}= \frac{1}{12}& \text{Base case and RHS} \\
+2 &\frac{1}{(2\cdot1+2)!}=\frac{1}{24}& \text{LHS} \\
+3 &\frac{1}{24} \neq \frac{1}{12}&\text{inductive hyp.} \\
+
+\end{array}
+
+\section
+{
+\forall m,n \in \mathbb{Z}, ~m,n \geq 1 ~\land~ m \equiv 1(\mod 2)~\rightarrow~m \mid \sum \limits_{i=0}^{m-1} (n ~+~ i)
+}
+
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 &Let: \exists r \in \mathBB{Z} | m = 2(r+1)&\text{by~definition~of~odd~int} \\
+2 &\sum \limits_{i=0}^{m-1} (n ~+~ i) = \sum \limits_{i=0}^{(2r +1)-1} (n ~+~ i)& \text{substitute} \\
+3 & \sum \limits_{i=0}^{(2r +1)-1} (n ~+~ i) ~=~ \sum \limits_{i=0}^{2r} (n ~+~ i)&\text{simplify} \\
+4 &\sum \limits_{i=0}^{2r} (n ~+~ i)=\sum \limits_{i=0}^{2r} (n) + \sum \limits_{i=0}^{2r} (i)  = (2r + 1)n + \sum \limits_{i=0}^{2r} (i)&\text{substitution}\\
+5 &(2r + 1)r +   \sum \limits_{i=0}^{2r}=  (2r + 1)n + \frac{2r(2r+1)}{2} &\text{}\\
+6 &(2r + 1)n + \frac{2r(2r+1)}{2} =  (2r + 1)n + q(2r+1)&\text{}\\
+7 &(2r + 1)n + r(2r+1) = (2r + 1)(n +r) = m(n+r)&\\
+8 &(n + r) \in \mathbb{Z}&\\
+9 &m | m(n+r) &\text{by~definition~of~divisibility~}\\
+10 &\therefore \forall m,n \in \mathbb{Z}, ~m,n \geq 1 ~\land~ m \equiv 1(\mod 2)~\rightarrow~m \mid \sum \limits_{i=0}^{m-1} (n ~+~ i)&\\
+\end{array}
+
+\section
+{\forall n \in \mathbb{Z},~ n \geq 0 ~\rightarrow~ 6 \mid 7^n ~-~ 1}
+
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 &Let~n:=, 0~such~that~6 \mid 7^n ~-~ 1&\text{base case} \\
+2 &7 ^ 0 = 1 -1 = 0& \text{} \\
+3 &6 \cdot 0 = 0&\text{} \\
+4 &Let: \exists p \in \mathbb{Z},such~that.~~6|7^{n + 1} -1 \rightarrow 7^{n+1} -1 = 6p&\text{inductive~hypothesis}\\
+5 &7^{n+1} - 1 =7 \cdot 7^n -1&\text{}\\
+6 &7^n -1 = (6 + 1) \cdot 7^n -1&\text{}\\
+7 &(6 + 1) \cdot 7^n -1 = (6  \cdot 7^n + (7^n -1) = 6 \cdot 7^n + 6p&\text{by~hypothesis}\\
+8 &6 \cdot 7^n + 6p = 6(7^n+p)&\\
+9 &7^n + p \in \mathbb{Z}, such~that.~~6|7^{n + 1} -1&\text{by~closure}\\
+10&\therefore\forall n \in \mathbb{Z},~ n \geq 0 ~\rightarrow~ 6 \mid 7^n ~-~ 1&\\
+\end{array}
+
+\section
+{\forall n \in \mathbb{Z},~ n \geq 0 ~\rightarrow~ 5 \mid7^n~-~ 2^n
+}
+
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 
+&
+Let~n:=0, ~such~that, 5 \mid 7^n - 2^n
+&
+\text{base case} \\
+
+2 
+&
+7^0 - 2 ^0 = 1-1 = 0
+& 
+\text{} \\
+
+3 
+&
+5 \cdot 0 = 0
+&\text{} \\
+
+4
+&
+     5 \mid 7^n ~-~ 2^n  ~\rightarrow~ 5\mid 7^{n+1} ~-~ 2^{n+1}  
+&\text{inductive~hypothesis}\\
+
+5
+&
+    Let:~ \exists p \in \mathbb{Z}~such~that~5\mid 7^n ~-~ 2^n  ~\rightarrow~ 7^n ~-~ 2^n = 5p
+&\text{substitution~def.~of~divisibility}\\
+
+6
+&
+    7^{n+1} - 2^{n+1} = 7\cdot 7^n - 2 \cdot 2^n = (5+2)\cdot 7^n - 2\cdot 2^n
+&\text{}\\
+
+7
+&
+    5\cdot 7^n - 2\cdot 2^n = 5\cdot7^n+2\cdot7^n-2\cdot2^n = 5\cdot 7^n + 2(7^n-2^n)
+&\text{algebra}\\
+
+8
+&
+    5\cdot 7^n + 2(7^n-2^n) ~=~ 5\cdot 7^n + 2\cdot 5p 
+&\text{by~hypothesis}\\
+
+9
+&
+ 5\cdot 7^n + 2\cdot 5p ~=~5(7^n + 2p), \in \mathbb{Z}
+&\text{}\\
+
+10
+&
+5 | 5(7^n + 2p)
+&\\
+
+11
+&
+\therefore \forall n \in \mathbb{Z},~ n \geq 0 ~\rightarrow~ 5 \mid 7^n ~-~ 2^n
+&\\
+\end{array}
+
+8
+\section
+{
+\forall n \in \mathbb{Z},~ n \geq 2 ~\rightarrow~ \sqrt{n} ~<~ \sum \limits_{i=1}^{n} \left ( \frac{1}{\sqrt{i}} \right )
+}
+
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 
+&
+Let~n:=2, ~such~that,  \sqrt{n} ~<~ \sum \limits_{i=1}^{n} \left ( \frac{1}{\sqrt{i}} \right )
+&
+\text{base case} \\
+
+2 
+&
+\sqrt{2} < \frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} ~i.f.f~2<\swrt{2} + 1 
+& 
+\text{} \\
+
+3 
+&
+1<\sqrt{2} 
+&\text{algebra} \\
+
+4
+&
+\sqrt{n} ~<~ \sum \limits_{i=1}^{n} \left ( \frac{1}{\sqrt{i}} \right )\rightarrow \sqrt{n+1} ~<~ \sum \limits_{i=1}^{n+1} \left ( \frac{1}{\sqrt{n+1}} \right )
+       
+&\text{inductive~hypothesis}\\
+
+5
+&
+    \sqrt{n} < \sqrt{n+1} = n < \sqrt{n}\cdot\sqrt{n+1} = n+1 < \sqrt{n}\cdot\sqrt{n+1}+1
+&\text{by~algebra~LHS}\\
+
+6
+&
+    n+1 < \sqrt{n}\cdot\sqrt{n+1}+1 ~=~ \sqrt{n+1} < \sqrt{n}+\frac{1}{\sqrt{n+1}}
+&\text{}\\
+
+7
+&
+    \sqrt{n+1} <  \sum \limits_{i=1}^{n+1} \left ( \frac{1}{\sqrt{n+1}} \right)
+&\text{by~subtitution}\\
+
+8
+&
+    \therefore \forall n \in \mathbb{Z},~ n \geq 2 ~\rightarrow~ \sqrt{n} ~<~ \sum \limits_{i=1}^{n} \left ( \frac{1}{\sqrt{i}} \right )
+&\text{QED}\\
+\end{array}
+9
+\section{\begin{array}{l}
+a_1 ~=~ 1 \\
+a_2 ~=~ 3 \\
+\forall k \geq 3,~a_k ~=~ a_{k-1} ~+~ a_{k-2}\\
+\forall n \in \mathbb{Z}, n \geq 1 ~\rightarrow~ a_n \leq \left ( \frac{7}{4} \right )^n\\
+\end{array}}
+
+\begin{array}{l l l}
+Row & Statement & Comment \\
+1 &Since: a_1=1, a_2 = 3, \frac{7}{4} > 1 \land (\frac{7}{4})^2 = \frac{49}{16} = 3\frac{1}{16} > 3& \text{base case} \\
+2 & P(n)~=~\forall n \in \mathbb{Z}, n \geq 1 ~\rightarrow~ a_n \leq \left ( \frac{7}{4} \right )^n& \text{} \\
+3 & \forall k \geq 2 [\forall i, 1 \leq i \leq k, P(i)] \rightarrow P(k+1) & \text{} \\
+4 &\forall i,~a_i \leq (\frac{7}{4})^i \rightarrow \forall k,~a_{k+1} \leq \frac{7}{4}^{k+1} & \text{inductive~hyp.} \\
+5 &Since: k \geq 2, a_{k+1} = a_k + a_{k-1} & \text{by~definition} \\
+6 &a_k + a_{k-1} \leq (\frac{7}{4})^k+(\frac{7}{4})^{k-1}& \text{substitute~by~hyp} \\
+7 &a_k + a_{k-1} \leq (\frac{7}{4})^{k-1}(\frac{7}{4}+1)& \text{factor} \\\\
+8 &a_k + a_{k-1} \leq (\frac{7}{4})^{k-1}(\frac{11}{4})\cdot \frac{4}{4} = (\frac{7}{4})^{k-1}(\frac{44}{16})& \text{} \\
+9 &a_k + a_{k-1} \leq  (\frac{7}{4})^{k-1}(\frac{49}{16})  =a_k + a_{k-1} \leq  (\frac{7}{4})^{k-1}(\frac{7}{4})^2&\\
+10 &a_k + a_{k-1} \leq  (\frac{7}{4})^{k-1}(\frac{7}{4})^2=a_k + a_{k-1} \leq  (\frac{7}{4})^{k+1}&\text{} \\
+11&& \text{}
+12&\therefore \forall n \in \mathbb{Z}, n \geq 1 ~\rightarrow~ a_n \leq \left ( \frac{7}{4} \right )^n&\\
+\end{array}
+10
+\section{
+i,m,largest,A[i] \in \mathbb{Z} \\
+while(i \neq m) ~\ {\\
+~1. ~i ~:=~ i~+~1\\
+~2. ~if~A[i] > largest ~then~ largest:=A[i]\\
+\ }\\
+}
+
+\begin{array}{ll}
+Basis: & \\
+1.~ I(i) ~=~Largest = max~A[1]~\land~i=1 & \text{by precondition} \\
+2.~\therefore I(0) ~\equiv~ true& \text{By pre-condition} \\
+Induction: & \\
+1.~ k \in \mathbb{Z}, k \geq 0 ~\mid~ G \land I(k) ~\equiv~ true & \text{k is a generic particular} \\
+2.~i \neq m ~\land~ i = k+1 ~\land~ i=l & \text{At start of loop, before (1)} \\
+3.~i_{old}=k+1 ~\land~ i_{new}-i_{old}+1 = k+2 & \text{Effect of (1)} \\
+4.~A[i_{new}]>Largest_{old}, \rightarrow ~Largest_{new}=A[i_{new}]& \text{Effect of (2)(1)} \\
+5.~~A[i_{new}]  \leq~Largest_{old} \rightarrow  Largest_{new}=Largest_{old}& \text{effect(2)(2)} \\
+6.~Largest_{new}= A[1],A[2],A[3],...,A[k+1],A[k+2])& \text {for both cases}\\
+70.~\therefore I(k+1) \equiv true & \text{Inductive QED}
+Falsity Of Guard: & \\
+1. i = m&\\
+Post~Condition:\\
+1.~Suppose: N is~min~iteration~where~G\equiv false \land I(N) \equiv true = m-1&\\
+2.~Since:~ G \equiv false, i = m &\\
+3.~Since:~ I(n) \equiv true&\\
+4.~Largest~=~Max~of~ A[1],A[2],A[3],...,A[m-1],A[m]&\\
+\end{array}
+11
+\section{
+\forall n \in \mathbb{Z}, ~n \geq 1 ~\rightarrow~ S_n ~=~ \frac{-S_{(n-1)}}{n}
+}
+
+\begin{array}{lll}
+1.&\forall n \in \mathbb{Z}, s_0,s_1,s_2,s_3....~\mid~ n \geq 0  \rightarrow s_n=\frac{(-1)^n}{n!}& \\
+2.&\exists x \in \mathbb{Z}~\mid~s_x=\frac{(-1)^{x}}{x!}~\land~s_{x-1}=\frac{(-1)^{x-1}}{(x-1)!} &  \\
+3.&\frac{-s_{x-1}}{x}=\frac{-\frac{-1^{x-1}}{(x-1)!}}{(x)}&\\
+4.&\frac{-\frac{-1^{x-1}}{(x-1)!}}{(x)} = \frac{-(-1)^{x-1}}{x(x-1)!}&\\
+5.&\frac{-(-1)^{x-1}}{x(x-1)!} = \frac{(-1)^x}{x!}&\\
+6.&s_k&\\
+7.&\therefore &\\
+\end{array}
+
+
+\section{
+\forall n \in \mathbb{Z}, ~  n \geq 1 ~\rightarrow~ F_n < 2^n
+}
+
+\begin{array}{lll}
+1.&F_0=1,F_1=1& \\
+2.&\forall F_x \in \mathbb{Z}~\mid~x \geq 2 \rightarrow F_x=F_{x-1}+F_{x-2} &  \\
+3.&Let:~n:=1 ~\mid~F_1=1<2^1&\\
+4.&\forall n \in \mathbb{Z}, ~  n \geq 1 ~\rightarrow~ F_n < F_{n+1} < 2^{n+1}&\\
+5.&F_{n+1}=F-n+F_{n-1}&\\
+6.&< 2^k+2^{k-1}&\\
+7.&< 2^k+2^k&\\
+8.&< 2\cdot2^k&\\
+9.&< 2^{k+1}=F_{n+1}<2^{n+1}&\\
+\end{array}
+
+\end{document}
+
