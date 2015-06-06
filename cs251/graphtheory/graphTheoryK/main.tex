@@ -18,30 +18,6 @@
 %% column seperation options for multicol
 \setlength{\columnsep}{0.5cm}
 \setlength{\columnseprule}{00pt}
-
-%%% Macros:
-
-\newcommand{\nn}{\sim\!\!} % logical not operator that sits close to its operand
-
-\newcommand{\lp}{\left(}
-\newcommand{\rp}{\right)}
-\newcommand{\lbk}{\left[}
-\newcommand{\rbk}{\right]}
-\newcommand{\lbr}{\left\lbrace}
-\newcommand{\rbr}{\right\rbrace}
-\newcommand{\defn}{\text{by def. of }}
-\newcommand{\alg}{\text{algebra}}
-\newcommand{\stdsum}{\sum_{i=1}^{n}}
-\newcommand{\RA}{\Rightarrow}
-\renewcommand{\qed}{\quad\ensuremath{\scriptscriptstyle\blacksquare}}
-\newcommand{\inprime}{\in \mathbb{Z}^{\mathbb{P}}}
-\newcommand{\ninprime}{\notin \mathbb{Z}^{\mathbb{P}}}
-\newcommand{\inints}{\in \mathbb{Z}}
-\newcommand{\inreals}{\in \mathbb{R}}
-\newcommand{\st}{\;\;\Big|\;\;}
-%%%%
-
-
 \begin{document}
 
 
@@ -54,6 +30,19 @@
   \[k \leq \frac{n(n-1)}{2}\]
 \end{problem}
 
+\begin{array}{lll}
+Row & Statement & Comment \\
+1.  & Let~n:=1 &\text{Base~case}\\
+2.  & G_1~has~0~edges~and~\frac{1(1-1)}{2}=0 &\text{by~example~10.1.9,and~subs.}\\
+3.  & k \leq \frac{n(n-1)}{2} & \text{inductive~hyp.}\\
+4.  & k = \frac{n(n-1)}{2}=\frac{(n+1)((n+1)-1)}{2}&\\
+5.  & =\frac{n(n+1)}{2} + n &\\
+6.  & =\frac{n(n+1)}{2} + \frac{2n}{2}&\\
+7.  & =\frac{n^2-n+2n}{2} &\\
+8.  & =\frac{n(n+1)}{2}&\\
+9.  & \therefore k \leq \frac{n(n-1)}{2} &\text{QED}\\ 
+\end{array}
+\\
 \begin{problem}[2]
 
   Let $G$ be the graph:
@@ -74,8 +63,24 @@
 What is the complement of $G$?
 \end{problem}
 
+  \begin{center}
+      \begin{tikzpicture}[scale=1,transform shape]
+        \GraphInit[vstyle=Dijkstra]
+        \SetVertexMath
+
+        \Vertex[x=0,y=0]{n_1}
+        \Vertex[x=2,y=0]{n_2}
+        \Vertex[x=0,y=-1]{n_3}
+        \Vertex[x=2,y=-1]{n_4}
+        \Edge[](n_1)(n_4)
+        \Edge[](n_3)(n_2)
+        \Edge[](n_1)(n_3)
+        \Edge[](n_2)(n_4)
+    \end{tikzpicture}
+  \end{center}
+
 \begin{problem}[3]
-List a simple graph that has 4 nodes of different degrees, or prove that no such graph exists.
+  List a simple graph that has 4 nodes of different degrees, or prove that no such graph exists.
 \end{problem}
 
 \begin{problem}[4]
