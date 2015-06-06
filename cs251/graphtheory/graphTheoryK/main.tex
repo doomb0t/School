@@ -15,7 +15,6 @@
 \assignment{Graph Theory Knowledge}
 \extraline{Collaborators:Jeff Patterson, Steven Wetherebee, Kyle Kneitenger}
 
-%% column seperation options for multicol
 \setlength{\columnsep}{0.5cm}
 \setlength{\columnseprule}{00pt}
 \begin{document}
@@ -81,11 +80,12 @@ What is the complement of $G$?
 
 \begin{problem}[3]
   List a simple graph that has 4 nodes of different degrees, or prove that no such graph exists.
-\end{problem}
-
+\end{problem}\\
+\\The proof to question 1 proves a contradiction\\\\
 \begin{problem}[4]
 What is the maximum number of edges possible in a disconnected graph with $n$ nodes and no loops or parallel edges?  Explain your answer. (No proof needed)
 \end{problem}
+k_{max}=\frac{n(n-1)}{2}\\
 
 \begin{problem}[5]
 Let $G$ be the graph:
@@ -118,7 +118,6 @@ Let $G$ be the graph:
         \Edge[label=$e_9$](n_4)(n_6)
         \Edge[label=$e_{10}$](n_6)(n_5)
         \Edge[label=$e_{11}$](n_6)(n_8)
-
     \end{tikzpicture}
 \end{center}
 
@@ -128,7 +127,70 @@ Let $G$ be the graph:
 \end{enumerate}
 \end{problem}
 
-\begin{problem}[6]
+
+
+\begin{enumerate}[(a)]
+    \item 
+    
+    \begin{align*}
+
+      AM_G &= \begin{pmatrix}
+
+
+         n_i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\        
+
+         0   & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+
+         1   & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+
+         2   & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         3   & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0  \\
+
+         4   & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 0 \\
+
+         5   & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 \\
+
+         6   & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+
+         7   & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+
+         8   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+
+      \end{pmatrix}  
+              \end{align*}
+
+    \item 
+      \begin{align*}
+      
+      \setcounter{MaxMatrixCols}{20}
+     LM_G&=
+      \begin{pmatrix}
+
+
+             1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\        
+
+             1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\ 
+
+             0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+             0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0\\
+
+             0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0\\
+
+             0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0\\
+
+             0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0\\
+
+             0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
+
+             0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 1
+
+         \end{pmatrix}  
+      \end{align*}
+      \end{enumerate}
+
+    \begin{problem}[6]
     Let $G$ be the graph:
 
     \begin{center}
@@ -168,6 +230,54 @@ Let $G$ be the graph:
     \end{enumerate}
 \end{problem}
 
+\begin{enumerate}[(a)]
+
+    \item 
+    
+    \begin{align*}
+
+      LM_G &= \begin{pmatrix}
+
+
+
+           & 3 & -1 & 0 & 0 & 0 & 0 & 0 & -1 & -1 \\
+
+           & -1 & 3 & -1 & -1 & 0 & 0 & 0 & 0 & 0 \\
+
+           & 0 & -1 & 2 & -1 & 0 & 0 & 0 & 0 & 0 \\
+
+           & 0 & -1 & -1 & 5 & -1 & 0 & -1 & -1 & 0  \\
+
+           & 0 & 0 & 0 & -1 & 3 & -1 & -1 & 0 & 0 \\
+
+           & 0 & 0 & 0 & 0 & -1 & 2 & -1 & 0 & 0 \\
+
+           & 0 & 0 & 0 & -1 & -1 & -1 & 3 & 0 & 0 \\
+
+           & -1 & 0 & 0 & -1 & 0 & 0 & 0 & 3 & -1 \\
+
+           & -1 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 2
+
+      \end{pmatrix}  
+              \end{align*}
+
+  \item
+    \begin{align*}
+      EV_{LM} & = \begin{bmatrix}
+        6.3586\\
+        4.3977\\
+        4.0000\\
+        3.5651\\
+        3.0000\\
+        3.0000\\
+        1.1760\\
+        0.5126\\
+        0.0000\\
+      \end{bmatrix}
+    \end{align*}
+\end{enumerate}
+
+
 \begin{problem}[7]
     Let $G$ be the graph:
 
@@ -206,6 +316,73 @@ Let $G$ be the graph:
     \end{enumerate}
 \end{problem}
 
+\begin{enumerate}[(a)]
+
+    \item 
+    
+    \begin{align*}
+
+      DM_G &= \begin{pmatrix}
+
+
+         n_i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\        
+
+         0   & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         1   & 0 & 3 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         2   & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         3   & 0 & 0 & 0 & 3 & 0 & 0 & 0 & 0 & 0  \\
+
+         4   & 0 & 0 & 0 & 0 & 3 & 0 & 0 & 0 & 0 \\
+
+         5   & 0 & 0 & 0 & 0 & 0 & 2 & 0 & 0 & 0 \\
+
+         6   & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 & 0 \\
+
+         7   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 0 \\
+
+         8   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+
+      \end{pmatrix}  
+              \end{align*}
+    \item 
+    
+    \begin{align*}
+
+      DM_G &= \begin{pmatrix}
+
+
+         n_i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\        
+
+         0   & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         1   & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         2   & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         3   & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0  \\
+
+         4   & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 0 \\
+
+         5   & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 \\
+
+         6   & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+
+         7   & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+
+         8   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+
+      \end{pmatrix}  
+              \end{align*}
+
+  \item
+    \begin{equation*}
+      bridges:~\left\{e_2,e_5,e_7\right\}
+    \end{equation*}
+\end{enumerate}
+
 \begin{problem}[8]
     Let $G$ be the graph:
     
@@ -229,6 +406,75 @@ Let $G$ be the graph:
     \end{enumerate}
 \end{problem}
 
+\begin{enumerate}[(a)]
+
+    \item 
+    
+    \begin{align*}
+
+      LM_G &= \begin{pmatrix}
+
+
+             & R & S & T & U & V & W & X & Y & Z \\        
+
+         R   & 2 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & -1 \\
+
+         S   & -1 & 4 & -1 & -1 & 0 & 0 & 0 & 0 & -1 \\
+
+         T   & 0 & -1 & 2 & -1 & 0 & 0 & 0 & 0 & 0 \\
+
+         U   & 0 & -1 & -1 & 6 & -1 & -1 & 0 & -1 & -1  \\
+
+         V   & 0 & 0 & 0 & -1 & 2 & -1 & 0 & 0 & 0 \\
+
+         W   & 0 & 0 & 0 & -1 & -1 & 4 & -1 & -1 & 0 \\
+
+         X   & 0 & 0 & 0 & 0 & 0 & -1 & 2 & -1 & 0 \\
+
+         Y   & 0 & 0 & 0 & -1 & 0 & -1 & -1 & 4 & -1 \\
+
+         Z   & -1 & -1 & 0 & -1 & 0 & 0 & 0 & -1 & 4
+
+      \end{pmatrix}  
+              \end{align*}
+    \item 
+    
+    \begin{align*}
+  
+      IM_G &= \begin{pmatrix}
+
+
+             & R & R & S & S & S & T & U & U & U & U & V & W & W & X & Y\\        
+
+             & S & Z & T & U & Z & U & V & W & Y & Z & W & X & Y & Y & Z \\
+
+         R   & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         S   & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         T   & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0  \\
+
+         U   & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+
+         V   & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+
+         W   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 0 \\
+
+         X   & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 \\
+
+         Y   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 1 \\
+         
+         Z   & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1
+
+      \end{pmatrix}  
+              \end{align*}
+
+  \item
+    \begin{equation*}
+      euler~circuit:~\left\{T, U, Y, X, W, Y, Z, R, S, Z, U, W, V, U, S, T\right\}
+    \end{equation*}
+\end{enumerate}
+
 \begin{problem}[9]
     Let $G$ be the graph:
     \begin{center}
@@ -251,6 +497,72 @@ Let $G$ be the graph:
     \end{enumerate}
 \end{problem}
 
+\begin{enumerate}[(a)]
+
+    \item 
+    
+    \begin{align*}
+
+      AM_G &= \begin{pmatrix}
+
+
+             & R & S & T & U & V & W & X & Y & Z \\        
+
+         R   & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+
+         S   & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 \\
+
+         T   & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+
+         U   & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1  \\
+
+         V   & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 \\
+
+         W   & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
+
+         X   & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 \\
+
+         Y   & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 \\
+
+         Z   & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0
+
+      \end{pmatrix}  
+              \end{align*}
+    \item 
+    
+    \begin{align*}
+
+      AM_G &= \begin{pmatrix}
+
+
+             & R & S & T & U & V & W & X & Y & Z \\        
+
+         R   & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         S   & 0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         T   & 0 & 0 & 2 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         U   & 0 & 0 & 0 & 6 & 0 & 0 & 0 & 0 & 0  \\
+
+         V   & 0 & 0 & 0 & 0 & 2 & 0 & 0 & 0 & 0 \\
+
+         W   & 0 & 0 & 0 & 0 & 0 & 4 & 0 & 0 & 0 \\
+
+         X   & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 & 0 \\
+
+         Y   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         Z   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 4
+
+      \end{pmatrix}  
+              \end{align*}
+
+  \item
+    \begin{equation*}
+      hamiltonian~circuit:~\left\{T, S, R, Z, Y, Y, X, W, V, U, T\right\}
+    \end{equation*}
+\end{enumerate}
 \begin{problem}[10]
     Let $G$ be the graph:
     \begin{center}
@@ -274,6 +586,81 @@ Let $G$ be the graph:
         \item Identify an Euler circuit for this graph, or prove no such circuit exists
     \end{enumerate}
 \end{problem}
+
+\begin{enumerate}[(a)]
+
+    \item 
+    
+    \begin{align*}
+
+      AM_G &= \begin{pmatrix}
+
+
+             & A & B & C & D & E & F & G & H & I & J & K & L \\        
+
+         A   & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+
+         B   & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0\\
+
+         C   & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0  & 0 & 0 & 0\\
+
+         D   & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0  & 0 & 0 & 0 \\
+
+         E   & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0\\
+
+         F   & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 \\
+
+         G   & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0\\
+
+         H   & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0\\
+
+         I   & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0\\
+          
+         J   & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+
+         K   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 \\
+
+         L   & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+      \end{pmatrix}  
+              \end{align*}
+    \item 
+    
+    \begin{align*}
+
+      AM_G &= \begin{pmatrix}
+
+
+             & A & B & C & D & E & F & G & H & I & J & K & L \\        
+
+         A   & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         B   & 0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         C   & 0 & 0 & 3 & 0 & 0 & 0 & 0 & 0 & 0  & 0 & 0 & 0\\
+
+         D   & 0 & 0 & 0 & 2 & 0 & 0 & 0 & 0 & 0  & 0 & 0 & 0 \\
+
+         E   & 0 & 0 & 0 & 0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         F   & 0 & 0 & 0 & 0 & 0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         G   & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 0 & 0 & 0 & 0 & 0\\
+
+         H   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 0 & 0 & 0 & 0\\
+
+         I   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 4 & 0 & 0 & 0\\
+          
+         J   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 & 0 \\
+
+         K   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 0 \\
+
+         L   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2
+      \end{pmatrix}  
+              \end{align*}
+  \item
+    By the contrapositive version of theorem 10.2.2 in the epp text:\\
+    If some vertex of a graph has odd degree, then the graph does not have an euler circuit.
+\end{enumerate}
 
 \begin{problem}[11]
     Let $G$ be the graph:
@@ -300,26 +687,156 @@ Let $G$ be the graph:
         \end{enumerate}
 \end{problem}
 
-\newpage
+\begin{enumerate}[(a)]
 
-
-    \begin{center}
-    \begin{tikzpicture}[scale=1, transform shape]
-        \GraphInit[vstyle=Dijkstra]
-        \SetGraphUnit{1}
-
-        \Vertex{a} \EA(a){l} \SO(a){h} \SOEA(a){b}
-	\SO(h){k} \WE(a){S}
-        \Edges(a,l,h,a,b)
-        \Edge[style={bend right}](a)(k)
-        \Edges(l,h,b,l)
-        \Edges(h,k,b)
-        \Edges(k,l)
-    \end{tikzpicture}
-
+    \item 
+    
     \begin{align*}
-        k &\leq \frac{(n-1)((n-1)-1)}{2}
-    \end{align*}
-    \end{center}
 
-\end{document}
+      LM_G &= \begin{pmatrix}
+
+
+             & A & B & C & D & E & F & G & H & I & J & K & L \\        
+
+         A   & 2 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 \\
+
+         B   & -1 & 4 & -1 & 0 & 0 & 0 & -1 & -1 & 0 & 0 & 0 & 0\\
+
+         C   & 0 & -1 & 3 & -1 & 0 & -1 & 0 & 0 & 0  & 0 & 0 & 0\\
+
+         D   & 0 & 0 & -1 & 2 & -1 & 0 & 0 & 0 & 0  & 0 & 0 & 0 \\
+
+         E   & 0 & 0 & 0 & -1 & 4 & -1 & 0 & 0 & -1 & -1 & 0 & 0\\
+
+         F   & 0 & 0 & -1 & 0 & -1 & 4 & -1 & 0 & -1 & 0 & 0 & 0 \\
+
+         G   & 0 & -1 & 0 & 0 & 0 & -1 & 3 & -1 & 0 & 0 & 0 & 0\\
+
+         H   & 0 & -1 & 0 & 0 & 0 & 0 & -1 & 3 & -1 & 0 & 0 & 0\\
+
+         I   & 0 & 0 & 0 & 0 & -1 & -1 & 0 & -1 & 4 & 0 & -1 & 0\\
+          
+         J   & 0 & 0 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 2 & -1 & 0 \\
+
+         K   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & -1 & 3 & -1 \\
+
+         L   & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 2
+      \end{pmatrix}  
+              \end{align*}
+    \item 
+    
+    \begin{align*}
+
+      IM_G &= \begin{pmatrix}
+
+
+             & A & A & B & B & B & C & C & D & E & E & E & F & F & G & H & I & J & K \\
+             & B & L & C & G & H & D & F & E & F & I & J & G & I & H & I & K & K & L \\
+
+         A   & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0  \\
+
+         B   & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         C   & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         D   & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         E   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         F   & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+
+         G   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         H   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         I   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 0\\
+          
+         J   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+
+         K   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+
+         L   & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+      \end{pmatrix}  
+              \end{align*}
+  \item
+    \begin{equation*}
+      Hamiltonian~circuit:\left\{b,a,l,k,j,e,d,c,f,i,h,g,b\right\}
+    \end{equation*}
+\end{enumerate}
+
+\begin{problem}[12]
+
+  
+  Let
+  \begin{center}
+
+    M &=
+    \begin{pmatrix}
+      0 & 0\\
+      0 & 0\\
+
+    \end{pmatrix}
+  \end{center}
+ List two 2 x 2 matrices A and B that sitisfy *all* of the following conditions:\\
+ \begin{enumerate}[-]
+   \item $A\neq M$\\
+   \item $B\neq M$\\
+   \item $AB\neq M$\\
+   \item $BA\neq M$\\
+ \end{enumerate}  
+
+\end{problem}
+
+  \begin{center}
+
+    A &=
+    \begin{pmatrix}
+      1 & 0\\
+      0 & 0\\
+
+    \end{pmatrix},
+    B &=
+    \begin{pmatrix}
+      0 & 1\\
+      0 & 0\\
+
+    \end{pmatrix}
+
+    A &=
+    \begin{pmatrix}
+      2 & 0\\
+      0 & 0\\
+
+    \end{pmatrix},
+    B &=
+    \begin{pmatrix}
+      0 & 2\\
+      0 & 0\\
+    \end{pmatrix}
+  \end{center}
+
+  \begin{problem}
+    Let
+    \begin{align*}
+      M = \begin{pmatrix}
+        4 & 12 & 7 & 3 & 20 \\
+        12 & 4 & 20 & 21 & 7  \\
+        10 & 7 & 6 & 9 & 13 \\
+        1 & 2 & 3 & 4 & 5 \\
+        10 & 8 & 15 & 13 & 12
+      \end{pmatrix}
+    \end{align*}
+    List the matrix m^6
+  \end{problem}
+    
+  \begin{align*}
+      M^6 = \begin{pmatrix}
+        1574709790 &  1574709790 & 2106725231 & 2076398918 & 2415751821 \\
+        1643310630 & 1463710842 & 2196967681 & 2166165175 & 2521712946  \\
+        1366176423 & 1216993970 & 1826701919 & 1800937567 & 2096602872 \\
+        1 & 2 & 3 & 4 & 5 \\
+        10 & 8 & 15 & 13 & 12
+      \end{pmatrix}
+    \end{align*}
+  
+  \end{document}
