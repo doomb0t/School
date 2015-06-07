@@ -815,7 +815,7 @@ Let $G$ be the graph:
     \end{pmatrix}
   \end{center}
 
-  \begin{problem}
+  \begin{problem}[13]
     Let
     \begin{align*}
       M = \begin{pmatrix}
@@ -834,9 +834,114 @@ Let $G$ be the graph:
         1574709790 &  1574709790 & 2106725231 & 2076398918 & 2415751821 \\
         1643310630 & 1463710842 & 2196967681 & 2166165175 & 2521712946  \\
         1366176423 & 1216993970 & 1826701919 & 1800937567 & 2096602872 \\
-        1 & 2 & 3 & 4 & 5 \\
-        10 & 8 & 15 & 13 & 12
+        426094239  & 379500949  & 56993949 & 561795111 & 653713575 \\
+        1678495370 & 1495020788 & 2244576049 & 2212798516 & 2575460889
       \end{pmatrix}
     \end{align*}
-  
-  \end{document}
+
+\begin{problem}[14]
+    Let $G$ be the graph:
+    \begin{center}
+    \begin{tikzpicture}[scale=.75, transform shape]
+        \GraphInit[vstyle=Dijkstra]
+        \SetGraphUnit{1}
+
+        \Vertex{a} \SOWE(a){l} \SO(a){h} \SOEA(a){b}
+	\SO(h){i} \SO(b){g} \SOEA(b){c}
+	\SOWE(i){k} \SOEA(i){f}
+	\SO(k){j} \SO(f){e} \SOEA(f){d}
+        \Edges(a,l,k,j,e,d,c,b,a)
+        \Edges(k,i,h,b,g,h,i,f,c,d,e,i)
+        \Edges(e,f,g)
+    \end{tikzpicture}
+    \end{center}
+
+    \begin{enumerate}[(a)]
+        \item List the Adjacency matrix for this graph
+        \item List the Degree matrix for this graph
+        \item How many walks of length 25 or greater are there from node $a$ to node $b$
+    \end{enumerate}
+\end{problem}
+    
+\begin{enumerate}[(a)]
+
+    \item 
+    
+    \begin{align*}
+
+      AM_G &= \begin{pmatrix}
+
+
+             & A & B & C & D & E & F & G & H & I & J & K & L \\        
+
+         A   & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+
+         B   & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0\\
+
+         C   & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0  & 0 & 0 & 0\\
+
+         D   & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0  & 0 & 0 & 0 \\
+
+         E   & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0\\
+
+         F   & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 \\
+
+         G   & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0\\
+
+         H   & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0\\
+
+         I   & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0\\
+          
+         J   & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+
+         K   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 \\
+
+         L   & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+      \end{pmatrix}  
+              \end{align*}
+    \item 
+    
+    \begin{align*}
+
+      AM_G &= \begin{pmatrix}
+
+
+             & A & B & C & D & E & F & G & H & I & J & K & L \\        
+
+         A   & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         B   & 0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         C   & 0 & 0 & 3 & 0 & 0 & 0 & 0 & 0 & 0  & 0 & 0 & 0\\
+
+         D   & 0 & 0 & 0 & 2 & 0 & 0 & 0 & 0 & 0  & 0 & 0 & 0 \\
+
+         E   & 0 & 0 & 0 & 0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+
+         F   & 0 & 0 & 0 & 0 & 0 & 4 & 0 & 0 & 0 & 0 & 0 & 0 \\
+
+         G   & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 0 & 0 & 0 & 0 & 0\\
+
+         H   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 0 & 0 & 0 & 0\\
+
+         I   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 4 & 0 & 0 & 0\\
+          
+         J   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 & 0 \\
+
+         K   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 0 \\
+
+         L   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2
+      \end{pmatrix}  
+              \end{align*}
+  \item
+    There are $362967939144$ walks.
+\end{enumerate}
+\begin{problem}[15]
+  List all non-isomorphic graps with 4 nodes and no more than 2 edges.
+\end{problem}\\
+\\
+Listing these becuase I can't get loops to work with tikz-graph latex package.\\
+\left\{ 0-0-0-0 \right\}, \left\{ 1-0-1-0 \right\}, \left\{ 1-1-1-1 \right\}\\
+\left\{ 1-0-2-1 \right\},\left\{ 0-2-2-0 \right\}, \left\{ 0-2-0-0 \right\}\\
+\left\{ 0-4-0-0 \right\}, \left\{ 0-3-1-0 \right\}
+\end{document}
