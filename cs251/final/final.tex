@@ -1,0 +1,163 @@
+
+\documentclass[10pt,letterpaper, cm]{hmcpset}
+\usepackage[top=0.5in,bottom=1in,right=1in,left=0.75in]{geometry}
+\usepackage{multicol,graphicx, enumerate, cancel, amsmath, amsthm}
+\usepackage{tikz}
+\usepackage{tikz,fullpage}
+
+\usetikzlibrary{arrows,petri,topaths,shapes, backgrounds}
+				
+\usepackage{tkz-berge}
+\usepackage{tkz-graph}
+
+\name{Jonathon Sonesen}
+\class{CS 251}
+\duedate{\today}
+\assignment{Final Exam (Of Doom)}
+
+\setlength{\columnsep}{0.5cm}
+\setlength{\columnseprule}{00pt}
+\begin{document}
+\begin{problem}[1]
+State presisiley (but concisely) in your own words what it mean for an argument to be valid.
+\end{problem}\\
+\\An argument is considered valid if it's premise and conclusion are logically sound. \\
+
+\begin{problem}[2]
+  Prove (or disprove).\\
+  \begin{center}
+    \begin{equation*}
+      \forall n \in \mathbb{Z}, n \geq 3 \rightarrow \sum\limits_{i=3}^{n}i(i-1) 
+      =  \frac{(n-2)(n^2+2n+3)}{2}
+    \end{equation*}
+  \end{center}
+\end{problem}\\
+
+\\
+Suppose:
+\begin{center}
+  \begin{equation*}
+    \exists n \in \mathbb{Z}, n \geq 3 \land  \sum\limits_{i=3}^{n}i(i-1) 
+      \neq \frac{(n-2)(n^2+2n+3)}{2}
+  \end{equation*}
+\end{center}
+\begin{center}
+\begin{array}{lll}
+  Row & Statement & Comment\\
+  1.& Let~n:= 3&\text{counter~example}\\
+  2.& \sum\limits_{i=3}^{3}i(i-1) = 6 &\\
+  3.&\frac{(3-2)(3^2+2 \cdot 3+3)}{2} = 9 & \\
+  4.&6 \neq 9 &\\
+  5.& \therefore \exists n \in \mathbb{Z}, n \geq 3 \land  \sum\limits_{i=3}^{n}i(i-1) 
+  \neq \frac{(n-2)(n^2+2n+3)}{2} & \text{QED}\\
+\end{array}
+\end{center}
+
+\begin{problem}[3]
+  Prove (or disprove) that for all sets A, B, and C\\
+  \begin{equation*}
+    A \cup (B \cap C) \subset (A \cup B) \cap C
+  \end{equation*}
+\end{problem}\\
+\\
+\begin{problem}[4]
+  Let $F:\mathbb{R}~x~\mathbb{R} \rightarrow \mathbb{R}~x~\mathbb{R}$ 
+  be a relation defined as\\
+  \begin{equation*}
+    F(x,y) = (3y-1,1-x)
+  \end{equation*}
+  \begin{center}
+    \begin{enumerate}[(a)]
+      \item Prove or disprove that F is a function.\\
+      \item Prove (or disprove) $ F^{-1}$ is a function\\
+    \end{enumerate}
+  \end{center}
+\end{problem}
+
+\begin{problem}[5]
+Let: \\
+\begin{center}
+  \begin{equation*}
+    A= \left\{ x \in \mathbb{Z} \mid \exists~k \in \mathbb{Z} \land x = k^2 \right\}
+  \end{equation*}
+\end{center}
+What is $\mid A \mid $? Explain your reasoning and justify your answer.
+\end{problem}
+
+\begin{problem}[6]
+Define A to be the set of unique digits on your PCC G-Number, and let R :$A\rightarrow A$ be\\
+deifined as\\
+\begin{center}
+  \begin{equation*}
+    xRy \leftrightarrow 2\mid(x-y)
+  \end{equation*}
+\end{center}\\
+List the equivalence classes of R or prove no such classes exist.
+\end{problem}
+
+\begin{problem}[7]
+  Let S be the set of all strings of 0's and 1's of length 3. Define $ R:S \rightarrow S$ as\\ 
+  \begin{center}
+    \begin{align*}
+      ~the~two~left~most~characters& \\
+      sRt \leftrightarrow~
+      of~s~are~the~same~as~the~two\\
+      left~most~characters~of~t 
+    \end{align*}
+  \end{center}
+  List the equivalence classes of R or prove np such classes exist.
+\end{problem}\\
+
+\begin{problem}[8]
+  Let $x$ be you PCC G number without the leading G. What is the inverse modulo of
+  x modulo 8831?
+\end{problem}\\
+
+\begin{problem}[9]
+  An RSE Cipher has the public key pq=65 and e=7. What is the encrypted value of the
+  last 3 digits of your PCC G number?
+\end{problem}\\
+
+\begin{problem}[10]
+  Three quizzes are given to a class of 30 students, and all student submitted all quizzes.
+  Given:\\
+  \begin{enumerate}[-]
+    \item 15 students scored 12 or more on quiz 1
+    \item 12 students scored 12 or more on quiz 2
+    \item 18 students scored 12 or more on quiz 3
+    \item 7 students scored 12 or more on quizzes 1 and 2
+    \item 11 students scored 12 or more on quizzes 1 and 3
+    \item 8 students scored 12 or more on quizzes 2 and 3
+    \item 4 students scored 12 or more on quizzes 1, 2, and ,3
+  \end{enumerate}
+  How many students scored 12 or more on quizzes 1 and 2 but not 3?
+\end{problem}\\
+
+\begin{problem}[11]
+  An urn contains four balls, each numbered with one of the last 4 digits
+  of your PCC G-Number. If a person selects two balls at random (equal
+  probability), what is the expected value of the product of the numbers on
+  the balls?
+\end{problem}\\
+
+\begin{problem}[12]
+   If a graph has nodes of degrees 1, 1, 2, 3, and 3, how many edges does it
+   have? Explain your reasoning and justify your answer, although a formal
+   proof is not needed.
+\end{problem}\\
+
+\begin{problem}[13]
+   Specify (drawing or adjacency matrix) a full binary tree with 16 nodes, of
+   which 6 are internal nodes, or prove no such graph exists.   
+\end{problem}\\
+
+\begin{problem}[14]
+  Must a graph with 68 nodes and 72 edges have a circuit? Explain your
+  reasoning and justify your answer, although a formal proof is not needed.  
+\end{problem}\\
+
+\begin{problem}[15]
+  
+\end{problem}\\
+
+\end{document}
