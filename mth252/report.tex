@@ -1,0 +1,52 @@
+
+\documentclass[10pt,letterpaper, cm]{hmcpset}
+\usepackage[top=0.5in,bottom=1in,right=1in,left=0.75in]{geometry}
+\usepackage{multicol,graphicx, enumerate, cancel, amsmath, amsthm}
+
+\name{Jonathon Sonesen}
+\class{MTH 252}
+\duedate{\today}
+\assignment{Group Report}
+\extraline{Collaborators: Nicole Horsley}
+
+\setlength{\columnsep}{0.5cm}
+\setlength{\columnseprule}{00pt}
+\begin{document}
+In appendix G the method for using partial fractiions as a way to integrate a function 
+that exists as a ratio of polynomials. This is achieved by breaking the ratio down into 
+a sum of simpler fractions. This operation can be performed as long as the degree of the polynimial in the
+denominator is greater the polynomial in the numerator, this is becuase the ratio must be a proper fraction.
+However, if the opposite is true and the fraction is improper using long division with polynomials can create
+a proper fraction. In general there are four cases for using partial fractions to integrate a fuction.
+These cases are as follows:\\
+\\
+\begin{problem}
+  \begin{aligned*}
+    & \text{Case I: The denominator is a product if distinct linear factors.}
+    \begin{eqnarray*}
+      \frac{P(x)}{(a_1x+b_1)(a_2x+b_2)(a_kx+b_k)} =   \frac{A_1}{(a_1x+b_1)} +   \frac{A_2}{(a_2x+b_2)}
+      +\cdot\cdot\cdot+   \frac{A_k}{(a_kx+b_k)}
+    \end{eqnarray*}
+    \\
+    \\
+    & \text{Case II: The denominator is a product of linear factors, some of which are repeated.}
+    \begin{eqnarray*}
+      \frac{P(x)}{(ax+b)^r} =  \frac{A_1}{ax+b} + \frac{A_2}{ax+b} +\cdot\cdot\cdot+ \frac{A_r}{ax+b}
+    \end{eqnarray*}
+    \\
+    \\ 
+    \text{Case III: The denominator contains irreduciible quadratics none of which are repeated.}
+    \begin{eqnarray*}
+      \frac{P(x)}{ax^2+bx + c} = \frac{Ax+B}{ax^2+bx + c}
+    \end{eqnarray*}
+    \\
+    \\
+    & \text{Case IV: The denominator contains a repeated ireeducible qudratic factor.}
+    \begin{eqnarray*}
+     \frac{P(x)}{(ax^2+bx + c)^r} = \frac{A_1x +B_1}{ax^2+bx + c} + 
+     \frac{A_2x+B_2}{(ax^2+bx + c)^2} + \cdot\cdot\cdot + \frac{A_rx+B_r}{(ax^2+bx + c)^r}
+    \end{eqnarray*}
+  \end{aligned*}
+\end{problem}
+
+\end{document}
