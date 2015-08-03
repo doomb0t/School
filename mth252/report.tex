@@ -13,8 +13,8 @@
 \setlength{\columnseprule}{00pt}
 \begin{document}
 In appendix G the method for using partial fractiions as a way to integrate a function 
-that exists as a ratio of polynomials. This is achieved by breaking the ratio down into 
-a sum of simpler fractions. This operation can be performed as long as the degree of the polynimial in the
+that exists as a ratio of polynomials is explained. This is achieved by breaking the ratio down into 
+a sum of simpler fractions. This operation can be performed as long as the degree of the polyniomial in the
 denominator is greater the polynomial in the numerator, this is becuase the ratio must be a proper fraction.
 However, if the opposite is true and the fraction is improper using long division with polynomials can create
 a proper fraction. In general there are four cases for using partial fractions to integrate a fuction.
@@ -50,14 +50,64 @@ These cases are as follows:\\
 \end{problem}
 \\
 \\
-To exemplify the process of evaluating integrals using impartial fractions consider:
+To exemplify the process of evaluating integrals using partial fractions consider:
+
+
+\begin{problem}
 
   \begin{equation*}
     \int\frac{1}{(x+a)(x+b)}dx 
   \end{equation*}
+  This function falls under Case I:
+  \begin{align*}
+      \frac{1}{(x+a)(x+b)} &= \frac{A}{x+a} + \frac{B}{x+b} & \text{by case 1 for partial fractions}\\
+     & =A(x+b) + B(x+a) &\text{by multiplying both sides by the denominator}\\
+     & = 
+  \end{align*}
+\end{problem}\\
+\\
+\newpage
+Problems:\\
+\begin{problem}[1]
+  Evaluate the integral:
+    \begin{equation*}
+      \int\frac{x-1}{x^2 + 3x + 2}dx
+    \end{equation*}
+\end{problem}\\
 
-\begin{problem}
+\begin{equation*}
+  \int_{0}^{1}\frac{x-1}{x^2+3x^2+2}dx
+\end{equation*}
+Consider:
+\begin{aligned*}
+  \begin{equation*}
+    \frac{x-1}{x^2+3x+2} & = \frac{A}{(x+2)} + \frac{B}{(x+1)}  \\
+    \
+  \end{equation*}
+
+\end{aligned*}
+
+\begin{problem}[2]
+  Evaluate the integral:
+  \begin{equation*}
+    \int\frac{x^2 -5x + 16}{(2x+1)(x-2)}dx 
+  \end{equation*}
+\end{problem}\\
 
 
-\end{problem}
+\begin{problem}[3]
+  Evaluate the integral:
+  \begin{equation*}
+    \int\frac{x^2 - x + 6}{x^3+3x}dx 
+  \end{equation*}
+\end{problem}\\
+
+\begin{problem}[4]
+  Using long division first evaluate the integral:
+  \begin{equation*}
+    \int\frac{x^3 + 1}{x^2-4}dx 
+  \end{equation*}
+\end{problem}\\
+\\
+Sources: Wolfram Alpha, TI-89 Titanium
 \end{document}
