@@ -120,16 +120,24 @@ Consider,
 \begin{align*}
   \frac{x^2 -5x + 16}{(2x+1)(x-2)^2} &
   =\frac{A}{2x+1}+\frac{B}{x-2}+\frac{C}{(x-2)^2} \\ \\
-x^2 -5x + 16 &= A(x-2)^2 + B(x-2)(2x+1)+C(2x+1)
+  x^2 -5x + 16 &= A(x-2)^2 + B(x-2)(2x+1)+C(2x+1)
 \end{align*}
 Let x:=2
 \begin{align*}
-(2)^2 -5(2) + 16 &= A(2-2)^2 + B(2-2)(2(2)+1)+C(2(2)+1)\\
-10 &= 5C\\
-C  &=2
+  (2)^2 -5(2) + 16 &= A(2-2)^2 + B(2-2)(2(2)+1)+C(2(2)+1)\\
+  10 &= 5C\\
+  C  &=2
 \end{align*}
-
-
+Now,
+\begin{align*}
+  x^2 -5x + 16 &= Ax^2-4Ax+4A + 2Bx^2 -3Bx-2B+2Cx + C\\
+  &= x^2(A+2B) + x(-4A - 3B + 2C)+(4A-2B+C)\\
+\end{align*}
+\begin{eqnarray*}
+  A+2B&=1&\\
+  -4A-3B+2c&=-5&\\
+  4A-2B+C&=16&\\
+\end{eqnarray*}
 
 \begin{problem}[3]
   Evaluate the integral:
