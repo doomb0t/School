@@ -1,8 +1,8 @@
 
-\documentclass[10pt,letterpaper, cm]{hmcpset}
+\documentclass[10pt,letterpaper,cm, fleqn]{hmcpset}
 \usepackage[top=0.5in,bottom=1in,right=1in,left=0.75in]{geometry}
 \usepackage{multicol,graphicx, enumerate, cancel, amsmath, amsthm}
-\usepackage{tikz}
+\usepackage{xlop}
 \name{Jonathon Sonesen}
 \class{MTH 252}
 \duedate{\today}
@@ -133,11 +133,13 @@ Now,
   x^2 -5x + 16 &= Ax^2-4Ax+4A + 2Bx^2 -3Bx-2B+2Cx + C\\
   &= x^2(A+2B) + x(-4A - 3B + 2C)+(4A-2B+C)\\
 \end{align*}
+Using the corresponding terms and their coefficients,
 \begin{eqnarray*}
-  A+2B&=1&\\
-  -4A-3B+2c&=-5&\\
-  4A-2B+C&=16&\\
+  &A+~2B=1\\
+  &-4A-~3B=-9\\
+  & 4A-~2B=14\\
 \end{eqnarray*}
+\opmult{384}{56}\qquad
 
 \begin{problem}[3]
   Evaluate the integral:
