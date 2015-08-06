@@ -1,8 +1,7 @@
 
-\documentclass[10pt,letterpaper,cm, fleqn]{hmcpset}
+\documentclass[10pt,letterpaper,cm]{hmcpset}
 \usepackage[top=0.5in,bottom=1in,right=1in,left=0.75in]{geometry}
 \usepackage{multicol,graphicx, enumerate, cancel, amsmath, amsthm}
-\usepackage{xlop}
 \name{Jonathon Sonesen}
 \class{MTH 252}
 \duedate{\today}
@@ -133,21 +132,70 @@ Now,
   x^2 -5x + 16 &= Ax^2-4Ax+4A + 2Bx^2 -3Bx-2B+2Cx + C\\
   &= x^2(A+2B) + x(-4A - 3B + 2C)+(4A-2B+C)\\
 \end{align*}
-Using the corresponding terms and their coefficients,
+Using the terms and their coresponding coefficients,
+\begin{eqnarray}
+  &A+~2B=1 &\\
+  &-4A-~3B=-9&\\
+  & 4A-~2B=14&\\
+\end{eqnarray}
+Now add (3) and (4) vertically,
 \begin{eqnarray*}
-  &A+~2B=1\\
-  &-4A-~3B=-9\\
-  & 4A-~2B=14\\
+  &A+~2B=1 &\\
+  &-4A-~3B=-9&\\
++  & 4A-~2B=14&\\
+\cline{2-2}
+  &-5B=5\\
+    &B=-1
 \end{eqnarray*}
-\opmult{384}{56}\qquad
-
+Solve for A,
+\begin{equation*}
+  A+2(-1)=1\\
+\end{equation*}
+  \begin{equation*}
+    A=3\\
+  \end{equation*}
+Since,
+\begin{align*}
+  \frac{x^2 -5x + 16}{(2x+1)(x-2)^2} &
+  =\frac{3}{2x+1}-\frac{1}{x-2}+\frac{2}{(x-2)^2} \\ \\
+\end{align*}
+\newpage
+We have,
+  \begin{align*}
+    \int\frac{x^2 -5x + 16}{(2x+1)(x-2)^2}dx
+    &=\int\frac{3}{2x+1}-\frac{1}{x-2}+\frac{2}{(x-2)^2}dx~&~u=x-2~&w=2x+1\\
+    &=\frac{3}{2}\int\frac{1}{w}dw - \int\frac{1}{u}du + \int\frac{2}{u^2}du~&~du=dx~&dw=2dx
+  \\&=\frac{3}{2}\ln(|w|)-ln(|u|)-\frac{2}{u} + C 
+  \\&=\frac{3}{2}\ln(|2x+1|)-ln(|x-2|)-\frac{2}{x-2} + C 
+  \end{align*}
 \begin{problem}[3]
   Evaluate the integral:
   \begin{equation*}
     \int\frac{x^2 - x + 6}{x^3+3x}dx 
   \end{equation*}
 \end{problem}\\
-
+Consider,\\
+\begin{align*}
+  \frac{x^2 - x + 6}{x^3+3x} &= \frac{A}{x} + \frac{Bx+C}{x^2+3}\\
+  \\x^2-x+6&=A(x^2+3)+(Bx+C)(x)\\
+           &=Ax^2+3A+Bx^2+Cx\\
+           &=x^2(A+B)+x(C) + 3A
+\end{align*}
+By the terms coresponding coefficients,
+\begin{align*}
+          A+B &= 1 \rightarrow& B&=-1\\
+          3A  &=6 \rightarrow& A&=2\\  
+           && C &=1\\
+\end{align*}
+Since,
+\begin{align*}
+  \frac{x^2 - x + 6}{x^3+3x} &= \frac{2}{x} - \frac{x+1}{x^2+3}\\
+\end{align*}
+The integral is,
+\begin{align*}
+  \int\frac{2}{x}dx - \int\frac{x+1}{x^2+3}~dx &=2\ln(|x) - \int\frac{x}{x^2+3}dx
+  - \int\frac{1}{x^2+3}dx &u=x^2+3 \\
+\end{align*}
 \begin{problem}[4]
   Using long division first evaluate the integral:
   \begin{equation*}
@@ -155,5 +203,5 @@ Using the corresponding terms and their coefficients,
   \end{equation*}
 \end{problem}\\
 \\
-Sources: Wolfram Alpha, TI-89 Titanium
+Sources: Wolfram Alpha, TI-89 Titanium, James Stewart Calculus Concepts 4th Edition
 \end{document}
