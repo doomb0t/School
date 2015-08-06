@@ -61,14 +61,24 @@ To exemplify the process of evaluating integrals using partial fractions conside
   \begin{equation*}
     \int\frac{1}{(x+a)(x+b)}dx 
   \end{equation*}
+\end{problem}\\
   This function falls under Case I:
   \begin{align*}
-      \frac{1}{(x+a)(x+b)} &= \frac{A}{x+a} + \frac{B}{x+b} & \text{by case 1 for partial fractions}\\
-     & =A(x+b) + B(x+a) &\text{by multiplying both sides by the denominator}\\
-     & = 
+      \frac{1}{(x+a)(x+b)} =& \frac{A}{x+a} + \frac{B}{x+b} & \text{by case 1 for partial fractions}\\
+       =&A(x+b) + B(x+a) &\text{by multiplying both sides by the denominator}\\
+   A+B =& 0 \\
+   bA + aB=& 1 \\
+   A =&\frac{1}{b-a} \\ 
+   B =&\frac{1}{b-a} \\
   \end{align*}
-\end{problem}\\
 \\
+This gives us,
+\begin{align*}
+  \int\frac{1}{(x+a)(x+b)}dx=&\frac{1}{b-a}\left(  \int\left[ \frac{1}{x+a}- \frac{1}{x+b}\right] 
+  dx\right)\\
+  =&\frac{1}{b-a}\left(\ln|x+a|-\ln|x+b|\right)+C\\
+  =& \frac{1}{b-a}\left(\ln\frac{|x+a|}{|x+b|}\right)+C \\
+\end{align*}
 \section*{Problems:}\\
 \\
 \begin{problem}[1]
