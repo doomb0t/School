@@ -12,18 +12,18 @@
 \setlength{\columnseprule}{00pt}
 \begin{document}
 \section*{Descripton:}
-In appendix G the method for using partial fractiions as a way to integrate a function 
+In appendix G the method for using partial fractions as a way to integrate a function 
 that exists as a ratio of polynomials is explained. This is achieved by breaking the ratio down into 
-a sum of simpler fractions. This operation can be performed as long as the degree of the polyniomial in the
-denominator is greater the polynomial in the numerator, this is becuase the ratio must be a proper fraction.
-However, if the opposite is true and the fraction is improper using long division with polynomials can create
-a proper fraction. In general there are four cases for using partial fractions to integrate a fuction.
+a sum of simpler fractions. This operation can be performed as long as the degree of the polynomial in the
+denominator is greater the polynomial in the numerator, this is because the ratio must be a proper fraction.
+However, if the opposite is true and the fraction is improper, using long division with polynomials can create
+a proper fraction. In general there are four cases for using partial fractions to integrate a function.
 These cases are as follows:\\
 \section*{Cases:}
 \\
 \begin{problem}
   \begin{aligned*}
-    & \text{Case I: The denominator is a product if distinct linear factors.}
+    & \text{Case I: The denominator is a product of distinct linear factors.}
     \begin{eqnarray*}
       \frac{P(x)}{(a_1x+b_1)(a_2x+b_2)(a_kx+b_k)} =   \frac{A_1}{(a_1x+b_1)} +   \frac{A_2}{(a_2x+b_2)}
       +\cdot\cdot\cdot+   \frac{A_k}{(a_kx+b_k)}
@@ -32,17 +32,17 @@ These cases are as follows:\\
     \\
     & \text{Case II: The denominator is a product of linear factors, some of which are repeated.}
     &\begin{eqnarray*}
-      \frac{P(x)}{(ax+b)^r} =  \frac{A_1}{ax+b} + \frac{A_2}{ax+b} +\cdot\cdot\cdot+ \frac{A_r}{ax+b}
+      \frac{P(x)}{(ax+b)^r} =  \frac{A_1}{ax+b} + \frac{A_2}{(ax+b)^2} +\cdot\cdot\cdot+ \frac{A_r}{(ax+b)^r}
     \end{eqnarray*}
     \\
     \\ 
-    \text{Case III: The denominator contains irreduciible quadratics none of which are repeated.}
+    \text{Case III: The denominator contains irreducible quadratics none of which are repeated.}
     \begin{eqnarray*}
       \frac{P(x)}{ax^2+bx + c} = \frac{Ax+B}{ax^2+bx + c}
     \end{eqnarray*}
     \\
     \\
-    & \text{Case IV: The denominator contains a repeated irreducible qudratic factor.}
+    & \text{Case IV: The denominator contains a repeated irreducible quadratic factor.}
     \begin{eqnarray*}
      \frac{P(x)}{(ax^2+bx + c)^r} = \frac{A_1x +B_1}{ax^2+bx + c} + 
      \frac{A_2x+B_2}{(ax^2+bx + c)^2} + \cdot\cdot\cdot + \frac{A_rx+B_r}{(ax^2+bx + c)^r}
@@ -143,7 +143,7 @@ Now,
   x^2 -5x + 16 &= Ax^2-4Ax+4A + 2Bx^2 -3Bx-2B+2Cx + C\\
   &= x^2(A+2B) + x(-4A - 3B + 2C)+(4A-2B+C)\\
 \end{align*}
-Using the terms and their coresponding coefficients,
+Using the terms and their corresponding coefficients,
 \begin{eqnarray}
   &A+~2B=1 &\\
   &-4A-~3B=-9&\\
@@ -194,7 +194,7 @@ Consider,\\
            =&Ax^2+3A+Bx^2+Cx\\
            =&x^2(A+B)+x(C) + 3A
 \end{align*}
-By the terms coresponding coefficients,
+By the terms corresponding coefficients,
 \begin{align*}
           A+B &= 1 \rightarrow& B&=-1\\
           3A  &=6 \rightarrow& A&=2\\  
