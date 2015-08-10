@@ -7,7 +7,7 @@ files. Additionally, there are latex documents and code for my required math cla
 
 #**Current Class List**
 
-* CS162 Science II<BR>
+* CS162 Computer Science II<BR>
      * Explores classes, pointers, dynamic memory, linear linked lists, multi-dimensional arrays, program correctness, verification, and testing.<BR> 
 
 * CS201 Computer Systems<BR>
